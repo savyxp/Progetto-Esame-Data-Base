@@ -1,0 +1,20 @@
+create or replace view controllo_dipendenti as 
+select distinct nome_dipendente,cognome_dipendente,stipendio_dipendente from dipendente;
+
+create or replace view controllo_rappresentanti as 
+ select distinct nome_rappresentante,cognome_rappresentante,percentuale_rappresentante from rappresentante;
+
+create or replace view abito_completo as
+select a1.codice_vestito,c1.colore,t1.tessuto,s1.accessori
+from (((abito a1 join colore c1 on a1.codice_vestito = c1.codice_vestito) join tessuti t1 on a1.codice_vestito = t1.codice_vestito) join accessori s1 on a1.codice_vestito=s1.codice_vestito);
+
+create or replace view vista_cliente as 
+select c1.nome_collezione,c1.numero_vestiti,s1.codice_vestito as vestito_rimasto,a1.buono_sconto,a1.datafine_campagna 
+from ((collezione c1 join campagna_promozionale a1 on c1.anno_collezione = a1.anno_campagna) join abito s1 on c1.nome_collezione = s1.nome_collezione);
+
+create or replace view vista_catalogo as
+select numero_catalogo,numero_pagine,nome_collezione from catalogo;
+
+create or replace view vista_st as
+select m1.nome_modella,m1.cognome_modella,m1.prezzo_modella,s.anno_servizio_fotografico,s.location_servizio,s.prezzo_servizio
+from ((modella m1 join posa_per p1 on m1.iban_modella=p1.iban_modella)join servizio_fotografico s on p1.anno_servizio_fotografico=s.anno_servizio_fotografico);

@@ -1,0 +1,79 @@
+alter table abito add nome_collezione varchar(15);
+
+alter table abito add constraint fk_collezione foreign key (nome_collezione) references collezione(nome_collezione);
+
+alter table abito add id_deposito number(2);
+
+alter table abito add constraint fk_deposito foreign key (id_deposito) references deposito(id_deposito);
+
+alter table abito add numero_ordine number(4);
+
+alter table abito add constraint fk__ordine foreign key (numero_ordine) references ordine(numero_ordine);
+
+alter table abito add codice_spedizione number(5);
+
+alter table abito add constraint fk_spedizione foreign key (codice_spedizione) references servizio_di_trasporto(codice_spedizione);
+
+alter table modello add id_pagamenti number(3,0);
+
+alter table modello add constraint fk_pagamenti foreign key (id_pagamenti) references pagamenti(id_pagamenti);
+
+alter table modello add Piva_fabbrica number(11,0) ;
+
+alter table modello add constraint fk_fabbrica foreign key (Piva_fabbrica) references fabbrica(Piva_fabbrica);
+
+alter table modello add codice_vestito number(5);
+
+alter table modello add constraint fk_abito foreign key (codice_vestito) references abito(codice_vestito);
+
+alter table campagna_promozionale add nome_collezione varchar(15);
+
+alter table campagna_promozionale add constraint fkcollezione foreign key (nome_collezione) references collezione(nome_collezione);
+
+alter table campagna_promozionale add id_pagamenti number(3,0);
+
+alter table campagna_promozionale add constraint fkpagamenti foreign key (id_pagamenti) references pagamenti(id_pagamenti);
+
+alter table catalogo add nome_collezione varchar(15);
+
+alter table catalogo add constraint fk_catalogo foreign key (nome_collezione) references collezione(nome_collezione);
+
+alter table catalogo add id_pagamenti number(3,0);
+
+alter table catalogo add constraint pagamenti_fk foreign key (id_pagamenti) references pagamenti(id_pagamenti);
+
+alter table collezione add anno_servizio_fotografico number(4);
+
+alter table collezione add constraint fk_servizio foreign key (anno_servizio_fotografico) references servizio_fotografico(anno_servizio_fotografico);
+
+alter table servizio_fotografico add id_pagamenti number(3,0);
+
+alter table servizio_fotografico add constraint pagamentifk foreign key (id_pagamenti) references pagamenti(id_pagamenti);
+
+alter table modella add id_pagamenti number(3,0);
+
+alter table modella add constraint pagamentifk1 foreign key (id_pagamenti) references pagamenti(id_pagamenti);
+
+
+
+alter table deposito add id_pagamenti number(3,0)  
+ ;
+
+alter table deposito add constraint pagamenti foreign key (id_pagamenti) references pagamenti(id_pagamenti) 
+ ;
+
+
+
+
+ alter table ordine add PIVA_negozio number(11) 
+ 
+ ;
+
+alter table ordine add constraint negozio_fk foreign key (piva_negozio) references negozio(piva_negozio) 
+ ;
+
+alter table servizio_di_trasporto add PIVA_fabbrica number(11) 
+ ;
+
+alter table servizio_di_trasporto add constraint fabbrica_fk foreign key (piva_fabbrica) references fabbrica(piva_fabbrica) 
+ ;

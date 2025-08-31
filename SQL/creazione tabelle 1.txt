@@ -1,0 +1,128 @@
+
+
+
+create table abito (  
+codice_vestito          number(5,0) primary key,  
+taglia                  number(2,0),  
+prezzo                  number(3,0),  
+giro_fianchi              number(3,0)
+);
+
+create table deposito(  
+id_deposito         number(2,0) primary key,  
+cap_deposito        number(5,0),  
+citta_deposito      varchar(20),  
+via_deposito        varchar(20),  
+superfice           number(4,0),  
+costo_fitto         number(4,0),
+IBAN_proprietario  varchar(27)
+);
+
+create table fabbrica(  
+Piva_fabbrica       number(11,0) primary key,  
+nome_fabbrica       varchar(15),  
+IBAN_fabbrica       varchar(27),  
+citta_fabbrica      varchar(20),  
+via_fabbrica        varchar(15),  
+paese_fabbrica      varchar(15),  
+CAP_fabbrica        number(5,0)  
+);
+
+create table modello(  
+codice_modello          number(5,0) primary key,  
+prezzo_modello          number(3,0),  
+lunghezza_iniziale      number(4,0)  
+);
+
+create table campagna_promozionale(  
+anno_campagna           number(4,0) primary key,  
+budget_campagna         number(4,0),  
+buono_sconto            number(2,0),  
+social                  varchar(15),  
+manifesti               number(4,0),  
+volanitini              number(4,0),  
+datainizio_campagna     date, 
+datafine_campagna       date  
+);
+
+create table catalogo(  
+numero_catalogo         number(4,0) primary key,  
+peso_catalogo           number(1,0),  
+tipo_carta              varchar(10),  
+numero_pagine           number(2,0),  
+costo_stampa          number(3,0)  
+);
+
+create table collezione(  
+nome_collezione         varchar(15) primary key,  
+anno_collezione         number(4,0),  
+numero_vestiti          number(2,0)  
+);
+
+create table modella(  
+iban_modella                number(11,0) primary key,  
+nome_modella                varchar(15),  
+cognome_modella             varchar(15),  
+prezzo_modella              number(3,0),  
+taglia_modella              number(2,0),  
+data_nascita_modella        date  
+);
+
+create table rappresentante(  
+CF_rappresentante               char(16)  primary key,  
+nome_rappresentante             varchar(10),  
+cognome_rappresentante          varchar(10),  
+data_nascita_rapperesentante    date,  
+CAP_rappresentante              number(5,0),  
+via_rappresentante              varchar(15),  
+citta_rappresentante            varchar(15),  
+IBAN_rappresentante             char(27),  
+percentuale_rappresentante      number(2,0)  
+);
+
+create table pagamenti(id_pagamenti number (3,0) primary key, anno_pagamenti number(4,0));
+
+create table dipendente(  
+CF_dipendente           char(16) primary key,  
+data_nascita_dip        date,  
+nome_dipendente         varchar(10),  
+cognome_dipendente      varchar(10),  
+stipendio_dipendente    number(4,0),  
+CAP_dipendente          number(5,0),  
+via_dipendente          varchar(15),
+citta_dipendente        varchar(15),
+IBAN_dipendente         char(27),
+Anno_assunzione        number(4,0)   
+) ;
+
+create table negozio(PIVA_negozio number(11,0) primary key, nome_negozio varchar(20), numero_negozio number(10,0),citta_negozio varchar(15), CAP_negozio number(5,0), via_negozio varchar(15), nome_proprietario varchar(10));
+
+create table ordine(  
+Numero_ordine       number(4,0) primary key,  
+confermato          varchar(2),  
+pagato              varchar(2),  
+contabilizzato      varchar(2),  
+prezzo_totale       number(5,0),  
+spedito             varchar(2),  
+contanti            varchar(2),  
+carta_di_credito    varchar(2),
+anno_ordine         number(4,0) 
+);
+
+create table Servizio_di_trasporto(  
+Codice_spedizione number(5) primary key,  
+Numero_telefono_corriere number(10),  
+PIVA_ST number(11.0),  
+Prezzo_trasporto number(3,0),  
+Imballaggio varchar(10),  
+Data_ritiro_ST date,  
+Data_arrivo_ST date,
+Paese_destinazione varchar(20)  
+);
+
+create table servizio_fotografico(  
+anno_servizio_fotografico               number(4,0) primary key,  
+location_servizio                        varchar(20),  
+prezzo_servizio                         number(3,0),  
+fotografo                               varchar(10)  
+);

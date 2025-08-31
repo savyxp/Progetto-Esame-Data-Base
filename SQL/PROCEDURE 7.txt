@@ -1,0 +1,576 @@
+create or replace procedure conteggio is
+taglia_42    abito.taglia%type;
+taglia_44   abito.taglia%type;
+taglia_46    abito.taglia%type;
+taglia_48    abito.taglia%type;
+minimo        number(2,0);
+piva         negozio.piva_negozio%type;
+ord_conf    ordine.confermato%type;
+begin
+taglia_42:='42';
+taglia_44:='44';
+taglia_46:='46';
+taglia_48:='48';
+minimo:='3';
+
+ SELECT  count(taglia) into taglia_42 
+  FROM abito
+  WHERE taglia=taglia_42;
+   COMMIT;
+DBMS_OUTPUT.put_line ('abiti rimanenti con taglia 42:'||taglia_42);
+if taglia_42<minimo then DBMS_OUTPUT.put_line ('taglia 42 in esaurimento:conviene riassortire così da averne il doppio:'||taglia_42*2);
+end if;
+SELECT  count(taglia) into taglia_44 
+  FROM abito
+  WHERE taglia=taglia_44;
+   COMMIT;
+DBMS_OUTPUT.put_line ('abiti rimanenti con taglia 44:'||taglia_44);
+if taglia_44<minimo then DBMS_OUTPUT.put_line ('taglia 44 in esaurimento:conviene riassortire così da averne il doppio:'||taglia_44*2);
+end if; 
+SELECT  count(taglia) into taglia_46 
+  FROM abito
+  WHERE taglia=taglia_46;
+   COMMIT;
+DBMS_OUTPUT.put_line ('abiti rimanenti con taglia 46:'||taglia_46);
+if taglia_46<minimo then DBMS_OUTPUT.put_line ('taglia 46 in esaurimento:conviene riassortire così da averne il doppio:'||taglia_46*2);
+end if;
+SELECT  count(taglia) into taglia_48
+from abito
+WHERE taglia=taglia_48;
+   COMMIT;
+DBMS_OUTPUT.put_line ('abiti rimanenti con taglia 48:'||taglia_48);
+if taglia_48<minimo then DBMS_OUTPUT.put_line ('taglia 48 in esaurimento:conviene riassortire così da averne il doppio:'||taglia_48*2);
+end if;
+ SELECT  count(confermato) into ord_conf 
+  FROM ordine
+  WHERE confermato='si' or confermato='SI';
+   COMMIT;
+DBMS_OUTPUT.put_line ('Ordini confermati:'||ord_conf);
+SELECT  count(piva_negozio) into piva 
+  FROM negozio
+   COMMIT;
+DBMS_OUTPUT.put_line ('Numero clienti:'||ord_conf);
+end;
+/
+
+create or replace procedure spese_alte is
+servizio_piu_pagato    servizio_fotografico.prezzo_servizio%type;
+anno_s                  servizio_fotografico.anno_servizio_fotografico%type;
+prezzo_camp           campagna_promozionale.budget_campagna%type;
+anno_camp             campagna_promozionale.anno_campagna%type;
+num_cat              catalogo.numero_catalogo%type;
+costo_cat           catalogo.costo_stampa%type;
+
+begin
+ SELECT  prezzo_servizio into servizio_piu_pagato 
+  FROM servizio_fotografico
+  WHERE prezzo_servizio = (SELECT MAX (prezzo_servizio) FROM servizio_fotografico);
+  COMMIT;
+DBMS_OUTPUT.put_line ('servizio fotografico piu pagato:'||servizio_piu_pagato);
+DBMS_OUTPUT.put_line ('Effettuando una riduzione del 5% avresti un risparmio di :'||servizio_piu_pagato*5/100);
+ 
+ SELECT  anno_servizio_fotografico into anno_s 
+  FROM servizio_fotografico
+  WHERE prezzo_servizio = (SELECT MAX (prezzo_servizio) FROM servizio_fotografico);
+  COMMIT;
+DBMS_OUTPUT.put_line ('anno servizio fotografico:'||anno_s);
+ 
+ SELECT  anno_campagna into anno_camp 
+  FROM campagna_promozionale
+  WHERE budget_campagna = (SELECT MAX (budget_campagna) FROM campagna_promozionale);
+  COMMIT;
+DBMS_OUTPUT.put_line ('anno della campagna promozionale piu pagata:'||anno_camp);
+
+SELECT  budget_campagna into prezzo_camp 
+  FROM campagna_promozionale
+  WHERE budget_campagna = (SELECT MAX (budget_campagna) FROM campagna_promozionale);
+  COMMIT;
+DBMS_OUTPUT.put_line ('costo:'||prezzo_camp);
+DBMS_OUTPUT.put_line ('Con 10% di sconto avrai uno sconto di:'||prezzo_camp*10/100);
+
+SELECT  numero_catalogo into num_cat 
+  FROM catalogo
+  WHERE numero_catalogo = (SELECT MAX (numero_catalogo) FROM catalogo);
+  COMMIT;
+DBMS_OUTPUT.put_line ('Numero del catalogo piu pagato:'||num_cat);
+
+SELECT  costo_stampa into costo_cat 
+  FROM catalogo
+  WHERE numero_catalogo = (SELECT MAX (numero_catalogo) FROM catalogo);
+  COMMIT;
+DBMS_OUTPUT.put_line ('Prezzo:'||costo_cat);
+DBMS_OUTPUT.put_line ('con sconto del 10% guadagni:'||costo_cat*10/100);
+ 
+ end;
+/
+create or replace procedure bilancio_completo is
+stip_d    number(10,0);
+prezzo_mod  number(10,0);
+prezzo_sf  number(10,0);
+prezzo_st  number(10,0);
+prezzomodello number(10,0);
+costostampa   number(10,0);
+totaleordini   number(10,0);
+
+begin
+ SELECT  sum(stipendio_dipendente) into stip_d 
+  FROM dipendente
+ COMMIT;
+DBMS_OUTPUT.put_line ('Somma stipendi dipendenti:'||stip_d);
+DBMS_OUTPUT.put_line ('Levando un 5% potresti risparmiare:'||stip_d*5/100);
+ SELECT  sum(prezzo_modella) into prezzo_mod 
+  FROM modella
+ COMMIT;
+DBMS_OUTPUT.put_line ('Somma pagamenti modelle:'||prezzo_mod);
+DBMS_OUTPUT.put_line ('Levando un 5% potresti risparmiare:'||prezzo_mod*5/100);
+ SELECT  sum(prezzo_servizio) into prezzo_sf
+  FROM servizio_fotografico
+ COMMIT;
+DBMS_OUTPUT.put_line ('Somma servizi fotografico:'||prezzo_sf);
+DBMS_OUTPUT.put_line ('Levando un 5% potresti risparmiare:'||prezzo_sf*5/100);
+ SELECT  sum(prezzo_trasporto) into prezzo_st
+  FROM servizio_di_trasporto
+ COMMIT;
+DBMS_OUTPUT.put_line ('Somma servizi di trasporto:'||prezzo_st);
+DBMS_OUTPUT.put_line ('Levando un 5% potresti risparmiare:'||prezzo_st*5/100);
+ SELECT  sum(prezzo_modello) into prezzomodello 
+  FROM modello
+ COMMIT;
+DBMS_OUTPUT.put_line ('Somma prezzo modella:'||prezzomodello);
+DBMS_OUTPUT.put_line ('Levando un 5% potresti risparmiare:'||prezzomodello*5/100);
+SELECT  sum(costo_stampa) into costostampa 
+  FROM catalogo
+ COMMIT;
+DBMS_OUTPUT.put_line ('Somma costo cataloghi:'||costostampa);
+DBMS_OUTPUT.put_line ('Levando un 5% potresti risparmiare:'||costostampa*5/100);
+SELECT  sum(prezzo_totale) into totaleordini 
+  FROM ordine
+ COMMIT;
+ DBMS_OUTPUT.put_line ('COSTI:');
+ DBMS_OUTPUT.put_line (''||costostampa+prezzomodello+prezzo_st+prezzo_sf+prezzo_mod+stip_d);
+DBMS_OUTPUT.put_line ('Entrate totali:'||totaleordini);
+ DBMS_OUTPUT.put_line ('GUADAGNI-COSTI:');
+   DBMS_OUTPUT.put_line (''||totaleordini-(costostampa+prezzomodello+prezzo_st+prezzo_sf+prezzo_mod+stip_d));
+   if (totaleordini-(costostampa+prezzomodello+prezzo_st+prezzo_sf+prezzo_mod+stip_d))<0 then  DBMS_OUTPUT.put_line ('SEI IN NEGATIVO!!');
+   end if;
+      if (totaleordini-(costostampa+prezzomodello+prezzo_st+prezzo_sf+prezzo_mod+stip_d))>0 then  DBMS_OUTPUT.put_line ('SEI IN POSITIVO!!');
+   end if;
+end;
+/
+
+create or replace procedure descrizione_collezione is
+nomecollez19  collezione.nome_collezione%type;
+nomecollez18  collezione.nome_collezione%type;
+collez2019  collezione.anno_collezione%type;
+collez2018  collezione.anno_collezione%type;
+location_sf19 servizio_fotografico.location_servizio%type;
+social_cp19    campagna_promozionale.social%type;
+location_sf18 servizio_fotografico.location_servizio%type;
+social_cp18    campagna_promozionale.social%type;
+nomecollez17  collezione.nome_collezione%type;
+collez2017  collezione.anno_collezione%type;
+location_sf17 servizio_fotografico.location_servizio%type;
+social_cp17  campagna_promozionale.social%type;
+nomecollez20  collezione.nome_collezione%type;
+collez2020  collezione.anno_collezione%type;
+social_cp20  campagna_promozionale.social%type;
+totaleordini17  number(10,0);
+totaleordini18  number(10,0);
+totaleordini19  number(10,0);
+totaleordini20  number(10,0);
+begin
+collez2020:=to_number(to_char(sysdate,'yyyy'));
+collez2019:=to_number(to_char(sysdate,'yyyy'))-1;
+collez2018:=to_number(to_char(sysdate,'yyyy'))-2;
+collez2017:=to_number(to_char(sysdate,'yyyy'))-3;
+
+SELECT  count(nome_collezione) into nomecollez17
+  FROM collezione
+  WHERE anno_collezione=collez2017;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Numero collezioni nel 2017:'||nomecollez17);
+
+ SELECT  location_servizio into location_sf17
+  FROM servizio_fotografico
+  WHERE anno_servizio_fotografico=collez2017;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Location 2017:'||location_sf17);
+
+ SELECT  social into social_cp17
+  FROM campagna_promozionale
+  WHERE anno_campagna=collez2017;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Social coinvolti nel 2017:'||social_cp17);
+
+SELECT  sum(prezzo_totale) into totaleordini17
+  FROM ordine
+  where anno_ordine=collez2017;
+ COMMIT;
+DBMS_OUTPUT.put_line ('Entrate totali 2017:'||totaleordini17);
+SELECT  count(nome_collezione) into nomecollez18
+  FROM collezione
+  WHERE anno_collezione=collez2018;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Numero collezioni nel 2018:'||nomecollez18);
+SELECT  location_servizio into location_sf18
+  FROM servizio_fotografico
+  WHERE anno_servizio_fotografico=collez2018;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Location 2019:'||location_sf18);
+
+ SELECT  social into social_cp18
+  FROM campagna_promozionale
+  WHERE anno_campagna=collez2018;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Social coinvolti nel 2018:'||social_cp18);
+
+SELECT  sum(prezzo_totale) into totaleordini18
+  FROM ordine
+  where anno_ordine=collez2018;
+ COMMIT;
+DBMS_OUTPUT.put_line ('Entrate totali 2018:'||totaleordini18);
+ SELECT  count(nome_collezione) into nomecollez19
+  FROM collezione
+  WHERE anno_collezione=collez2019;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Numero collezioni nel 2019:'||nomecollez19);
+SELECT  location_servizio into location_sf19
+  FROM servizio_fotografico
+  WHERE anno_servizio_fotografico=collez2019;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Location 2019:'||location_sf19);
+
+ SELECT  social into social_cp19
+  FROM campagna_promozionale
+  WHERE anno_campagna=collez2019;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Social coinvolti nel 2019:'||social_cp19);
+
+SELECT  sum(prezzo_totale) into totaleordini19
+  FROM ordine
+  where anno_ordine=collez2019;
+ COMMIT;
+DBMS_OUTPUT.put_line ('Entrate totali 2019:'||totaleordini19);
+
+SELECT  count(nome_collezione) into nomecollez20
+  FROM collezione
+  WHERE anno_collezione=collez2020;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Numero collezioni nel 2020:'||nomecollez20);
+
+
+DBMS_OUTPUT.put_line ('Location 2020: ANNULLATO CAUSA COVID19');
+
+ SELECT  social into social_cp20
+  FROM campagna_promozionale
+  WHERE anno_campagna=collez2020;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Social coinvolti nel 2020:'||social_cp20);
+
+SELECT  sum(prezzo_totale) into totaleordini20
+  FROM ordine
+  where anno_ordine=collez2020;
+ COMMIT;
+DBMS_OUTPUT.put_line ('Entrate totali 2020:'||totaleordini20);
+if totaleordini20>totaleordini19 and totaleordini20>totaleordini18 and totaleordini20>totaleordini17 then DBMS_OUTPUT.put_line ('Anno migliore è stato il 2020');
+end if;
+if totaleordini19>totaleordini20 and totaleordini19>totaleordini18 and totaleordini19>totaleordini17 then DBMS_OUTPUT.put_line ('Anno migliore è stato il 2019');
+end if;
+if totaleordini18>totaleordini20 and totaleordini18>totaleordini19 and totaleordini18>totaleordini17 then DBMS_OUTPUT.put_line ('Anno migliore è stato il 2018');
+end if;
+if totaleordini17>totaleordini20 and totaleordini17>totaleordini19 and totaleordini17>totaleordini18 then DBMS_OUTPUT.put_line ('Anno migliore è stato il 2017');
+end if;
+end;
+/
+
+create or replace procedure descrizione_abito is
+abiti2017 number(4,0);
+collezione2017 number(4,0);
+ordini2017 number(5,0);
+a2017 number(4,0);
+abiti2018 number(4,0);
+collezione2018 number(4,0);
+ordini2018 number(5,0);
+a2018 number(4,0);
+abiti2019 number(4,0);
+collezione2019 number(4,0);
+ordini2019 number(5,0);
+a2019 number(4,0);
+abiti2020 number(4,0);
+collezione2020 number(4,0);
+ordini2020 number(5,0);
+a2020 number(4,0);
+cliente17 ordine.PIVA_negozio%type;
+cliente18 ordine.PIVA_negozio%type;
+cliente19 ordine.PIVA_negozio%type;
+cliente20 ordine.PIVA_negozio%type;
+
+premio17  number(4,0);
+premio18  number(4,0);
+premio19  number(4,0);
+premio20  number(4,0);
+begin
+a2017:=to_number(to_char(sysdate,'yyyy'))-3;
+a2018:=to_number(to_char(sysdate,'yyyy'))-2;
+a2019:=to_number(to_char(sysdate,'yyyy'))-1;
+a2020:=to_number(to_char(sysdate,'yyyy'));
+
+SELECT  count(a1.codice_vestito) into abiti2017 
+  FROM abito a1 join collezione c1 on a1.nome_collezione=c1.nome_collezione
+  WHERE c1.anno_collezione=a2017;
+   COMMIT;
+DBMS_OUTPUT.put_line ('abiti rimasti del '||a2017||':'||abiti2017);
+
+ SELECT  count(nome_collezione) into collezione2017 
+  FROM collezione
+  WHERE anno_collezione=a2017;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Collezioni create nel '||a2017||':'||collezione2017);
+
+ SELECT  count(numero_ordine) into ordini2017
+  FROM ordine
+  WHERE anno_ordine=a2017;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Ordini nel '||a2017||':'||collezione2017);
+
+  SELECT  PIVA_negozio into cliente17
+  FROM ordine
+  WHERE anno_ordine=a2017 and prezzo_totale=(SELECT  max(PREZZO_TOTALE)
+  FROM ordine
+  WHERE anno_ordine=a2017);
+  COMMIT;
+    DBMS_OUTPUT.put_line ('Il cliente che ha effettuato un ordine con importo piu alto nel '||a2017||':'||cliente17);
+
+ SELECT  max(PREZZO_TOTALE) into premio17
+  FROM ordine
+  WHERE anno_ordine=a2017;
+  COMMIT;
+  DBMS_OUTPUT.put_line ('Esso riceverà un rimborso del 5% dell ordine più alto pari a:'||premio17*5/100);
+  
+SELECT  count(codice_vestito) into abiti2018 
+  FROM abito a1 join collezione c1 on a1.nome_collezione=c1.nome_collezione
+  WHERE c1.anno_collezione=a2018;
+   COMMIT;
+DBMS_OUTPUT.put_line ('abiti rimasti del '||a2018||': '||abiti2018);
+
+ SELECT  count(nome_collezione) into collezione2018 
+  FROM collezione
+  WHERE anno_collezione=a2018;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Collezioni create nel '||a2018||':'||collezione2018);
+
+ SELECT  count(numero_ordine) into ordini2018
+  FROM ordine
+  WHERE anno_ordine=a2018;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Ordini nel '||a2018||':'||collezione2018);
+
+
+ SELECT  PIVA_negozio into cliente18
+  FROM ordine
+  WHERE anno_ordine=a2018 and prezzo_totale=(SELECT  max(PREZZO_TOTALE)
+  FROM ordine
+  WHERE anno_ordine=a2018);
+  COMMIT;
+    DBMS_OUTPUT.put_line ('Il cliente che ha effettuato un ordine con importo piu alto nel '||a2018||' è:'||cliente18);
+
+ SELECT  max(PREZZO_TOTALE) into premio18
+  FROM ordine
+  WHERE anno_ordine=a2018;
+  COMMIT;
+
+  DBMS_OUTPUT.put_line ('Esso riceverà un rimborso del 5% dell ordine più alto pari a:'||premio18*5/100);
+SELECT  count(codice_vestito) into abiti2019
+  FROM abito a1 join collezione c1 on a1.nome_collezione=c1.nome_collezione
+  WHERE c1.anno_collezione=a2019;
+   COMMIT;
+DBMS_OUTPUT.put_line ('abiti rimasti del '||a2019||':'||abiti2019);
+
+ SELECT  count(nome_collezione) into collezione2019
+  FROM collezione
+  WHERE anno_collezione=a2019;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Collezioni create nel '||a2019||':'||collezione2019);
+
+ SELECT  count(numero_ordine) into ordini2019
+  FROM ordine
+  WHERE anno_ordine=a2019;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Ordini nel '||a2019||':'||collezione2019);
+
+  SELECT  PIVA_negozio into cliente19
+  FROM ordine
+  WHERE anno_ordine=a2019 and prezzo_totale=(SELECT  max(PREZZO_TOTALE) from ordine
+  WHERE anno_ordine=a2019);
+  COMMIT;
+    DBMS_OUTPUT.put_line ('Il cliente che ha effettuato un ordine con importo piu alto nel '||a2019||' è:'||cliente19);
+
+SELECT  max(PREZZO_TOTALE) into premio19
+  FROM ordine
+  WHERE anno_ordine=a2019;
+  COMMIT;
+  DBMS_OUTPUT.put_line ('Esso riceverà un rimborso del 5% dell ordine più alto pari a:'||premio19*5/100);
+  
+SELECT  count(codice_vestito) into abiti2020
+  FROM abito a1 join collezione c1 on a1.nome_collezione=c1.nome_collezione
+  WHERE c1.anno_collezione=a2020;
+   COMMIT;
+DBMS_OUTPUT.put_line ('abiti rimasti del '||a2020||':'||abiti2020);
+ SELECT  count(nome_collezione) into collezione2020
+  FROM collezione
+  WHERE anno_collezione=a2020;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Collezioni create nel '||a2020||':'||collezione2020);
+ SELECT  count(numero_ordine) into ordini2020
+  FROM ordine
+  WHERE anno_ordine=a2020;
+   COMMIT;
+DBMS_OUTPUT.put_line ('Ordini nel '||a2020||':'||collezione2020);
+  SELECT  PIVA_negozio into cliente20
+  FROM ordine
+  WHERE anno_ordine=a2020 and prezzo_totale=(SELECT  max(PREZZO_TOTALE)
+  FROM ordine
+  WHERE anno_ordine=a2020);
+  COMMIT;
+    DBMS_OUTPUT.put_line ('Il cliente che ha effettuato un ordine con importo piu alto nel '||a2020||' è:'||cliente20);
+ SELECT  max(PREZZO_TOTALE) into premio20
+  FROM ordine
+  WHERE anno_ordine=a2020;
+  COMMIT;
+DBMS_OUTPUT.put_line ('Esso riceverà un rimborso del 5% dell ordine più alto pari a:'||premio20*5/100);
+end;
+/
+
+create or replace procedure piu_pagato is
+stip_d    number(6,0);
+nome_dip    dipendente.nome_dipendente%type;
+cognome_dip dipendente.cognome_dipendente%type;
+modella_pagata   number(6,0);
+nome_mod    modella.nome_modella%type;
+cognome_mod modella.cognome_modella%type;
+percentuale_max    number(6,0);
+cognome_max        rappresentante.cognome_rappresentante%type;
+begin
+ SELECT  stipendio_dipendente into stip_d 
+  FROM dipendente
+  WHERE STIPENDIO_DIPENDENTE = (SELECT MAX (STIPENDIO_DIPENDENTE) FROM dipendente);
+  COMMIT;
+DBMS_OUTPUT.put_line ('stipendio piu alto di un dipendente:'||stip_d);
+DBMS_OUTPUT.put_line ('Per incrementare le prestazioni del dipendente è bene dare un aumento del 5% al dipendente che comporta una spesa mensile di ulteriori euro:'||stip_d*5/100);
+SELECT  nome_dipendente into  nome_dip
+  FROM dipendente
+  WHERE STIPENDIO_DIPENDENTE = (SELECT MAX (STIPENDIO_DIPENDENTE) FROM dipendente);
+    COMMIT;
+DBMS_OUTPUT.put_line ('nome:'||nome_dip);
+SELECT  cognome_dipendente into  cognome_dip
+  FROM dipendente
+  WHERE STIPENDIO_DIPENDENTE = (SELECT MAX (STIPENDIO_DIPENDENTE) FROM dipendente);
+    COMMIT;
+DBMS_OUTPUT.put_line ('cognome:'||cognome_dip);
+ SELECT  prezzo_modella into modella_pagata 
+  FROM modella
+  WHERE prezzo_modella = (SELECT MAX (prezzo_modella) FROM modella);
+   COMMIT;
+DBMS_OUTPUT.put_line ('modella piu pagata:'||modella_pagata);
+SELECT  nome_modella into  nome_mod
+  FROM modella
+ WHERE prezzo_modella = (SELECT MAX (prezzo_modella) FROM modella);
+   COMMIT;
+DBMS_OUTPUT.put_line ('nome:'||nome_mod);
+SELECT  cognome_modella into  cognome_mod
+  FROM modella
+ WHERE prezzo_modella = (SELECT MAX (prezzo_modella) FROM modella);
+   COMMIT;
+DBMS_OUTPUT.put_line ('cognome:'||cognome_mod);
+SELECT  percentuale_rappresentante into percentuale_max 
+  FROM rappresentante
+  WHERE percentuale_rappresentante = (SELECT MAX (percentuale_rappresentante) FROM rappresentante);
+   COMMIT;
+DBMS_OUTPUT.put_line ('La percentuale piu alta di un rappresentante è:'||percentuale_max);
+DBMS_OUTPUT.put_line ('Il rappresentante merita un ulteriore aumento di percentuale per incentivarlo. Essa diventerebbe:'||percentuale_max*1.2);
+SELECT  cognome_rappresentante into cognome_max 
+  FROM rappresentante
+  WHERE percentuale_rappresentante = (SELECT MAX (percentuale_rappresentante) FROM rappresentante);
+   COMMIT;
+DBMS_OUTPUT.put_line ('Appartiene  al rappresentante:'||cognome_max);
+
+end;
+/
+
+create or replace procedure furgoncino is
+deposito1  deposito.id_deposito%type;
+deposito2  deposito.id_deposito%type;
+deposito3  deposito.id_deposito%type;
+deposito4  deposito.id_deposito%type;
+pagamento1 pagamenti.anno_pagamenti%type;
+pagamento2 pagamenti.anno_pagamenti%type;
+pagamento3 pagamenti.anno_pagamenti%type;
+pagamento4 pagamenti.anno_pagamenti%type;
+begin
+SELECT  count(a1.codice_vestito) into deposito1
+  FROM abito a1 join deposito d1 on a1.id_deposito=d1.id_deposito where d1.CITTA_DEPOSITO='Frattamaggiore';
+  DBMS_OUTPUT.put_line ('Numero di abiti da trasportare nel deposito di Frattamaggiore:'||deposito1);
+  if deposito1<=5 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con un solo viaggio');
+  end if;
+  if deposito1<=10 and deposito1>5 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con due viaggi');
+  end if;
+    if deposito1<=15 and deposito1>10 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con tre viaggi');
+    end if;
+        if deposito1<=20 and deposito1>15 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con quattro viaggi');
+        end if;
+        
+        select p1.anno_pagamenti into pagamento1 from(deposito d1 join pagamenti p1 on d1.id_pagamenti=p1.id_pagamenti) where d1.citta_deposito='Frattamaggiore' and p1.anno_pagamenti='2020';
+     if pagamento1 = to_number(to_char(sysdate,'yyyy')) then DBMS_OUTPUT.put_line ('Ultimo anno del fitto del deposito è stato pagato al proprietario');
+     end if;
+COMMIT;
+
+SELECT  count(a1.codice_vestito) into deposito2
+  FROM abito a1 join deposito d1 on a1.id_deposito=d1.id_deposito where d1.CITTA_DEPOSITO='Nocera Inferiore';
+  DBMS_OUTPUT.put_line ('Numero di abiti da trasportare nel deposito di Nocera Inferiore:'||deposito2);
+  if deposito2<=5 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con un solo viaggio');
+  end if;
+  if deposito2<=10 and deposito2>5 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con due viaggi');
+  end if;
+    if deposito1<=15 and deposito2>10 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con tre viaggi');
+    end if;
+        if deposito2<=20 and deposito2>15 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con quattro viaggi');
+        end if;
+          select p1.anno_pagamenti into pagamento2 from(deposito d1 join pagamenti p1 on d1.id_pagamenti=p1.id_pagamenti) where d1.citta_deposito='Nocera Inferiore' and p1.anno_pagamenti='2020';
+     if pagamento2 = to_number(to_char(sysdate,'yyyy')) then DBMS_OUTPUT.put_line ('Ultimo anno del fitto del deposito è stato pagato al proprietario');
+     end if;
+COMMIT;
+
+SELECT  count(a1.codice_vestito) into deposito3
+  FROM abito a1 join deposito d1 on a1.id_deposito=d1.id_deposito where d1.CITTA_DEPOSITO='Barra';
+  DBMS_OUTPUT.put_line ('Numero di abiti da trasportare nel deposito di Barra:'||deposito2);
+  if deposito3<=5 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con un solo viaggio');
+  end if;
+  if deposito3<=10 and deposito3>5 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con due viaggi');
+  end if;
+    if deposito3<=15 and deposito3>10 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con tre viaggi');
+    end if;
+        if deposito3<=20 and deposito3>15 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con quattro viaggi');
+        end if;
+         select p1.anno_pagamenti into pagamento3 from(deposito d1 join pagamenti p1 on d1.id_pagamenti=p1.id_pagamenti) where d1.citta_deposito='Barra' and p1.anno_pagamenti='2020';
+     if pagamento3 = to_number(to_char(sysdate,'yyyy')) then DBMS_OUTPUT.put_line ('Ultimo anno del fitto del deposito è stato pagato al proprietario');
+     end if;
+        COMMIT;
+        
+        
+SELECT  count(a1.codice_vestito) into deposito4
+  FROM abito a1 join deposito d1 on a1.id_deposito=d1.id_deposito where d1.CITTA_DEPOSITO='Caserta';
+  DBMS_OUTPUT.put_line ('Numero di abiti da trasportare nel deposito di Caserta:'||deposito2);
+  if deposito4<=4 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con un solo viaggio');
+  end if;
+  if deposito4<=10 and deposito4>5 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con due viaggi');
+  end if;
+    if deposito4<=15 and deposito4>10 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con tre viaggi');
+    end if;
+        if deposito4<=20 and deposito4>15 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con quattro viaggi');
+        end if;
+         select p1.anno_pagamenti into pagamento4 from(deposito d1 join pagamenti p1 on d1.id_pagamenti=p1.id_pagamenti) where d1.citta_deposito='Caserta' and p1.anno_pagamenti='2020';
+     if pagamento4 = to_number(to_char(sysdate,'yyyy')) then DBMS_OUTPUT.put_line ('Ultimo anno del fitto del deposito è stato pagato al proprietario');
+     end if;
+        COMMIT;
+end;
+/

@@ -1,0 +1,201 @@
+UPDATE abito SET nome_collezione = 'estate20', codice_spedizione='60678', numero_ordine='4', id_deposito='11'  WHERE codice_vestito ='44444';
+UPDATE abito SET nome_collezione = 'inverno20',  codice_spedizione='88565', numero_ordine='1', id_deposito='12'   WHERE codice_vestito ='11111';
+UPDATE abito SET nome_collezione = 'autunno20',  codice_spedizione='9999', numero_ordine='2', id_deposito='13'    WHERE codice_vestito ='22222';
+UPDATE abito SET nome_collezione = 'primavera20',  codice_spedizione='89965', numero_ordine='3', id_deposito='14'  WHERE codice_vestito ='33333';
+UPDATE abito SET nome_collezione = 'estate19',  codice_spedizione='88992', numero_ordine='5', id_deposito='15'    WHERE codice_vestito ='55555';
+UPDATE abito SET nome_collezione = 'inverno19', codice_spedizione='12342', numero_ordine='6', id_deposito='16'   WHERE codice_vestito ='66666';
+UPDATE abito SET nome_collezione = 'autunno19',  codice_spedizione='44221', numero_ordine='7', id_deposito='21'   WHERE codice_vestito ='77777';
+UPDATE abito SET nome_collezione = 'primavera19',  codice_spedizione='23144', numero_ordine='8', id_deposito='22'   WHERE codice_vestito ='88888';
+UPDATE abito SET nome_collezione = 'estate18',  codice_spedizione='54212', numero_ordine='10', id_deposito='23'   WHERE codice_vestito ='10001';
+UPDATE abito SET nome_collezione = 'inverno18',  codice_spedizione='48877', numero_ordine='11', id_deposito='24'   WHERE codice_vestito ='10002';
+UPDATE abito SET nome_collezione = 'autunno18', codice_spedizione='22152' , numero_ordine='12', id_deposito='31'  WHERE codice_vestito ='10003';
+UPDATE abito SET nome_collezione = 'primavera18', codice_spedizione='20611',numero_ordine='15', id_deposito='32'  WHERE codice_vestito ='10004';
+UPDATE abito SET nome_collezione = 'inverno18',  codice_spedizione='60678' , numero_ordine='14', id_deposito='33'   WHERE codice_vestito ='10006';
+UPDATE abito SET nome_collezione = 'inverno18',  codice_spedizione='20611' , numero_ordine='9', id_deposito='34'   WHERE codice_vestito ='12345';
+UPDATE abito SET nome_collezione = 'primavera18',  codice_spedizione='99327',numero_ordine='9', id_deposito='41'  WHERE codice_vestito ='99999';
+UPDATE abito SET nome_collezione = 'inverno17', codice_spedizione='20611', numero_ordine='13', id_deposito='42'   WHERE codice_vestito ='10005';
+
+UPDATE modello SET piva_fabbrica = '88888888888', codice_vestito = '11111', id_pagamenti='124'   WHERE codice_modello ='57579';
+UPDATE modello SET piva_fabbrica = '99999999999', codice_vestito = '22222', id_pagamenti='113'   WHERE codice_modello ='13331';
+UPDATE modello SET piva_fabbrica = '12000000000', codice_vestito = '33333', id_pagamenti='114'    WHERE codice_modello ='14444';
+UPDATE modello SET piva_fabbrica = '13000000000', codice_vestito = '44444', id_pagamenti='123'      WHERE codice_modello ='55555';
+UPDATE modello SET piva_fabbrica = '10000000000', codice_vestito = '55555', id_pagamenti='115'    WHERE codice_modello ='13357';
+UPDATE modello SET piva_fabbrica = '11000000000', codice_vestito = '66666', id_pagamenti='116'    WHERE codice_modello ='77880';
+UPDATE modello SET piva_fabbrica = '12000000000', codice_vestito = '77777', id_pagamenti='117'    WHERE codice_modello ='23245';
+UPDATE modello SET piva_fabbrica = '13000000000', codice_vestito = '88888', id_pagamenti='118'    WHERE codice_modello ='99844';
+UPDATE modello SET piva_fabbrica = '14000000000', codice_vestito = '99999', id_pagamenti='112'    WHERE codice_modello ='10047';
+UPDATE modello SET piva_fabbrica = '15000000000', codice_vestito = '10001', id_pagamenti='119'   WHERE codice_modello ='36985';
+UPDATE modello SET piva_fabbrica = '88888888888', codice_vestito = '10002', id_pagamenti='120'   WHERE codice_modello ='14852';
+UPDATE modello SET piva_fabbrica = '77777777777', codice_vestito = '10003', id_pagamenti='121'    WHERE codice_modello ='45456';
+UPDATE modello SET piva_fabbrica = '55555555555', codice_vestito = '10004', id_pagamenti='122'    WHERE codice_modello ='118846';
+UPDATE modello SET piva_fabbrica = '66666666666', codice_vestito = '10005', id_pagamenti='112'  WHERE codice_modello ='23499';
+UPDATE modello SET piva_fabbrica = '14477784511', codice_vestito = '12345', id_pagamenti='111'    WHERE codice_modello ='11884';
+UPDATE modello SET piva_fabbrica = '16000000000', codice_vestito = '10006', id_pagamenti='125'   WHERE codice_modello ='15004';
+
+UPDATE campagna_promozionale SET nome_collezione = 'primavera20',id_pagamenti ='120'  WHERE anno_campagna ='2020';
+UPDATE campagna_promozionale SET nome_collezione = 'estate19', id_pagamenti='117'  WHERE anno_campagna ='2019';
+UPDATE campagna_promozionale SET nome_collezione = 'estate18', id_pagamenti='111'  WHERE anno_campagna ='2018';
+UPDATE campagna_promozionale SET nome_collezione = 'inverno17', id_pagamenti='124'  WHERE anno_campagna ='2017';
+UPDATE campagna_promozionale SET nome_collezione = 'luna16', id_pagamenti='127'  WHERE anno_campagna ='2016';
+UPDATE campagna_promozionale SET nome_collezione = 'sole15', id_pagamenti='128'  WHERE anno_campagna ='2015';
+UPDATE campagna_promozionale SET nome_collezione = 'ghiaccio14', id_pagamenti='129'  WHERE anno_campagna ='2014';
+UPDATE campagna_promozionale SET nome_collezione = 'fuoco13', id_pagamenti='130'  WHERE anno_campagna ='2013';
+UPDATE campagna_promozionale SET nome_collezione = 'mare12', id_pagamenti='131'  WHERE anno_campagna ='2012';
+UPDATE campagna_promozionale SET nome_collezione = 'montagna11', id_pagamenti='132'  WHERE anno_campagna ='2011';
+UPDATE campagna_promozionale SET nome_collezione = 'seta10', id_pagamenti='133'  WHERE anno_campagna ='2010';
+UPDATE campagna_promozionale SET nome_collezione = 'chiffon09', id_pagamenti='134'  WHERE anno_campagna ='2009';
+UPDATE campagna_promozionale SET nome_collezione = 'beauty08', id_pagamenti='135'  WHERE anno_campagna ='2008';
+UPDATE campagna_promozionale SET nome_collezione = 'pioggia07', id_pagamenti='136'  WHERE anno_campagna ='2007';
+UPDATE campagna_promozionale SET nome_collezione = 'mare06', id_pagamenti='136'  WHERE anno_campagna ='2006';
+
+UPDATE collezione SET anno_servizio_fotografico = '2020' WHERE nome_collezione='estate20';
+UPDATE collezione SET anno_servizio_fotografico = '2019' WHERE nome_collezione='inverno19';
+UPDATE collezione SET anno_servizio_fotografico = '2018' WHERE nome_collezione='primavera18';
+UPDATE collezione SET anno_servizio_fotografico = '2017' WHERE nome_collezione='autunno17';
+UPDATE collezione SET anno_servizio_fotografico = '2016' WHERE nome_collezione='luna16';
+UPDATE collezione SET anno_servizio_fotografico = '2015' WHERE nome_collezione='sole15';
+UPDATE collezione SET anno_servizio_fotografico = '2014' WHERE nome_collezione='ghiaccio14';
+UPDATE collezione SET anno_servizio_fotografico = '2013' WHERE nome_collezione='fuoco13';
+UPDATE collezione SET anno_servizio_fotografico = '2012' WHERE nome_collezione='mare12';
+UPDATE collezione SET anno_servizio_fotografico = '2011' WHERE nome_collezione='montagna11';
+UPDATE collezione SET anno_servizio_fotografico = '2010' WHERE nome_collezione='seta10';
+UPDATE collezione SET anno_servizio_fotografico = '2009' WHERE nome_collezione='chiffon09';
+UPDATE collezione SET anno_servizio_fotografico = '2008' WHERE nome_collezione='beauty08';
+UPDATE collezione SET anno_servizio_fotografico = '2007' WHERE nome_collezione='pioggia07';
+UPDATE collezione SET anno_servizio_fotografico = '2006' WHERE nome_collezione='mare06';
+UPDATE collezione SET anno_servizio_fotografico = '2017' WHERE nome_collezione='estate17';
+UPDATE collezione SET anno_servizio_fotografico = '2017' WHERE nome_collezione='primavera17';
+UPDATE collezione SET anno_servizio_fotografico = '2017' WHERE nome_collezione='inverno17';
+UPDATE collezione SET anno_servizio_fotografico = '2018' WHERE nome_collezione='estate18';
+UPDATE collezione SET anno_servizio_fotografico = '2018' WHERE nome_collezione='autunno18';
+UPDATE collezione SET anno_servizio_fotografico = '2018' WHERE nome_collezione='inverno18';
+UPDATE collezione SET anno_servizio_fotografico = '2019' WHERE nome_collezione='estate19';
+UPDATE collezione SET anno_servizio_fotografico = '2020' WHERE nome_collezione='autunno20';
+UPDATE collezione SET anno_servizio_fotografico = '2020' WHERE nome_collezione='inverno20';
+UPDATE collezione SET anno_servizio_fotografico = '2020' WHERE nome_collezione='primavera20';
+UPDATE collezione SET anno_servizio_fotografico = '2019' WHERE nome_collezione='primavera19';
+UPDATE collezione SET anno_servizio_fotografico = '2019' WHERE nome_collezione='autunno19';
+
+
+UPDATE modella SET id_pagamenti= '111' WHERE iban_modella='3044180466 ';
+UPDATE modella SET id_pagamenti= '112' WHERE iban_modella='2122996874  ';
+UPDATE modella SET id_pagamenti= '113' WHERE iban_modella='6002184572   ';
+UPDATE modella SET id_pagamenti= '114' WHERE iban_modella='3006389770   ';
+UPDATE modella SET id_pagamenti= '115' WHERE iban_modella='1236647789 ';
+UPDATE modella SET id_pagamenti= '116' WHERE iban_modella='4455776921  ';
+UPDATE modella SET id_pagamenti= '117' WHERE iban_modella='4411229999   ';
+UPDATE modella SET id_pagamenti= '118' WHERE iban_modella='7899874545   ';
+UPDATE modella SET id_pagamenti= '119' WHERE iban_modella='7774441111 ';
+UPDATE modella SET id_pagamenti= '120' WHERE iban_modella='7411478527  ';
+UPDATE modella SET id_pagamenti= '121' WHERE iban_modella='6998745621   ';
+UPDATE modella SET id_pagamenti= '122' WHERE iban_modella='2233444412   ';
+UPDATE modella SET id_pagamenti= '123' WHERE iban_modella='7996613121 ';
+UPDATE modella SET id_pagamenti= '124' WHERE iban_modella='6622213147  ';
+UPDATE modella SET id_pagamenti= '125' WHERE iban_modella='9922789441';
+
+UPDATE catalogo SET nome_collezione = 'pioggia07', id_pagamenti='136' WHERE numero_catalogo='2';
+UPDATE catalogo SET nome_collezione = 'beauty08', id_pagamenti='135' WHERE numero_catalogo='3';
+UPDATE catalogo SET nome_collezione = 'chiffon09', id_pagamenti='134' WHERE numero_catalogo='4';
+UPDATE catalogo SET nome_collezione = 'seta10', id_pagamenti='133' WHERE numero_catalogo='5';
+UPDATE catalogo SET nome_collezione = 'montagna11', id_pagamenti='132' WHERE numero_catalogo='6';
+UPDATE catalogo SET nome_collezione = 'mare12', id_pagamenti='131' WHERE numero_catalogo='7';
+UPDATE catalogo SET nome_collezione = 'fuoco13', id_pagamenti='130' WHERE numero_catalogo='8';
+UPDATE catalogo SET nome_collezione = 'ghiaccio14', id_pagamenti='129' WHERE numero_catalogo='9';
+UPDATE catalogo SET nome_collezione = 'sole15', id_pagamenti='128' WHERE numero_catalogo='10';
+UPDATE catalogo SET nome_collezione = 'luna16', id_pagamenti='127' WHERE numero_catalogo='11';
+UPDATE catalogo SET nome_collezione = 'primavera17', id_pagamenti='123' WHERE numero_catalogo='12';
+UPDATE catalogo SET nome_collezione = 'autunno18', id_pagamenti='111' WHERE numero_catalogo='13';
+UPDATE catalogo SET nome_collezione = 'primavera19', id_pagamenti='118' WHERE numero_catalogo='14';
+UPDATE catalogo SET nome_collezione = 'primavera20', id_pagamenti='122' WHERE numero_catalogo='1';
+UPDATE catalogo SET nome_collezione = 'primavera20', id_pagamenti='119' WHERE numero_catalogo='15';
+
+UPDATE servizio_fotografico SET id_pagamenti= '122' WHERE anno_servizio_fotografico='2020';
+UPDATE servizio_fotografico SET id_pagamenti= '116' WHERE anno_servizio_fotografico='2019';
+UPDATE servizio_fotografico SET id_pagamenti= '114' WHERE anno_servizio_fotografico='2018';
+UPDATE servizio_fotografico SET id_pagamenti= '125' WHERE anno_servizio_fotografico='2017';
+UPDATE servizio_fotografico SET id_pagamenti= '127' WHERE anno_servizio_fotografico='2016';
+UPDATE servizio_fotografico SET id_pagamenti= '128' WHERE anno_servizio_fotografico='2015';
+UPDATE servizio_fotografico SET id_pagamenti= '129' WHERE anno_servizio_fotografico='2014';
+UPDATE servizio_fotografico SET id_pagamenti= '130' WHERE anno_servizio_fotografico='2013';
+UPDATE servizio_fotografico SET id_pagamenti= '131' WHERE anno_servizio_fotografico='2012';
+UPDATE servizio_fotografico SET id_pagamenti= '132' WHERE anno_servizio_fotografico='2011';
+UPDATE servizio_fotografico SET id_pagamenti= '133' WHERE anno_servizio_fotografico='2010';
+UPDATE servizio_fotografico SET id_pagamenti= '134' WHERE anno_servizio_fotografico='2009';
+UPDATE servizio_fotografico SET id_pagamenti= '135' WHERE anno_servizio_fotografico='2008';
+UPDATE servizio_fotografico SET id_pagamenti= '136' WHERE anno_servizio_fotografico='2007';
+
+
+
+UPDATE deposito SET id_pagamenti= '120' WHERE id_deposito='11';
+UPDATE deposito SET  id_pagamenti= '111' WHERE id_deposito='12';
+UPDATE deposito SET id_pagamenti= '115' WHERE id_deposito='13';
+UPDATE deposito SET  id_pagamenti= '124' WHERE id_deposito='14';
+UPDATE deposito SET id_pagamenti= '113' WHERE id_deposito='15';
+UPDATE deposito SET  id_pagamenti= '125' WHERE id_deposito='16';
+UPDATE deposito SET  id_pagamenti= '119' WHERE id_deposito='21';
+UPDATE deposito SET  id_pagamenti= '112' WHERE id_deposito='22';
+UPDATE deposito SET  id_pagamenti= '123' WHERE id_deposito='23';
+UPDATE deposito SET id_pagamenti= '117' WHERE id_deposito='24';
+UPDATE deposito SET  id_pagamenti= '121' WHERE id_deposito='31';
+UPDATE deposito SET id_pagamenti= '113' WHERE id_deposito='32';
+UPDATE deposito SET  id_pagamenti= '117' WHERE id_deposito='33';
+UPDATE deposito SET id_pagamenti= '124' WHERE id_deposito='34';
+UPDATE deposito SET id_pagamenti= '122' WHERE id_deposito='41';
+UPDATE deposito SET id_pagamenti= '114' WHERE id_deposito='42';
+UPDATE deposito SET id_pagamenti= '118' WHERE id_deposito='43';
+UPDATE deposito SET id_pagamenti= '125' WHERE id_deposito='44';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='10000000000' WHERE codice_spedizione='60678';
+UPDATE servizio_di_trasporto SET  piva_fabbrica='11000000000' WHERE codice_spedizione='88565';
+UPDATE servizio_di_trasporto SET  piva_fabbrica='12000000000' WHERE codice_spedizione='99999';
+UPDATE servizio_di_trasporto SET  piva_fabbrica='13000000000' WHERE codice_spedizione='89965';
+UPDATE servizio_di_trasporto SET  piva_fabbrica='14000000000' WHERE codice_spedizione='88992';
+UPDATE servizio_di_trasporto SET  piva_fabbrica='15000000000' WHERE codice_spedizione='12342';
+UPDATE servizio_di_trasporto SET  piva_fabbrica='55555555555' WHERE codice_spedizione='44221';
+UPDATE servizio_di_trasporto SET  piva_fabbrica='66666666666' WHERE codice_spedizione='23144';
+UPDATE servizio_di_trasporto SET  piva_fabbrica='77777777777' WHERE codice_spedizione='54212';
+UPDATE servizio_di_trasporto SET  piva_fabbrica='88888888888' WHERE codice_spedizione='48874';
+UPDATE servizio_di_trasporto SET  piva_fabbrica='99999999999' WHERE codice_spedizione='22152';
+UPDATE servizio_di_trasporto SET  piva_fabbrica='13000000000' WHERE codice_spedizione='20611';
+UPDATE servizio_di_trasporto SET  piva_fabbrica='15000000000' WHERE codice_spedizione='29912';
+UPDATE servizio_di_trasporto SET  piva_fabbrica='88888888888' WHERE codice_spedizione='90210';
+UPDATE servizio_di_trasporto SET  piva_fabbrica='14477784511' WHERE codice_spedizione='9999';
+UPDATE servizio_di_trasporto SET  piva_fabbrica='11144477788' WHERE codice_spedizione='48877';
+UPDATE servizio_di_trasporto SET  piva_fabbrica='16000000000' WHERE codice_spedizione='99327';
+
+UPDATE ordine SET  piva_negozio='22416421234' WHERE numero_ordine='1';
+UPDATE ordine SET  piva_negozio='63029196725' WHERE numero_ordine='2';
+UPDATE ordine SET  piva_negozio='56889204577' WHERE numero_ordine='3';
+UPDATE ordine SET  piva_negozio='42361275975' WHERE numero_ordine='4';
+UPDATE ordine SET  piva_negozio='12562378789' WHERE numero_ordine='5';
+UPDATE ordine SET  piva_negozio='35678906431' WHERE numero_ordine='6';
+UPDATE ordine SET  piva_negozio='78920349950' WHERE numero_ordine='7';
+UPDATE ordine SET  piva_negozio='87432851681' WHERE numero_ordine='8';
+UPDATE ordine SET  piva_negozio='47891456174' WHERE numero_ordine='9';
+UPDATE ordine SET  piva_negozio='82912752923' WHERE numero_ordine='10';
+UPDATE ordine SET  piva_negozio='45374067437' WHERE numero_ordine='11';
+UPDATE ordine SET  piva_negozio='22080642248' WHERE numero_ordine='12';
+UPDATE ordine SET  piva_negozio='22966274490' WHERE numero_ordine='13';
+UPDATE ordine SET  piva_negozio='12345677966' WHERE numero_ordine='14';
+UPDATE ordine SET  piva_negozio='22478564102' WHERE numero_ordine='15';
+
+
+ALTER TABLE modello MODIFY id_pagamenti number(3,0) NOT NULL;
+ALTER TABLE abito MODIFY id_deposito number(2) NOT NULL;
+ALTER TABLE abito MODIFY numero_ordine number(4) NOT NULL;
+ALTER TABLE modello 
+MODIFY piva_fabbrica number(11,0) NOT NULL;
+ALTER TABLE campagna_promozionale 
+MODIFY nome_collezione varchar(15) NOT NULL;
+ALTER TABLE campagna_promozionale  
+MODIFY id_pagamenti number(3,0) NOT NULL;
+ALTER TABLE catalogo 
+MODIFY id_pagamenti number(3,0) NOT NULL;
+ALTER TABLE catalogo  
+MODIFY nome_collezione varchar(15) NOT NULL;
+ALTER TABLE modella
+MODIFY id_pagamenti number(3,0) NOT NULL UNIQUE;
+ALTER TABLE ordine
+MODIFY PIVA_negozio number(11) not null;
+ALTER TABLE servizio_di_trasporto
+MODIFY PIVA_fabbrica number(11) not null;

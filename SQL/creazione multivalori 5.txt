@@ -1,0 +1,342 @@
+create table posa_per(  
+iban_modella                number(11,0),  
+anno_servizio_fotografico   number(4,0)  
+);
+
+alter table posa_per add constraint fk_posa foreign key(anno_servizio_fotografico) references servizio_fotografico(anno_servizio_fotografico);
+alter table posa_per add constraint fkposa foreign key(iban_modella) references modella(iban_modella);
+
+create table percepisce(id_pagamenti number(3), CF_RAPPRESENTANTE char(16));
+
+alter table percepisce add constraint fk_percepisce foreign key(id_pagamenti) references pagamenti(id_pagamenti);
+
+alter table percepisce add constraint percepisce_fk foreign key(CF_RAPPRESENTANTE ) references rappresentante(CF_RAPPRESENTANTE );
+
+create table riscuote(  
+id_pagamenti      number(3,0),  
+numero_ordine       number(4,0)  
+);
+
+alter table riscuote add constraint fk_riscuote foreign key(id_pagamenti) references pagamenti(id_pagamenti);
+
+alter table riscuote add constraint fk_numero_ordine foreign key(numero_ordine) references ordine(numero_ordine);
+
+create table venduta_da(cf_rappresentante char(16), nome_collezione varchar(15));
+
+alter table venduta_da add constraint fk_venduta foreign key(CF_RAPPRESENTANTE ) references rappresentante(CF_RAPPRESENTANTE );
+
+alter table venduta_da add constraint venduta_fk foreign key(nome_collezione) references collezione(nome_collezione);
+
+create table stipendia(cf_dipendente char(16),id_pagamenti number(3));
+
+alter table stipendia add constraint fk_stipendia foreign key(id_pagamenti) references pagamenti(id_pagamenti);
+
+alter table stipendia add constraint stipendia_fk foreign key(cf_dipendente) references dipendente(cf_dipendente);
+
+create table trattato(codice_vestito number(5), cf_dipendente char(16), tipo_lavoro varchar(15));
+
+alter table trattato add constraint fk_trattato foreign key(codice_vestito) references abito(codice_vestito );
+
+alter table trattato add constraint trattato_fk foreign key(cf_dipendente) references dipendente(cf_dipendente);
+
+
+create table accessori(accessori varchar(20) primary key, codice_vestito number(5));
+
+alter table accessori add constraint accessori_fk foreign key(codice_vestito ) references abito(codice_vestito );
+
+create table colore(colore varchar(20) primary key, codice_vestito number(5));
+
+alter table colore add constraint colore_fk foreign key(codice_vestito ) references abito(codice_vestito );
+
+create table tessuti(tessuto varchar(20) primary key, codice_vestito number(5));
+
+alter table tessuti add constraint tessuti_fk foreign key(codice_vestito ) references abito(codice_vestito );
+
+create table tel_fabbrica(tel_fabbrica number(10) primary key, piva_fabbrica number(11));
+
+alter table tel_fabbrica add constraint tel_fabbrica foreign key(piva_fabbrica ) references fabbrica(piva_fabbrica );
+
+create table tessuto_modello( 
+codice_modello          number(5,0),   
+tessuto_iniziale        varchar(20) primary key
+
+);
+
+alter table tessuto_modello add constraint fk_codice_modello foreign key(codice_modello) references modello(codice_modello);
+
+
+create table email_fabbrica(email_fabbrica varchar(30) primary key, piva_fabbrica number(11));
+
+alter table email_fabbrica add constraint email_fabbrica foreign key(piva_fabbrica ) references fabbrica(piva_fabbrica );
+
+create table tel_rappresentante(tel_rappresentante number(10) primary key, cf_rappresentante char(16));
+
+alter table tel_rappresentante add constraint tel_rappresentante foreign key(cf_rappresentante ) references rappresentante(cf_rappresentante );
+
+
+
+create table colore_modello(  
+codice_modello          number(5,0), 
+colore_modello       varchar(20) primary key
+
+);
+
+alter table colore_modello add constraint colore_modello foreign key(codice_modello) references modello(codice_modello);
+
+create table vende(cf_rappresentante char(16), piva_negozio number(11));
+alter table vende add constraint fk_vende foreign key(CF_RAPPRESENTANTE ) references rappresentante(CF_RAPPRESENTANTE );
+alter table vende add constraint vende_fk foreign key(piva_negozio) references negozio(piva_negozio);
+create table compra(piva_negozio number(11), nome_collezione varchar(15));
+alter table compra add constraint fk_compra foreign key(piva_negozio ) references negozio(piva_negozio);
+alter table compra add constraint compra_fk foreign key(nome_collezione) references collezione(nome_collezione);
+
+insert into compra  values(22416421234,'estate19');
+insert into compra values(63029196725,'inverno19');
+insert into compra values(56889204577,'autunno19');
+insert into compra values(42361275975,'primavera19');
+insert into compra values(12562378789,'estate18');
+insert into compra values(35678906431,'inverno18');
+insert into compra values(78920349950,'autunno18');
+insert into compra values(87432851681,'primavera18');
+insert into compra values(47891456174,'inverno18');
+insert into compra values(82912752923,'primavera20');
+insert into compra values(45374067437,'autunno20');
+insert into compra values(22080642248,'estate20');
+insert into compra values(22966274490,'inverno20');
+insert into compra values(12345677966,'inverno17');
+insert into compra values(22478564102,'primavera18');
+
+insert into  vende   values('ZYIGBC55T55A716B','22416421234');
+insert into  vende   values('PNOPLX98M17F852M','63029196725');
+insert into  vende   values('DTRBGL57E47F112S','56889204577');
+insert into  vende   values('SFNPNM50D15H684B','42361275975');
+insert into  vende   values('anlprt47D44H74lk','12562378789');
+insert into  vende   values('TLSVBI78C20G426B','35678906431');
+insert into  vende   values('WPLQSL42M06B842X','78920349950');
+insert into  vende   values('FVRKLV73R68M170U','87432851681');
+insert into  vende   values('PDLSGF62M08L655Q','47891456174');
+insert into  vende   values('FZCMHA88L25G226Q','82912752923');
+insert into  vende   values('PGPFPM37P21B202K','45374067437');
+insert into  vende   values('NDHLNM61P11I643H','22080642248');
+insert into  vende   values('SNWZVZ88R03L455F','22966274490');
+insert into  vende   values('RVAPWR41H12B953V','12345677966');
+insert into  vende   values('DPZVXZ36A09B923A','22478564102');
+
+insert into posa_per values('3044180466','2017');
+insert into posa_per values('2122996874','2018');
+insert into posa_per values('6002184572','2019');
+insert into posa_per values('3006389770','2020');
+insert into posa_per values('3044180466','2017');
+insert into posa_per values('2122996874','2018');
+insert into posa_per values('6002184572','2019');
+insert into posa_per values('3006389770','2019');
+insert into posa_per values('1236647789','2019');
+insert into posa_per values('4455776921','2019');
+insert into posa_per values('4411229999','2019');
+insert into posa_per values('7899874545','2019');
+insert into posa_per values('7774441111','2020');
+insert into posa_per values('7411478527','2020');
+insert into posa_per values('6998745621','2020');
+insert into posa_per values('2233444412','2020');
+insert into posa_per values('7996613121','2017');
+insert into posa_per values('6622213147','2017');
+insert into posa_per values('9922789441','2017');
+
+insert into percepisce values('111','TLSVBI78C20G426B');
+insert into percepisce values('112','WPLQSL42M06B842X');
+insert into percepisce values('113','FVRKLV73R68M170U');
+insert into percepisce values('114','ZVLPGQ75C62B423V');
+insert into percepisce values('115','PDLSGF62M08L655Q');
+insert into percepisce values('116','FZCMHA88L25G226Q');
+insert into percepisce values('117','PGPFPM37P21B202K');
+insert into percepisce values('118','NDHLNM61P11I643H');
+insert into percepisce values('119','SNWZVZ88R03L455F');
+insert into percepisce values('120','RVAPWR41H12B953V');
+insert into percepisce values('121','DPZVXZ36A09B923A');
+insert into percepisce values('122','ZYIGBC55T55A716B');
+insert into percepisce values('123','PNOPLX98M17F852M');
+insert into percepisce values('124','DTRBGL57E47F112S');
+insert into percepisce values('125','SFNPNM50D15H684B');
+insert into percepisce values('126','anlprt47D44H74lk');
+
+insert into riscuote  values('123','1');
+insert into riscuote  values('115','2');
+insert into riscuote  values('120','3');
+insert into riscuote  values('111','4');
+insert into riscuote  values('124','5');
+insert into riscuote  values('116','6');
+insert into riscuote  values('118','7');
+insert into riscuote  values('114','8');
+insert into riscuote  values('127','9');
+insert into riscuote  values('117','10');
+insert into riscuote  values('127','11');
+insert into riscuote  values('114','12');
+insert into riscuote  values('123','13');
+insert into riscuote  values('116','14');
+insert into riscuote  values('115','15');
+
+insert into venduta_da  values('TLSVBI78C20G426B','estate17');
+insert into venduta_da  values('WPLQSL42M06B842X','primavera17');
+insert into venduta_da  values('FVRKLV73R68M170U','autunno17');
+insert into venduta_da  values('ZVLPGQ75C62B423V','inverno17');
+insert into venduta_da  values('PDLSGF62M08L655Q','estate18');
+insert into venduta_da  values('FZCMHA88L25G226Q','primavera18');
+insert into venduta_da  values('PGPFPM37P21B202K','autunno18');
+insert into venduta_da  values('NDHLNM61P11I643H','inverno18');
+insert into venduta_da  values('SNWZVZ88R03L455F','estate20');
+insert into venduta_da  values('RVAPWR41H12B953V','primavera20');
+insert into venduta_da  values('DPZVXZ36A09B923A','inverno20');
+insert into venduta_da  values('ZYIGBC55T55A716B','autunno20');
+insert into venduta_da  values('PNOPLX98M17F852M','primavera19');
+insert into venduta_da  values('DTRBGL57E47F112S','inverno19');
+insert into venduta_da  values('SFNPNM50D15H684B','autunno19');
+insert into venduta_da  values('anlprt47D44H74lk','luna16');
+
+insert into stipendia  values('vlxn98kosd23pgzn',111);
+insert into stipendia  values('nvoahei33vma1054',112);
+insert into stipendia  values('hwisml76nagxgd43',113);
+insert into stipendia  values('kdkgnm33sdlgn76o',114);
+insert into stipendia  values('PLLLCU78A01F839Y',115);
+insert into stipendia  values('frcvtli99vma4444',116);
+insert into stipendia  values('CRSNTN78P01F839U',117);
+insert into stipendia  values('lnmrrk27sdlgn96q',118);
+insert into stipendia  values('gfrcfm99syygf99c',119);
+insert into stipendia  values('gncmrt99szzgf99u',120);
+insert into stipendia  values('rnstbt94cccxgd55',121);
+insert into stipendia  values('cldfrm95shjds88o',122);
+insert into stipendia  values('sndrcr95shoo77ww',123);
+insert into stipendia  values('sndrsc88uuoo65qw',124);
+insert into stipendia  values('crtlzz98zzxx62tt',125);
+
+
+insert into trattato  values('11111','vlxn98kosd23pgzn','lavaggio');
+insert into trattato  values('11111','nvoahei33vma1054','stiratura');
+insert into trattato  values('11111','hwisml76nagxgd43','ricamo');
+insert into trattato  values('11111','kdkgnm33sdlgn76o','imballaggio');
+insert into trattato  values('22222','vlxn98kosd23pgzn','lavaggio');
+insert into trattato  values('22222','nvoahei33vma1054','stiratura');
+insert into trattato  values('22222','hwisml76nagxgd43','ricamo');
+insert into trattato  values('22222','kdkgnm33sdlgn76o','imballaggio');
+insert into trattato  values('33333','vlxn98kosd23pgzn','lavaggio');
+insert into trattato  values('33333','nvoahei33vma1054','stiratura');
+insert into trattato  values('33333','hwisml76nagxgd43','ricamo');
+insert into trattato  values('33333','kdkgnm33sdlgn76o','imballaggio');
+insert into trattato  values('44444','vlxn98kosd23pgzn','lavaggio');
+insert into trattato  values('44444','nvoahei33vma1054','stiratura');
+insert into trattato  values('44444','hwisml76nagxgd43','ricamo');
+insert into trattato  values('44444','kdkgnm33sdlgn76o','imballaggio');
+
+
+insert into accessori  values('copricapo','55555');
+insert into accessori  values('poschette','66666');
+insert into accessori  values('poschette nera','77777');
+insert into accessori  values('copricapo nero','88888');
+insert into accessori  values('swarovski','99999');
+insert into accessori  values('guanti','10001');
+insert into accessori  values('bracciale','10002');
+insert into accessori  values('anello','10003');
+insert into accessori  values('giacca','10005');
+insert into accessori  values('giacca e collana','10006');
+insert into accessori  values('bracciale e giacca','12345');
+insert into accessori  values('collana','22222');
+insert into accessori  values('coprispalle','33333');
+insert into accessori  values('coprispalle bianco','11111');
+insert into accessori  values('coprispalle rosso','44444');
+
+
+insert into colore  values('nero e bianco','44444');
+insert into colore  values('blu e argento','11111');
+insert into colore  values('rosso','33333');
+insert into colore  values('bianco e rosso','22222');
+insert into colore  values('rosa','55555');
+insert into colore  values('blu e oro','66666');
+insert into colore  values('verde e blu','77777');
+insert into colore  values('bianco e nero','88888');
+insert into colore  values('nero e rosa','99999');
+insert into colore  values('viola e nero','10001');
+insert into colore  values('verde acqua','10002');
+insert into colore  values('grigio scuro','10003');
+insert into colore  values('grigio chiaro','10005');
+insert into colore  values('giallo e nero','10006');
+insert into colore  values('grigio e nero','12345');
+
+insert into tessuti  values('pizzo con ricamo','44444');
+insert into tessuti  values('organza','11111');
+insert into tessuti  values('raso','33333');
+insert into tessuti  values('chiffon','22222');
+insert into tessuti  values('lino','55555');
+insert into tessuti  values('cotone','66666');
+insert into tessuti  values('jersey','77777');
+insert into tessuti  values('seta','88888');
+insert into tessuti  values('canvas','99999');
+insert into tessuti  values('pizzo e seta','10001');
+insert into tessuti  values('cotone e pizzo','10002');
+insert into tessuti  values('seta e lino','10003');
+insert into tessuti  values('lino e organza','10005');
+insert into tessuti  values('organza e jersey','10006');
+insert into tessuti  values('canvas e lino','12345');
+
+insert into  email_fabbrica  values('Elegantemente@gmail.com','12312312312');
+insert into  email_fabbrica  values('Le spose@gmail.com','11144477788');
+insert into  email_fabbrica  values('angelicdress@gmail.com','16000000000');
+insert into  email_fabbrica  values('Sognieleganti@gmail.com','55555555555');
+insert into  email_fabbrica  values('Rever@gmail.com','66666666666');
+insert into  email_fabbrica  values('Amour@gmail.com','77777777777');
+insert into  email_fabbrica  values('Feliciamori@gmail.com','88888888888');
+insert into  email_fabbrica  values('Subitosposi@gmail.com','99999999999');
+insert into  email_fabbrica  values('fascino@gmail.com','10000000000');
+insert into  email_fabbrica  values('StileTOP@gmail.com','11000000000');
+insert into  email_fabbrica  values('Tessutid.o.c@gmail.com','12000000000');
+insert into  email_fabbrica  values('Vestitiunici@gmail.com','13000000000');
+insert into  email_fabbrica  values('Divina@gmail.com','14477784511');
+insert into  email_fabbrica  values('TessutiTOP@gmail.com','15000000000');
+insert into  email_fabbrica  values('vestitiunici@gmail.com','14000000000');
+
+insert into  tel_rappresentante   values('3345642477','ZYIGBC55T55A716B');
+insert into  tel_rappresentante   values('3295466701','PNOPLX98M17F852M');
+insert into  tel_rappresentante   values('3332146703','DTRBGL57E47F112S');
+insert into  tel_rappresentante   values('3312332654','SFNPNM50D15H684B');
+insert into  tel_rappresentante   values('3399957060','anlprt47D44H74lk');
+insert into  tel_rappresentante   values('3945557190','TLSVBI78C20G426B');
+insert into  tel_rappresentante   values('3648752414','WPLQSL42M06B842X');
+insert into  tel_rappresentante   values('3346876884','FVRKLV73R68M170U');
+insert into  tel_rappresentante   values('3324336578','PDLSGF62M08L655Q');
+insert into  tel_rappresentante   values('3312694357','FZCMHA88L25G226Q');
+insert into  tel_rappresentante   values('3474226854','PGPFPM37P21B202K');
+insert into  tel_rappresentante   values('3334688653','NDHLNM61P11I643H');
+insert into  tel_rappresentante   values('3323363285','SNWZVZ88R03L455F');
+insert into  tel_rappresentante   values('3315877534','RVAPWR41H12B953V');
+insert into  tel_rappresentante   values('3345475524','DPZVXZ36A09B923A');
+
+insert into tessuto_modello values('57579','organza');
+insert into tessuto_modello values('13331','raso');
+insert into tessuto_modello values('14444','pizzo');
+insert into tessuto_modello values('55555','seta');
+insert into tessuto_modello values('13357','seta e pizzo');
+insert into tessuto_modello values('77880','canvas');
+insert into tessuto_modello values('23245','seta e lino');
+insert into tessuto_modello values('23499','cotone');
+insert into tessuto_modello values('99844','jersey');
+insert into tessuto_modello values('10047','pizzo e jersey');
+insert into tessuto_modello values('36985','chiffon');
+insert into tessuto_modello values('14852','chiffon e pizzo');
+insert into tessuto_modello values('45456','organza e lino');
+insert into tessuto_modello values('11884','seta e canvas');
+insert into tessuto_modello values('15004','cotone e pizzo');
+
+insert into colore_modello values('57579','verde');
+insert into colore_modello values('13331','nero');
+insert into colore_modello values('14444','rosa');
+insert into colore_modello values('55555','giallo');
+insert into colore_modello values('13357','viola');
+insert into colore_modello values('77880','rosso');
+insert into colore_modello values('23245','celeste');
+insert into colore_modello values('23499','blu');
+insert into colore_modello values('99844','bianco');
+insert into colore_modello values('10047','fucsia');
+insert into colore_modello values('36985','grigio scuro');
+insert into colore_modello values('14852','bianco ghiaccio');
+insert into colore_modello values('45456','arancione');
+insert into colore_modello values('11884','viola e nero');
+insert into colore_modello values('15004','grigio chiaro');
+

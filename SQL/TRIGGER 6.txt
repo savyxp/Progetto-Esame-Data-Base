@@ -1,0 +1,203 @@
+CREATE OR REPLACE TRIGGER costi_budget
+BEFORE INSERT OR UPDATE ON campagna_promozionale
+for each row
+BEGIN
+IF (:NEW.BUDGET_CAMPAGNA>=100 AND :NEW.BUDGET_CAMPAGNA<=300 and :NEW.MANIFESTI>30 OR :NEW.VOLANITINI>300)
+OR (:NEW.BUDGET_CAMPAGNA>=1 AND :NEW.BUDGET_CAMPAGNA<=99 and :NEW.MANIFESTI>10 OR :NEW.VOLANITINI>100)
+OR (:NEW.BUDGET_CAMPAGNA>=301 AND :NEW.BUDGET_CAMPAGNA<=600 and :NEW.MANIFESTI>60 OR :NEW.VOLANITINI>600)
+OR (:NEW.BUDGET_CAMPAGNA>=601 AND :NEW.BUDGET_CAMPAGNA<=900 and :NEW.MANIFESTI>90 OR :NEW.VOLANITINI>900)
+OR (:NEW.BUDGET_CAMPAGNA>=901 AND :NEW.BUDGET_CAMPAGNA<=1200 and :NEW.MANIFESTI>120 OR :NEW.VOLANITINI>1200)
+THEN  RAISE_APPLICATION_ERROR(-20016, 'Il budget è troppo basso per questi numeri di manifesti e volantini');
+END IF;
+END;
+/
+create or replace trigger lunghezza 
+before insert or update on abito 
+for each row 
+BEGIN
+if (:new.taglia = 42 and (:new.giro_fianchi >95 or :new.giro_fianchi<92))
+then raise_application_error(-20011,'I cm del giro fianchi della taglia 42 devono essere compresi tra 92 e 95'); 
+end if;
+if (:new.taglia = 44 and (:new.giro_fianchi>98 or :new.giro_fianchi<96)) 
+then raise_application_error(-20012,'I cm del giro fianchi della taglia 44 devono essere compresi tra 96 e 98');
+end if;
+if (:new.taglia = 46 and (:new.giro_fianchi>102 or :new.giro_fianchi<99))
+then raise_application_error(-20013,'I cm del giro fianchi della taglia 46 devono essere compresi tra 99 e 102'); 
+end if;
+if (:new.taglia = 48 and (:new.giro_fianchi>106 or :new.giro_fianchi<103))
+ then raise_application_error(-20014,'I cm del giro fianchi della taglia 48 devono essere compresi tra 103 e 106');
+end if;
+end; 
+/
+CREATE OR REPLACE TRIGGER esperienza_dipendente
+BEFORE INSERT OR UPDATE ON dipendente
+FOR EACH ROW
+DECLARE
+anno number(4,0);
+BEGIN
+IF :NEW.anno_assunzione>to_number(to_char(sysdate,'yyyy')) - 2  and :NEW.STIPENDIO_DIPENDENTE>1800
+THEN  RAISE_APPLICATION_ERROR(-20015, 'Il dipendente ha lavorato per un periodo breve per questo stipendio');
+END IF;
+END;
+/
+create or replace trigger taglie_abito 
+before insert or update on abito 
+for each row 
+ BEGIN
+if :new.taglia ='42' and :new.giro_fianchi >'95' and :new.giro_fianchi<'92'
+then raise_application_error(-20020,'la taglia non corrisponde alla lunghezza del giro fianchi: se si inserisce taglia 42 la lunghezza dei giro fianchi deve essere tra 92 e 95.');
+end if;
+if :new.taglia = '44' and :new.giro_fianchi>'98' and :new.giro_fianchi<'96'
+then raise_application_error(-20021,'la taglia non corrisponde alla lunghezza del giro fianchi: se si inserisce taglia 44 la lunghezza dei giro fianchi deve essere tra 96 e 98.');
+end if;
+if :new.taglia = '46' and :new.giro_fianchi>'102' and :new.giro_fianchi<'99'
+then raise_application_error(-20022,'la taglia non corrisponde alla lunghezza del giro fianchi:  se si inserisce taglia 46 la lunghezza dei giro fianchi deve essere tra  99 e 102.');
+end if;
+if :new.taglia = '48' and :new.giro_fianchi>'106' and :new.giro_fianchi<'103' 
+ then raise_application_error(-20023,'la taglia non corrisponde alla lunghezza del giro fianchi: se si inserisce taglia 46 la lunghezza dei giro fianchi deve essere tra  103 e 106');
+ end if;
+end; 
+/
+
+CREATE OR REPLACE TRIGGER eta_modella
+BEFORE INSERT OR UPDATE ON modella
+FOR EACH ROW
+BEGIN
+    IF :NEW.data_nascita_modella >  add_months(sysdate , -12*18)  then
+       RAISE_APPLICATION_ERROR(-20009, 'Impossibile inserire la modella: è minorenne');
+    END IF;
+END;
+/
+
+CREATE OR REPLACE TRIGGER pagamento_ordine
+BEFORE INSERT OR UPDATE ON ordine
+
+FOR EACH ROW
+
+declare
+
+nuovo_pagamento1 varchar(2);
+
+nuova_spedizione1 varchar(2);
+
+nuovo_pagamento2 varchar(2);
+nuova_spedizione2 varchar(2);
+
+BEGIN
+nuovo_pagamento1:='no';
+nuova_spedizione1:='si';
+nuovo_pagamento2:='NO';
+nuova_spedizione2:='SI';
+
+IF (:NEW.pagato=nuovo_pagamento1 and :NEW.spedito=nuova_spedizione1) or 
+    (:NEW.pagato=nuovo_pagamento2 and :NEW.spedito=nuova_spedizione2) or
+    (:NEW.pagato=nuovo_pagamento2 and :NEW.spedito=nuova_spedizione1) or
+    (:NEW.pagato=nuovo_pagamento1 and :NEW.spedito=nuova_spedizione2)
+
+then  RAISE_APPLICATION_ERROR(-20017, 'Non puoi spedire se non è stato effettuato il pagamento!');
+
+END IF;
+
+END;
+
+/
+
+CREATE OR REPLACE TRIGGER trigger_rappresentante
+BEFORE INSERT OR UPDATE ON rappresentante
+FOR EACH ROW
+BEGIN
+IF :NEW.data_nascita_rapperesentante >  add_months(sysdate , -12*18)
+then RAISE_APPLICATION_ERROR(-20009, 'Impossibile inserire il rappresentante: è minorenne');
+END IF;
+
+IF :NEW.percentuale_rappresentante >  60
+
+THEN  RAISE_APPLICATION_ERROR(-20012, 'Percentuale rappresentante troppo alta,deve essere minore di 60');
+
+END IF;
+END;
+/
+
+CREATE OR REPLACE TRIGGER catalogo_peso
+BEFORE INSERT OR UPDATE ON catalogo
+FOR EACH ROW
+BEGIN
+IF (:NEW.TIPO_CARTA='ecologica' or :NEW.TIPO_CARTA='riciclata' and :NEW.NUMERO_PAGINE>=1 and:NEW.NUMERO_PAGINE<=10 and :NEW.COSTO_STAMPA>=15)
+  THEN RAISE_APPLICATION_ERROR(-20005,'Per il tipo di carta ecologica o riciclata e per un numero di pagine inferiore a 10 il prezzo non deve essere superiore a 15€');
+  END IF;
+if  (:NEW.TIPO_CARTA='ecologica' or :NEW.TIPO_CARTA='riciclata' and :NEW.NUMERO_PAGINE>=11 and:NEW.NUMERO_PAGINE<=20 and :NEW.COSTO_STAMPA>=20)
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta ecologica o riciclata e per un numero di pagine inferiore a 20 il prezzo non deve essere superiore a 20€');
+  END IF;
+if  (:NEW.TIPO_CARTA='ecologica' or :NEW.TIPO_CARTA='riciclata' and :NEW.NUMERO_PAGINE>=21 and:NEW.NUMERO_PAGINE<=30 and :NEW.COSTO_STAMPA>=30)
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta ecologica o riciclata e per un numero di pagine inferiore a 30 il prezzo non deve essere superiore a 30€');
+  END IF;
+if  (:NEW.TIPO_CARTA='ecologica' or :NEW.TIPO_CARTA='riciclata' and :NEW.NUMERO_PAGINE>=31 and:NEW.NUMERO_PAGINE<=40 and :NEW.COSTO_STAMPA>=40)
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta ecologica o riciclata e per un numero di pagine inferiore a 40 il prezzo non deve essere superiore a 40€');
+  END IF;
+if  (:NEW.TIPO_CARTA='ecologica' or :NEW.TIPO_CARTA='riciclata' and :NEW.NUMERO_PAGINE>=41 and:NEW.NUMERO_PAGINE<=50 and :NEW.COSTO_STAMPA>=50)
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta ecologica o riciclata e per un numero di pagine inferiore a 50 il prezzo non deve essere superiore a 50€');
+  END IF;
+if  (:NEW.TIPO_CARTA='ecologica' or :NEW.TIPO_CARTA='riciclata' and :NEW.NUMERO_PAGINE>=51 and:NEW.NUMERO_PAGINE<=100 and :NEW.COSTO_STAMPA>=100)
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta ecologica o riciclata e per un numero di pagine inferiore a 100 il prezzo non deve essere superiore a 100€');
+  END IF;
+if  (:NEW.TIPO_CARTA='patinata' and :NEW.NUMERO_PAGINE>=1 and:NEW.NUMERO_PAGINE<=10 and :NEW.COSTO_STAMPA>=20)
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta patinata e per un numero di pagine inferiore a 10 il prezzo non deve essere superiore a 20€');
+  END IF;
+if  (:NEW.TIPO_CARTA='patinata' and :NEW.NUMERO_PAGINE>=11 and:NEW.NUMERO_PAGINE<=20 and :NEW.COSTO_STAMPA>=35)
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta patinata e per un numero di pagine inferiore a 20 il prezzo non deve essere superiore a 35€');
+  END IF;
+if  (:NEW.TIPO_CARTA='patinata' and :NEW.NUMERO_PAGINE>=21 and:NEW.NUMERO_PAGINE<=30 and :NEW.COSTO_STAMPA>=50)
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta patinata e per un numero di pagine inferiore a 30 il prezzo non deve essere superiore a 50€');
+  END IF;
+if  (:NEW.TIPO_CARTA='patinata' and :NEW.NUMERO_PAGINE>=31 and:NEW.NUMERO_PAGINE<=40 and :NEW.COSTO_STAMPA>=65)
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta patinata e per un numero di pagine inferiore a 40 il prezzo non deve essere superiore a 65€');
+  END IF;
+if  (:NEW.TIPO_CARTA='patinata' and :NEW.NUMERO_PAGINE>=41 and:NEW.NUMERO_PAGINE<=50 and :NEW.COSTO_STAMPA>=75)
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta patinata e per un numero di pagine inferiore a 50 il prezzo non deve essere superiore a 75€');
+  END IF;
+if  (:NEW.TIPO_CARTA='patinata' and :NEW.NUMERO_PAGINE>=51 and:NEW.NUMERO_PAGINE<=100 and :NEW.COSTO_STAMPA>=130)
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta patinata e per un numero di pagine inferiore a 100 il prezzo non deve essere superiore a 130€');
+  END IF;
+  
+END;
+/
+CREATE OR REPLACE TRIGGER servizio_trasporto
+BEFORE INSERT OR UPDATE ON servizio_di_trasporto
+FOR EACH ROW
+DECLARE
+paese fabbrica.paese_fabbrica%type;
+BEGIN
+   
+    if :NEW.paese_destinazione='Italia' and (:new.prezzo_trasporto<10 or :new.prezzo_trasporto>25)
+    THEN RAISE_APPLICATION_ERROR(-20007,'Il prezzo è inadeguato per essere una spedizione da Italia e verso Italia: deve essere compreso tra 10 e 25 ');
+    end if;
+     if :NEW.paese_destinazione='Francia' and (:new.prezzo_trasporto>40 or :new.prezzo_trasporto<20)
+    THEN RAISE_APPLICATION_ERROR(-20008,'Il prezzo è inadeguato  per essere una spedizione dalla Francia e verso Italia:deve essere compreso tra 20 e 40');
+        end if;
+         if :NEW.paese_destinazione='Svizzera' and (:new.prezzo_trasporto>25 or :new.prezzo_trasporto<10)
+    THEN RAISE_APPLICATION_ERROR(-20009,'Il prezzo è inadeguato  per essere una spedizione dalla Svizzera e verso Italia: deve essere compreso tra 10 e 25 ');
+        end if;
+             if :NEW.paese_destinazione='Germania' and (:new.prezzo_trasporto>50 or :new.prezzo_trasporto<35)
+    THEN RAISE_APPLICATION_ERROR(-20010,'Il prezzo è inadeguato  per essere una spedizione dalla Germania e verso Italia: deve essere compreso tra 35 e 50');
+        end if;
+    if :NEW.paese_destinazione='Turchia' and (:new.prezzo_trasporto>60 or :new.prezzo_trasporto<35)
+    THEN RAISE_APPLICATION_ERROR(-20011,'Il prezzo è inadeguato  per essere una spedizione dalla Turchia e verso Italia: deve essere compreso tra 35 e 60');
+        end if;
+        if :NEW.paese_destinazione='Cina' and (:new.prezzo_trasporto>100 or :new.prezzo_trasporto<60)
+    THEN RAISE_APPLICATION_ERROR(-20012,'Il prezzo è inadeguato  per essere una spedizione dalla Cina e verso Italia: deve essere compreso tra 60 e 100');
+        end if;
+            if :NEW.prezzo_trasporto>150 and (:NEW.paese_destinazione<>'Cina' or :NEW.paese_destinazione<>'Turchia'  or :NEW.paese_destinazione<>'Germania'  or :NEW.paese_destinazione<>'Svizzera'  or :NEW.paese_destinazione<>'Francia'  or :NEW.paese_destinazione<>'Italia') 
+    THEN RAISE_APPLICATION_ERROR(-20013,'Confronta il prezzo con altri servizi di trasporto:non è mai stata fatta una spedizione da questo paese!');
+END IF;
+END;
+/
+
+CREATE OR REPLACE TRIGGER eta_dipendente
+BEFORE INSERT OR UPDATE ON dipendente
+FOR EACH ROW
+BEGIN
+    IF :NEW.data_nascita_dip >  add_months(sysdate , -12*18)  then
+       RAISE_APPLICATION_ERROR(-20001, 'Impossibile inserire il dipendente: è minorenne');
+    END IF;
+END;
+/

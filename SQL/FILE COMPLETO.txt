@@ -1,0 +1,2437 @@
+REM   Script: abito_dump
+REM   ad
+
+create table abito (   
+codice_vestito          number(5,0) primary key,   
+taglia                  number(2,0),   
+prezzo                  number(3,0),   
+giro_fianchi              number(3,0) 
+);
+
+create table deposito(   
+id_deposito         number(2,0) primary key,   
+cap_deposito        number(5,0),   
+citta_deposito      varchar(20),   
+via_deposito        varchar(20),   
+superfice           number(4,0),   
+costo_fitto         number(4,0), 
+IBAN_proprietario  varchar(27) 
+);
+
+create table fabbrica(   
+Piva_fabbrica       number(11,0) primary key,   
+nome_fabbrica       varchar(15),   
+IBAN_fabbrica       varchar(27),   
+citta_fabbrica      varchar(20),   
+via_fabbrica        varchar(15),   
+paese_fabbrica      varchar(15),   
+CAP_fabbrica        number(5,0)   
+);
+
+create table modello(   
+codice_modello          number(5,0) primary key,   
+prezzo_modello          number(3,0),   
+lunghezza_iniziale      number(4,0)   
+);
+
+create table campagna_promozionale(   
+anno_campagna           number(4,0) primary key,   
+budget_campagna         number(4,0),   
+buono_sconto            number(2,0),   
+social                  varchar(15),   
+manifesti               number(4,0),   
+volanitini              number(4,0),   
+datainizio_campagna     date,  
+datafine_campagna       date   
+);
+
+create table catalogo(   
+numero_catalogo         number(4,0) primary key,   
+peso_catalogo           number(1,0),   
+tipo_carta              varchar(10),   
+numero_pagine           number(2,0),   
+costo_stampa          number(3,0)   
+);
+
+create table collezione(   
+nome_collezione         varchar(15) primary key,   
+anno_collezione         number(4,0),   
+numero_vestiti          number(2,0)   
+);
+
+create table modella(   
+iban_modella                number(11,0) primary key,   
+nome_modella                varchar(15),   
+cognome_modella             varchar(15),   
+prezzo_modella              number(3,0),   
+taglia_modella              number(2,0),   
+data_nascita_modella        date   
+);
+
+create table rappresentante(   
+CF_rappresentante               char(16)  primary key,   
+nome_rappresentante             varchar(10),   
+cognome_rappresentante          varchar(10),   
+data_nascita_rapperesentante    date,   
+CAP_rappresentante              number(5,0),   
+via_rappresentante              varchar(15),   
+citta_rappresentante            varchar(15),   
+IBAN_rappresentante             char(27),   
+percentuale_rappresentante      number(2,0)   
+);
+
+create table pagamenti(id_pagamenti number (3,0) primary key, anno_pagamenti number(4,0));
+
+create table dipendente(   
+CF_dipendente           char(16) primary key,   
+data_nascita_dip        date,   
+nome_dipendente         varchar(10),   
+cognome_dipendente      varchar(10),   
+stipendio_dipendente    number(4,0),   
+CAP_dipendente          number(5,0),   
+via_dipendente          varchar(15), 
+citta_dipendente        varchar(15), 
+IBAN_dipendente         char(27), 
+Anno_assunzione        number(4,0)    
+) ;
+
+create table negozio(PIVA_negozio number(11,0) primary key, nome_negozio varchar(20), numero_negozio number(10,0),citta_negozio varchar(15), CAP_negozio number(5,0), via_negozio varchar(15), nome_proprietario varchar(10));
+
+create table ordine(   
+Numero_ordine       number(4,0) primary key,   
+confermato          varchar(2),   
+pagato              varchar(2),   
+contabilizzato      varchar(2),   
+prezzo_totale       number(5,0),   
+spedito             varchar(2),   
+contanti            varchar(2),   
+carta_di_credito    varchar(2), 
+anno_ordine         number(4,0)  
+);
+
+create table Servizio_di_trasporto(   
+Codice_spedizione number(5) primary key,   
+Numero_telefono_corriere number(10),   
+PIVA_ST number(11.0),   
+Prezzo_trasporto number(3,0),   
+Imballaggio varchar(10),   
+Data_ritiro_ST date,   
+Data_arrivo_ST date, 
+Paese_destinazione varchar(20)   
+);
+
+create table servizio_fotografico(   
+anno_servizio_fotografico               number(4,0) primary key,   
+location_servizio                        varchar(20),   
+prezzo_servizio                         number(3,0),   
+fotografo                               varchar(10)   
+);
+
+insert into abito values ('55555','42','200','92');
+
+insert into abito values ('66666','44','160','96');
+
+insert into abito values ('77777','46','170','99');
+
+insert into abito values ('88888','48','130','103');
+
+insert into abito values ('99999','42','110','93');
+
+insert into abito values ('10001','44','150','97');
+
+insert into abito values ('10002','46','150','100');
+
+insert into abito values ('10003','48','130','104');
+
+insert into abito values ('10005','42','200','95');
+
+insert into abito values ('10006','44','140','97');
+
+insert into abito values ('11111','42','150','94');
+
+insert into abito values ('22222','44','130','98');
+
+insert into abito values ('33333','46','140','102');
+
+insert into abito values ('44444','48','150','105');
+
+insert into abito values ('12345','48','150','106');
+
+insert into negozio values(22416421234,'Atelier Mary Russo',3277901125,'Catania',95121,'Via Campo','Giovanni');
+
+insert into negozio values(63029196725,'Impero Couture',3440346745,'Torino',10100,'Via Senza','Lorenzo');
+
+insert into negozio values(56889204577,'Venere di Berenice',4563467782,'Roma',00100,'Via Camporosso','Anna');
+
+insert into negozio values(42361275975,'Nobildonna',4563464444,'Genova',88110,'Via Cinzia','Mina');
+
+insert into negozio values(12562378789,'Nunzio Russo',4889779543,'Aosta',11100,'Via della Luna','Nunzio');
+
+insert into negozio values(35678906431,'Atelier Emé',3678965432,'Bari',70121,'Via degli Olmi','Mario');
+
+insert into negozio values(78920349950,'Petit Bologna',3678988675,'Bologna',40121,'Via del Comune','Mario');
+
+insert into negozio values(87432851681,'Michela Elite',3789425315,'Firenze',50121,'Via Filemon','Michela');
+
+insert into negozio values(47891456174,'Da Giulia',3292177741,'Foggia',70121,'Via Max','Giulia');
+
+insert into negozio values(82912752923,'Abiti Sposa da Paola',3359751264,'Milano',59921,'via auto n.14','Paola');
+
+insert into negozio values(45374067437,'Spose da favola',3232995055,'Ercolano',43391,'via grano n.21','Luca');
+
+insert into negozio values(22080642248,'Abiti Sposa da Ugo',3745754633,'Napoli',59461,'via etere n.1','Ugo');
+
+insert into negozio values(22966274490,'Sogno amoroso',3359751264,'Vomero',85523,'via marta n.4','Max');
+
+insert into negozio values(12345677966,'Atelier Punzone',3262145614,'Aversa',80079,'via Parola n.1','Giancarlo');
+
+insert into negozio values(22478564102,'Atelier Renato',3258744159,'Nola',80042,'via Carli n.4','Renato');
+
+insert into dipendente values('vlxn98kosd23pgzn','28-jan-1998','Marco','Mengoni',1500,83100,'via sandro n.14','Avellino','IT60X0542811101011111123456','2007');
+
+insert into dipendente values('nvoahei33vma1054','27-jan-1998','Paolo','Cristiani',2000,80100,'via alessio n.3','Napoli','IT60X0542811101011111778899','2008');
+
+insert into dipendente values('hwisml76nagxgd43','15-feb-1994','Sandro','Pertini',1100,80100,'via europa n.17','Napoli','IT60X0542811101011111999999','2008');
+
+insert into dipendente values('kdkgnm33sdlgn76o','23-mar-1995','Alessia','Gargiulo',3000,81100,'via paola n.15','Caserta','IT60X0542811101011111333333','2010');
+
+insert into dipendente values('PLLLCU78A01F839Y','20-nov-1999','Luca','Pelliccia',1450,80100,'p.tanucci n.14','Napoli','IT60X0542811101011111888888','2011');
+
+insert into dipendente values('frcvtli99vma4444','10-aug-1988','Francesco','Vitiello',1700,80056,'viale libia n.5','Ercolano','IT60X0542811101011111222222','2012');
+
+insert into dipendente values('CRSNTN78P01F839U','15-dec-1994','Antonio','Caruso',1200,80055,'via napoli n.17','Portici','IT60X0542811101011111774556','2013');
+
+insert into dipendente values('lnmrrk27sdlgn96q','27-Apr-1980','Elena','Morra',2800,80055,'via polli','Portici','IT60X0542811101011111123457','2013');
+
+insert into dipendente values('gfrcfm99syygf99c','30-jan-1999','Gianfranco','Fiume',1550,80100,'via mare n.14','Napoli','IT60X0542811101011111777201','2014');
+
+insert into dipendente values('gncmrt99szzgf99u','28-jan-1999','Giancarlo','Marte',1500,80100,'via mare n.14','Napoli','IT60X0542811101011111004005','2015');
+
+insert into dipendente values('rnstbt94cccxgd55','01-oct-1992','Ernesto','Berto',1440,80056,'via clock n.1','Ercolano','IT60X0542811101011111456114','2015');
+
+insert into dipendente values('cldfrm95shjds88o','18-Jul-1995','Claudia','Formisano',2100,80147,'via nola 1','Ponticelli','IT60X0542811101011111741258','2015');
+
+insert into dipendente values('sndrcr95shoo77ww','14-Aug-1988','Alessandro','Acerola',1800,80100,'via martino n.8','Napoli','IT60X0542811101011111478478','2013');
+
+insert into dipendente values('sndrsc88uuoo65qw','20-May-1988','Alessandro','Schiano',1750,80147,'via cera 1','Ponticelli','IT60X054281110101111478555','2007');
+
+insert into dipendente values('crtlzz98zzxx62tt','25-May-1998','Alessio','Carlino',1152,80147,'via cera 2','Ponticelli','IT60X054281110101111124789','2017');
+
+insert into collezione values('estate17',2017,6);
+
+insert into collezione values('primavera17',2017,8);
+
+insert into collezione values('autunno17',2017,10);
+
+insert into collezione values('inverno17',2017,5);
+
+insert into collezione values('estate18',2018,7);
+
+insert into collezione values('primavera18',2018,10);
+
+insert into collezione values('autunno18',2018,11);
+
+insert into collezione values('inverno18',2018,15);
+
+insert into collezione values('estate20',2020,14);
+
+insert into collezione values('primavera20',2020,16);
+
+insert into collezione values('inverno20',2020,16);
+
+insert into collezione values('autunno20',2020,20);
+
+insert into collezione values('estate19',2019,16);
+
+insert into collezione values('primavera19',2019,14);
+
+insert into collezione values('inverno19',2019,10);
+
+insert into collezione values('autunno19',2019,17);
+
+insert into collezione values('luna16',2016,13);
+
+insert into collezione values('sole15',2015,15);
+
+insert into collezione values('ghiaccio14',2014,17);
+
+insert into collezione values('fuoco13',2013,16);
+
+insert into collezione values('mare12',2012,14);
+
+insert into collezione values('montagna11',2011,10);
+
+insert into collezione values('seta10',2010,14);
+
+insert into collezione values('chiffon09',2009,12);
+
+insert into collezione values('beauty08',2008,13);
+
+insert into collezione values('pioggia07',2007,16);
+
+insert into collezione values('mare06',2006,18);
+
+insert into modella values(3044180466,'Paola','Marzocchi',405,42,'26-apr-1995');
+
+insert into modella values(2122996874,'Vincenza','Pietrini',453,40,'12-may-1994');
+
+insert into modella values(6002184572,'Alessandra','Olivander',502,44,'06-jan-1993');
+
+insert into modella values(3006389770,'Michela','Pollasto',300,44,'16-feb-1992');
+
+insert into modella values(1236647789,'Alessandra','Bella',250,42,'26-may-1995');
+
+insert into modella values(4455776921,'Erika','Travi',150,46,'11-dec-1993');
+
+insert into modella values(4411229999,'Federica','Forte',550,44,'07-jul-1998');
+
+insert into modella values(7899874545,'Marika','Grandi',260,44,'16-feb-1994');
+
+insert into modella values(7774441111,'Ylenia','Carina',410,42,'26-apr-1994');
+
+insert into modella values(7411478527,'Mina','Settino',235,42,'18-may-1990');
+
+insert into modella values(6998745621,'Carmela','Mera',218,44,'01-jun-1993');
+
+insert into modella values(2233444412,'Tonia','Romano',346,44,'17-feb-1991');
+
+insert into modella values(7996613121,'Carla','Punzo',377,44,'26-may-1996');
+
+insert into modella values(6622213147,'Katia','Manzo',247,46,'13-feb-1992');
+
+insert into modella values(9922789441,'Cira','Sole',242,44,'11-feb-1995');
+
+insert into modello values('57579','100','180');
+
+insert into modello values('13331','80','180');
+
+insert into modello values('14444','50','170');
+
+insert into modello values('55555','60','160');
+
+insert into modello values('13357','80','150');
+
+insert into modello values('77880','90','130');
+
+insert into modello values('23245','40','160');
+
+insert into modello values('23499','60','150');
+
+insert into modello values('99844','50','180');
+
+insert into modello values('10047','45','160');
+
+insert into modello values('36985','60','170');
+
+insert into modello values('14852','60','150');
+
+insert into modello values('45456','30','150');
+
+insert into modello values('11884','45','160');
+
+insert into modello values('15004','46','160');
+
+insert into servizio_fotografico values(2020,'Bellavista',450,'Arturo');
+
+insert into servizio_fotografico values(2017,'Villa Borghesi',400,'Alessandro');
+
+insert into servizio_fotografico values(2016,'Piazza Duomo',600,'Germano');
+
+insert into servizio_fotografico values(2018,'Villa Ugonotto',300,'Pietro');
+
+insert into servizio_fotografico values(2019,'Villa Percival',700,'Claudio');
+
+insert into servizio_fotografico values(2015,'Villa Toni',350,'Pietro');
+
+insert into servizio_fotografico values(2014,'Piazza Municipio',600,'Pietro');
+
+insert into servizio_fotografico values(2013,'Villa Narcisio',400,'Carmine');
+
+insert into servizio_fotografico values(2012,'Villa Perna',500,'Giovanni');
+
+insert into servizio_fotografico values(2011,'Via Scarlatti',400,'Aldo');
+
+insert into servizio_fotografico values(2010,'Villa Domenico',300,'Alessandro');
+
+insert into servizio_fotografico values(2009,'Villa Lusso',300,'Alessandro');
+
+insert into servizio_fotografico values(2008,'Villa Mitica',250,'Aldo');
+
+insert into servizio_fotografico values(2007,'Villa Principessa',300,'Francesco');
+
+insert into servizio_fotografico values(2006,'Villa Marchese',400,'Claudio');
+
+insert into servizio_fotografico values(2005,'Santa Lucia','400','Giacomo');
+
+insert into deposito values ('11','80027','Frattamaggiore','Via Pezzullo','2000','1000','IT11X0888811101747000123456');
+
+insert into deposito values ('12','80027','Frattamaggiore','Via Pezzullo','2000','1000','IT11X0888811101747000123456');
+
+insert into deposito values ('13','80027','Frattamaggiore','Via Pezzullo','2000','1000','IT11X0888811101747000123456');
+
+insert into deposito values ('14','80027','Frattamaggiore','Via Pezzullo','2000','1000','IT11X0888811101747000123456');
+
+insert into deposito values ('15','80027','Frattamaggiore','Via Pezzullo','2000','1000','IT11X0888811101747000123456');
+
+insert into deposito values ('16','80027','Frattamaggiore','Via Pezzullo','2000','1000','IT11X0888811101747000123456');
+
+insert into deposito values ('21','84014','Nocera Inferiore','Via Napoli','2500','1200','IT22X0445511101454000987654');
+
+insert into deposito values ('22','84014','Nocera Inferiore','Via Napoli','2500','1200','IT22X0445511101454000987654');
+
+insert into deposito values ('23','84014','Nocera Inferiore','Via Napoli','2500','1200','IT22X0445511101454000987654');
+
+insert into deposito values ('24','84014','Nocera Inferiore','Via Napoli','2500','1200','IT22X0445511101454000987654');
+
+insert into deposito values ('41','80147','Barra','Via Bisignano 23','2200','1100','IT33X0445522299954000698142');
+
+insert into deposito values ('42','80147','Barra','Via Bisignano 23','2200','1100','IT33X0445522299954000698142');
+
+insert into deposito values ('43','80147','Barra','Via Bisignano 23','2200','1100','IT33X0445522299954000698142');
+
+insert into deposito values ('44','80147','Barra','Via Bisignano 23','2200','1100','IT33X0445522299954000698142');
+
+insert into deposito values ('31','81100','Caserta','Via Mille 2','2400','1250','IT44X0555522233354000454545');
+
+insert into deposito values ('32','81100','Caserta','Via Mille 2','2400','1250','IT44X0555522233354000454545');
+
+insert into deposito values ('33','81100','Caserta','Via Mille 2','2400','1250','IT44X0555522233354000454545');
+
+insert into deposito values ('34','81100','Caserta','Via Mille 2','2400','1250','IT44X0555522233354000454545');
+
+insert into campagna_promozionale values('2018','1200','50','Instagram e FB','120','1200','10-feb-2018','23-dec-2018');
+
+insert into campagna_promozionale values('2017','1100','30','Facebook','110','1100','1-feb-2017','20-nov-2017');
+
+insert into campagna_promozionale values('2019','1000','40','Instagram e FB','100','1000','14-jan-2019','18-dec-2019');
+
+insert into campagna_promozionale values('2020','900','60','Instagram e FB','90','900','20-jan-2020','16-dec-2020');
+
+insert into campagna_promozionale values('2016','850','20','Instagram e FB','85','850','15-feb-2017','13-dec-2017');
+
+insert into campagna_promozionale values('2015','800','30','Facebook','80','800','03-feb-2016','26-nov-2016');
+
+insert into campagna_promozionale values('2014','700','40','Instagram e FB','70','700','14-jan-2014','13-dec-2014');
+
+insert into campagna_promozionale values('2013','650','30','Instagram e FB','65','650','20-jan-2013','13-dec-2013');
+
+insert into campagna_promozionale values('2012','600','50','Instagram e FB','60','600','12-feb-2012','23-dec-2012');
+
+insert into campagna_promozionale values('2011','500','30','Facebook','50','500','21-feb-2011','11-nov-2011');
+
+insert into campagna_promozionale values('2010','400','40','Facebook','40','400','14-jan-2010','15-dec-2010');
+
+insert into campagna_promozionale values('2009','340','35','Facebook','340','340','27-jan-2009','16-dec-2009');
+
+insert into campagna_promozionale values('2008','300','45','Facebook','30','300','13-feb-2008','23-dec-2008');
+
+insert into campagna_promozionale values('2007','200','50','Facebook','20','200','17-feb-2007','29-nov-2007');
+
+insert into campagna_promozionale values('2006','100','40','Facebook','10','100','11-feb-2006','21-nov-2006');
+
+insert into catalogo values('7','1','patinata','20','20');
+
+insert into catalogo values('8','1','ecologica','30','23');
+
+insert into catalogo values('9','1','riciclata','40','30');
+
+insert into catalogo values('6','1','patinata','40','50');
+
+insert into catalogo values('1','1','riciclata','15','10');
+
+insert into catalogo values('2','1','patinata','28','30');
+
+insert into catalogo values('3','1','ecologica','20','10');
+
+insert into catalogo values('4','1','patinata','22','25');
+
+insert into catalogo values('5','1','riciclata','25','17');
+
+insert into catalogo values('10','1','patinata','35','29');
+
+insert into catalogo values('11','1','ecologica','45','35');
+
+insert into catalogo values('12','1','patinata','49','60');
+
+insert into catalogo values('13','1','riciclata','26','15');
+
+insert into catalogo values('14','1','patinata','30','50');
+
+insert into catalogo values('15','1','patinata','24','26');
+
+insert into ordine values('1','si','si','si','8000','si','no','si','2017');
+
+insert into ordine values('2','si','no','no','5000','no','no','no','2019');
+
+insert into ordine values('3','si','no','no','3000','no','no','no','2020');
+
+insert into ordine values('4','si','si','si','9500','si','no','si','2018');
+
+insert into ordine values('5','si','si','si','7000','si','no','si','2017');
+
+insert into ordine values('6','si','no','no','6000','no','no','no','2019');
+
+insert into ordine values('7','si','no','no','1500','no','no','no','2020');
+
+insert into ordine values('8','si','si','si','6600','si','no','si','2018');
+
+insert into ordine values('9','si','si','si','8080','si','no','si','2016');
+
+insert into ordine values('10','si','no','no','5080','no','no','no','2019');
+
+insert into ordine values('11','si','no','no','3700','no','no','no','2016');
+
+insert into ordine values('12','si','si','si','7500','si','no','si','2018');
+
+insert into ordine values('13','si','si','si','7500','si','no','si','2017');
+
+insert into ordine values('14','si','no','no','5090','no','no','no','2019');
+
+insert into ordine values('15','si','no','no','2500','no','no','no','2019');
+
+insert into servizio_di_trasporto values('60678','3332221110','33344455555','15','cartone','12-feb-2018','20-feb-2018','Italia');
+
+insert into servizio_di_trasporto values('88565','3335556667','33344455555','15','cartone','20-feb-2018','28-feb-2018','Italia');
+
+insert into servizio_di_trasporto values('9999','3335556667','33344455555','70','cartone','10-feb-2019','18-feb-2019','Cina');
+
+insert into servizio_di_trasporto values('89965','3336784128','33344455555','15','cartone','8-feb-2020','17-feb-2020','Italia');
+
+insert into servizio_di_trasporto values('88992','3332221110','11228888001','20','cartone','12-feb-2017','20-feb-2017','Svizzera');
+
+insert into servizio_di_trasporto values('12342','3335556667','11228888001','15','cartone','20-feb-2016','28-feb-2016','Italia');
+
+insert into servizio_di_trasporto values('44221','3336668888','11228888001','30','cartone','14-feb-2019','19-feb-2019','Francia');
+
+insert into servizio_di_trasporto values('23144','3336784128','11228888001','30','cartone','8-feb-2020','19-feb-2020','Francia');
+
+insert into servizio_di_trasporto values('54212','3332221110','33344455555','30','cartone','12-feb-2018','22-feb-2018','Francia');
+
+insert into servizio_di_trasporto values('48877','3332144785','33344461478','30','cartone','12-feb-2018','22-feb-2018','Germania');
+
+insert into servizio_di_trasporto values('22152','3335556667','33344455555','20','cartone','20-feb-2019','28-feb-2019','Italia');
+
+insert into servizio_di_trasporto values('20611','3336784128','33344455555','20','cartone ','10-feb-2020','17-feb-2020','Italia');
+
+insert into servizio_di_trasporto values('29912','3332221110','11228888001','15','cartone','13-feb-2018','23-feb-2018','Italia');
+
+insert into servizio_di_trasporto values('90210','3335556667','11228888001','15','cartone','18-feb-2018','27-feb-2018','Italia');
+
+insert into servizio_di_trasporto values('99327','3335556667','11228888001','40','cartone','15-feb-2019','25-feb-2019','Turchia');
+
+insert into pagamenti values(111,2018);
+
+insert into pagamenti values(112,2018);
+
+insert into pagamenti values(113,2018);
+
+insert into pagamenti values(114,2018);
+
+insert into pagamenti values(115,2019);
+
+insert into pagamenti values(116,2019);
+
+insert into pagamenti values(117,2019);
+
+insert into pagamenti values(118,2019);
+
+insert into pagamenti values(119,2020);
+
+insert into pagamenti values(120,2020);
+
+insert into pagamenti values(121,2020);
+
+insert into pagamenti values(122,2020);
+
+insert into pagamenti values(123,2017);
+
+insert into pagamenti values(124,2017);
+
+insert into pagamenti values(125,2017);
+
+insert into pagamenti values(126,2017);
+
+insert into pagamenti values(127,2016);
+
+insert into pagamenti values(128,2015);
+
+insert into pagamenti values(129,2014);
+
+insert into pagamenti values(130,2013);
+
+insert into pagamenti values(131,2012);
+
+insert into pagamenti values(132,2011);
+
+insert into pagamenti values(133,2010);
+
+insert into pagamenti values(134,2009);
+
+insert into pagamenti values(135,2008);
+
+insert into pagamenti values(136,2007);
+
+insert into rappresentante values('TLSVBI78C20G426B','Sandro','Esposito','04-MAY-90',56734,'Orizzonti','Roma','IT60X0542811101000000330561',34);
+
+insert into rappresentante values('WPLQSL42M06B842X','Michele','Palermo','22-DEC-94',63351,'San Giovanni','Ercolano','IT60X0542811101000000347654',35);
+
+insert into rappresentante values('FVRKLV73R68M170U','Leonardo','Conti','04-APR-85',03923,'San Benedetto','Bologna','IT60X0542811101000000236861',32);
+
+insert into rappresentante values('ZVLPGQ75C62B423V','Filippo','Palerma','01-MAY-80',23958,'Saturno','Ancona','IT60X0542811101000000340756',26);
+
+insert into rappresentante values('PDLSGF62M08L655Q','Gabriele','Fanucci','06-NOV-90',72734,'Giove','Ascoli Piceno','IT60X0542811101000000745561',30);
+
+insert into rappresentante values('FZCMHA88L25G226Q','Raffaele','Endrizzi','26-JAN-92',56741,'Giotto','Napoli','IT60X0542811101000000333465',31);
+
+insert into rappresentante values('PGPFPM37P21B202K','Piero','Milanesi','10-AUG-96',25756,'Rose bianche','Milano','IT60X0542811101000000734566',27);
+
+insert into rappresentante values('NDHLNM61P11I643H','Paola','Marino','04-FEB-98',52767,'Diana','Benevento','IT60X0542811101000000936944',28);
+
+insert into rappresentante values('SNWZVZ88R03L455F','Giovanna','Pisano','07-MAY-97',15334,'Mare blu','Arezzo','IT60X0542811101000000742561',24);
+
+insert into rappresentante values('RVAPWR41H12B953V','Luisa','Trentino','05-JAN-92',26374,'Pirandello','Firenze','IT60X0542811101000000360731',33);
+
+insert into rappresentante values('DPZVXZ36A09B923A','Rosaria','Ricci','07-SEP-96',47674,'Oriente','Perugia','IT60X0542811101000000630355',36);
+
+insert into rappresentante values('ZYIGBC55T55A716B','Giovanni','Pierro','17-Mar-1986',7831,'Santa Marla','Milano','IT60X0542811101000000935558',20);
+
+insert into rappresentante values('PNOPLX98M17F852M','Paolo','Esposito','4-sep-1995',80049,'Donghi','Genova','IT60X0542811101000000445390',25);
+
+insert into rappresentante values('DTRBGL57E47F112S','Gennaro','Marino','22-dec-1980',40235,'Falcone','Napoli','IT60X0542811101000000456785',29);
+
+insert into rappresentante values('SFNPNM50D15H684B','Marco','Palumbo','2-feb-1990',13457,'San Rocco','Napoli','IT60X0542811101000000326990',40);
+
+insert into rappresentante values('anlprt47D44H74lk','Aniello','Parato','14-sep-1988',13117,'San Michele','Catania','IT60X0542811101110007744550',22);
+
+insert into fabbrica values('10000000000','Gran fascino','IT60X0542811101000000846076','Genova','via lenoardi 35','Italia','80100');
+
+insert into fabbrica values('11000000000','Stile TOP','IT60X0542811101000000457436','Ercolano','via gaspare 2','Italia','43290');
+
+insert into fabbrica values('12000000000','Tessuti d.o.c','IT60X0542811101000000904683','Firenze','via cesare 1','Italia','80815');
+
+insert into fabbrica values('13000000000','Gran Design','IT60X0542811101000000234201','Ginevra','via lugano 5','Svizzera','74523');
+
+insert into fabbrica values('14000000000','Vestiti unici','IT60X0542811101000000357082','Palermo','via gallo 4','Italia','34562');
+
+insert into fabbrica values('15000000000','Tessuti TOP','IT60X0542811101000000765624','Napoli','via sandri 65','Italia','24801');
+
+insert into fabbrica values('55555555555','Jolie femme','IT60X0542811101000000770341','Parigi','via Sofia','Francia','65432');
+
+insert into fabbrica values('66666666666','Rever','FR60X0542811101000000452315','Parigi','Champs Elysees','Francia','44227');
+
+insert into fabbrica values('77777777777','Amour','FR60X0542811101000000663210','Marsiglia','La Canebière','Francia','33441');
+
+insert into fabbrica values('88888888888','Felici amori','IT60X0542811101000000892231','Napoli','via Forcella','Italia','45620');
+
+insert into fabbrica values('99999999999','Subito sposi','IT60X0542811101000000356722','Napoli','via Maddaloni','Italia','86532');
+
+insert into fabbrica values('12312312312','Elegantemente','IT60X0542811101000999999999','Napoli','via Falcone','Italia','80100');
+
+insert into fabbrica values('11144477788','kleine Dame','IT60X0542811101000111444777','Amburgo','via shopping','Germania','81110');
+
+insert into fabbrica values('14477784511','Divina','IT60X0542811101000777884669','Chaozou','via cina','Cina','80500');
+
+insert into fabbrica values('16000000000','angelic dress','IT60X0542811101000000555632','Pisa','Borgo Stretto','Turchia','23478');
+
+COMMIT
+
+
+alter table abito add nome_collezione varchar(15);
+
+alter table abito add constraint fk_collezione foreign key (nome_collezione) references collezione(nome_collezione);
+
+alter table abito add id_deposito number(2);
+
+alter table abito add constraint fk_deposito foreign key (id_deposito) references deposito(id_deposito);
+
+alter table abito add numero_ordine number(4);
+
+alter table abito add constraint fk__ordine foreign key (numero_ordine) references ordine(numero_ordine);
+
+alter table abito add codice_spedizione number(5);
+
+alter table abito add constraint fk_spedizione foreign key (codice_spedizione) references servizio_di_trasporto(codice_spedizione);
+
+alter table modello add id_pagamenti number(3,0);
+
+alter table modello add constraint fk_pagamenti foreign key (id_pagamenti) references pagamenti(id_pagamenti);
+
+alter table modello add Piva_fabbrica number(11,0) ;
+
+alter table modello add constraint fk_fabbrica foreign key (Piva_fabbrica) references fabbrica(Piva_fabbrica);
+
+alter table modello add codice_vestito number(5);
+
+alter table modello add constraint fk_abito foreign key (codice_vestito) references abito(codice_vestito);
+
+alter table campagna_promozionale add nome_collezione varchar(15);
+
+alter table campagna_promozionale add constraint fkcollezione foreign key (nome_collezione) references collezione(nome_collezione);
+
+alter table campagna_promozionale add id_pagamenti number(3,0);
+
+alter table campagna_promozionale add constraint fkpagamenti foreign key (id_pagamenti) references pagamenti(id_pagamenti);
+
+alter table catalogo add nome_collezione varchar(15);
+
+alter table catalogo add constraint fk_catalogo foreign key (nome_collezione) references collezione(nome_collezione);
+
+alter table catalogo add id_pagamenti number(3,0);
+
+alter table catalogo add constraint pagamenti_fk foreign key (id_pagamenti) references pagamenti(id_pagamenti);
+
+alter table collezione add anno_servizio_fotografico number(4);
+
+alter table collezione add constraint fk_servizio foreign key (anno_servizio_fotografico) references servizio_fotografico(anno_servizio_fotografico);
+
+alter table servizio_fotografico add id_pagamenti number(3,0);
+
+alter table servizio_fotografico add constraint pagamentifk foreign key (id_pagamenti) references pagamenti(id_pagamenti);
+
+alter table modella add id_pagamenti number(3,0);
+
+alter table modella add constraint pagamentifk1 foreign key (id_pagamenti) references pagamenti(id_pagamenti);
+
+alter table deposito add id_pagamenti number(3,0)   ;
+
+alter table deposito add constraint pagamenti foreign key (id_pagamenti) references pagamenti(id_pagamenti)  ;
+
+ alter table ordine add PIVA_negozio number(11)  
+  ;
+
+alter table ordine add constraint negozio_fk foreign key (piva_negozio) references negozio(piva_negozio)  ;
+
+alter table servizio_di_trasporto add PIVA_fabbrica number(11)  ;
+
+alter table servizio_di_trasporto add constraint fabbrica_fk foreign key (piva_fabbrica) references fabbrica(piva_fabbrica)  ;
+
+UPDATE abito SET nome_collezione = 'estate20', codice_spedizione='60678', numero_ordine='4', id_deposito='11'  WHERE codice_vestito ='44444';
+
+UPDATE abito SET nome_collezione = 'inverno20',  codice_spedizione='88565', numero_ordine='1', id_deposito='12'   WHERE codice_vestito ='11111';
+
+UPDATE abito SET nome_collezione = 'autunno20',  codice_spedizione='9999', numero_ordine='2', id_deposito='13'    WHERE codice_vestito ='22222';
+
+UPDATE abito SET nome_collezione = 'primavera20',  codice_spedizione='89965', numero_ordine='3', id_deposito='14'  WHERE codice_vestito ='33333';
+
+UPDATE abito SET nome_collezione = 'estate19',  codice_spedizione='88992', numero_ordine='5', id_deposito='15'    WHERE codice_vestito ='55555';
+
+UPDATE abito SET nome_collezione = 'inverno19', codice_spedizione='12342', numero_ordine='6', id_deposito='16'   WHERE codice_vestito ='66666';
+
+UPDATE abito SET nome_collezione = 'autunno19',  codice_spedizione='44221', numero_ordine='7', id_deposito='21'   WHERE codice_vestito ='77777';
+
+UPDATE abito SET nome_collezione = 'primavera19',  codice_spedizione='23144', numero_ordine='8', id_deposito='22'   WHERE codice_vestito ='88888';
+
+UPDATE abito SET nome_collezione = 'estate18',  codice_spedizione='54212', numero_ordine='10', id_deposito='23'   WHERE codice_vestito ='10001';
+
+UPDATE abito SET nome_collezione = 'inverno18',  codice_spedizione='48877', numero_ordine='11', id_deposito='24'   WHERE codice_vestito ='10002';
+
+UPDATE abito SET nome_collezione = 'autunno18', codice_spedizione='22152' , numero_ordine='12', id_deposito='31'  WHERE codice_vestito ='10003';
+
+UPDATE abito SET nome_collezione = 'primavera18', codice_spedizione='20611',numero_ordine='15', id_deposito='32'  WHERE codice_vestito ='10004';
+
+UPDATE abito SET nome_collezione = 'inverno18',  codice_spedizione='60678' , numero_ordine='14', id_deposito='33'   WHERE codice_vestito ='10006';
+
+UPDATE abito SET nome_collezione = 'inverno18',  codice_spedizione='20611' , numero_ordine='9', id_deposito='34'   WHERE codice_vestito ='12345';
+
+UPDATE abito SET nome_collezione = 'primavera18',  codice_spedizione='99327',numero_ordine='9', id_deposito='41'  WHERE codice_vestito ='99999';
+
+UPDATE abito SET nome_collezione = 'inverno17', codice_spedizione='20611', numero_ordine='13', id_deposito='42'   WHERE codice_vestito ='10005';
+
+UPDATE modello SET piva_fabbrica = '88888888888', codice_vestito = '11111', id_pagamenti='124'   WHERE codice_modello ='57579';
+
+UPDATE modello SET piva_fabbrica = '99999999999', codice_vestito = '22222', id_pagamenti='113'   WHERE codice_modello ='13331';
+
+UPDATE modello SET piva_fabbrica = '12000000000', codice_vestito = '33333', id_pagamenti='114'    WHERE codice_modello ='14444';
+
+UPDATE modello SET piva_fabbrica = '13000000000', codice_vestito = '44444', id_pagamenti='123'      WHERE codice_modello ='55555';
+
+UPDATE modello SET piva_fabbrica = '10000000000', codice_vestito = '55555', id_pagamenti='115'    WHERE codice_modello ='13357';
+
+UPDATE modello SET piva_fabbrica = '11000000000', codice_vestito = '66666', id_pagamenti='116'    WHERE codice_modello ='77880';
+
+UPDATE modello SET piva_fabbrica = '12000000000', codice_vestito = '77777', id_pagamenti='117'    WHERE codice_modello ='23245';
+
+UPDATE modello SET piva_fabbrica = '13000000000', codice_vestito = '88888', id_pagamenti='118'    WHERE codice_modello ='99844';
+
+UPDATE modello SET piva_fabbrica = '14000000000', codice_vestito = '99999', id_pagamenti='112'    WHERE codice_modello ='10047';
+
+UPDATE modello SET piva_fabbrica = '15000000000', codice_vestito = '10001', id_pagamenti='119'   WHERE codice_modello ='36985';
+
+UPDATE modello SET piva_fabbrica = '88888888888', codice_vestito = '10002', id_pagamenti='120'   WHERE codice_modello ='14852';
+
+UPDATE modello SET piva_fabbrica = '77777777777', codice_vestito = '10003', id_pagamenti='121'    WHERE codice_modello ='45456';
+
+UPDATE modello SET piva_fabbrica = '55555555555', codice_vestito = '10004', id_pagamenti='122'    WHERE codice_modello ='118846';
+
+UPDATE modello SET piva_fabbrica = '66666666666', codice_vestito = '10005', id_pagamenti='112'  WHERE codice_modello ='23499';
+
+UPDATE modello SET piva_fabbrica = '14477784511', codice_vestito = '12345', id_pagamenti='111'    WHERE codice_modello ='11884';
+
+UPDATE modello SET piva_fabbrica = '16000000000', codice_vestito = '10006', id_pagamenti='125'   WHERE codice_modello ='15004';
+
+UPDATE campagna_promozionale SET nome_collezione = 'primavera20',id_pagamenti ='120'  WHERE anno_campagna ='2020';
+
+UPDATE campagna_promozionale SET nome_collezione = 'estate19', id_pagamenti='117'  WHERE anno_campagna ='2019';
+
+UPDATE campagna_promozionale SET nome_collezione = 'estate18', id_pagamenti='111'  WHERE anno_campagna ='2018';
+
+UPDATE campagna_promozionale SET nome_collezione = 'inverno17', id_pagamenti='124'  WHERE anno_campagna ='2017';
+
+UPDATE campagna_promozionale SET nome_collezione = 'luna16', id_pagamenti='127'  WHERE anno_campagna ='2016';
+
+UPDATE campagna_promozionale SET nome_collezione = 'sole15', id_pagamenti='128'  WHERE anno_campagna ='2015';
+
+UPDATE campagna_promozionale SET nome_collezione = 'ghiaccio14', id_pagamenti='129'  WHERE anno_campagna ='2014';
+
+UPDATE campagna_promozionale SET nome_collezione = 'fuoco13', id_pagamenti='130'  WHERE anno_campagna ='2013';
+
+UPDATE campagna_promozionale SET nome_collezione = 'mare12', id_pagamenti='131'  WHERE anno_campagna ='2012';
+
+UPDATE campagna_promozionale SET nome_collezione = 'montagna11', id_pagamenti='132'  WHERE anno_campagna ='2011';
+
+UPDATE campagna_promozionale SET nome_collezione = 'seta10', id_pagamenti='133'  WHERE anno_campagna ='2010';
+
+UPDATE campagna_promozionale SET nome_collezione = 'chiffon09', id_pagamenti='134'  WHERE anno_campagna ='2009';
+
+UPDATE campagna_promozionale SET nome_collezione = 'beauty08', id_pagamenti='135'  WHERE anno_campagna ='2008';
+
+UPDATE campagna_promozionale SET nome_collezione = 'pioggia07', id_pagamenti='136'  WHERE anno_campagna ='2007';
+
+UPDATE campagna_promozionale SET nome_collezione = 'mare06', id_pagamenti='136'  WHERE anno_campagna ='2006';
+
+UPDATE collezione SET anno_servizio_fotografico = '2020' WHERE nome_collezione='estate20';
+
+UPDATE collezione SET anno_servizio_fotografico = '2019' WHERE nome_collezione='inverno19';
+
+UPDATE collezione SET anno_servizio_fotografico = '2018' WHERE nome_collezione='primavera18';
+
+UPDATE collezione SET anno_servizio_fotografico = '2017' WHERE nome_collezione='autunno17';
+
+UPDATE collezione SET anno_servizio_fotografico = '2016' WHERE nome_collezione='luna16';
+
+UPDATE collezione SET anno_servizio_fotografico = '2015' WHERE nome_collezione='sole15';
+
+UPDATE collezione SET anno_servizio_fotografico = '2014' WHERE nome_collezione='ghiaccio14';
+
+UPDATE collezione SET anno_servizio_fotografico = '2013' WHERE nome_collezione='fuoco13';
+
+UPDATE collezione SET anno_servizio_fotografico = '2012' WHERE nome_collezione='mare12';
+
+UPDATE collezione SET anno_servizio_fotografico = '2011' WHERE nome_collezione='montagna11';
+
+UPDATE collezione SET anno_servizio_fotografico = '2010' WHERE nome_collezione='seta10';
+
+UPDATE collezione SET anno_servizio_fotografico = '2009' WHERE nome_collezione='chiffon09';
+
+UPDATE collezione SET anno_servizio_fotografico = '2008' WHERE nome_collezione='beauty08';
+
+UPDATE collezione SET anno_servizio_fotografico = '2007' WHERE nome_collezione='pioggia07';
+
+UPDATE collezione SET anno_servizio_fotografico = '2006' WHERE nome_collezione='mare06';
+
+UPDATE collezione SET anno_servizio_fotografico = '2017' WHERE nome_collezione='estate17';
+
+UPDATE collezione SET anno_servizio_fotografico = '2017' WHERE nome_collezione='primavera17';
+
+UPDATE collezione SET anno_servizio_fotografico = '2017' WHERE nome_collezione='inverno17';
+
+UPDATE collezione SET anno_servizio_fotografico = '2018' WHERE nome_collezione='estate18';
+
+UPDATE collezione SET anno_servizio_fotografico = '2018' WHERE nome_collezione='autunno18';
+
+UPDATE collezione SET anno_servizio_fotografico = '2018' WHERE nome_collezione='inverno18';
+
+UPDATE collezione SET anno_servizio_fotografico = '2019' WHERE nome_collezione='estate19';
+
+UPDATE collezione SET anno_servizio_fotografico = '2020' WHERE nome_collezione='autunno20';
+
+UPDATE collezione SET anno_servizio_fotografico = '2020' WHERE nome_collezione='inverno20';
+
+UPDATE collezione SET anno_servizio_fotografico = '2020' WHERE nome_collezione='primavera20';
+
+UPDATE collezione SET anno_servizio_fotografico = '2019' WHERE nome_collezione='primavera19';
+
+UPDATE collezione SET anno_servizio_fotografico = '2019' WHERE nome_collezione='autunno19';
+
+UPDATE modella SET id_pagamenti= '111' WHERE iban_modella='3044180466 ';
+
+UPDATE modella SET id_pagamenti= '112' WHERE iban_modella='2122996874  ';
+
+UPDATE modella SET id_pagamenti= '113' WHERE iban_modella='6002184572   ';
+
+UPDATE modella SET id_pagamenti= '114' WHERE iban_modella='3006389770   ';
+
+UPDATE modella SET id_pagamenti= '115' WHERE iban_modella='1236647789 ';
+
+UPDATE modella SET id_pagamenti= '116' WHERE iban_modella='4455776921  ';
+
+UPDATE modella SET id_pagamenti= '117' WHERE iban_modella='4411229999   ';
+
+UPDATE modella SET id_pagamenti= '118' WHERE iban_modella='7899874545   ';
+
+UPDATE modella SET id_pagamenti= '119' WHERE iban_modella='7774441111 ';
+
+UPDATE modella SET id_pagamenti= '120' WHERE iban_modella='7411478527  ';
+
+UPDATE modella SET id_pagamenti= '121' WHERE iban_modella='6998745621   ';
+
+UPDATE modella SET id_pagamenti= '122' WHERE iban_modella='2233444412   ';
+
+UPDATE modella SET id_pagamenti= '123' WHERE iban_modella='7996613121 ';
+
+UPDATE modella SET id_pagamenti= '124' WHERE iban_modella='6622213147  ';
+
+UPDATE modella SET id_pagamenti= '125' WHERE iban_modella='9922789441';
+
+UPDATE catalogo SET nome_collezione = 'pioggia07', id_pagamenti='136' WHERE numero_catalogo='2';
+
+UPDATE catalogo SET nome_collezione = 'beauty08', id_pagamenti='135' WHERE numero_catalogo='3';
+
+UPDATE catalogo SET nome_collezione = 'chiffon09', id_pagamenti='134' WHERE numero_catalogo='4';
+
+UPDATE catalogo SET nome_collezione = 'seta10', id_pagamenti='133' WHERE numero_catalogo='5';
+
+UPDATE catalogo SET nome_collezione = 'montagna11', id_pagamenti='132' WHERE numero_catalogo='6';
+
+UPDATE catalogo SET nome_collezione = 'mare12', id_pagamenti='131' WHERE numero_catalogo='7';
+
+UPDATE catalogo SET nome_collezione = 'fuoco13', id_pagamenti='130' WHERE numero_catalogo='8';
+
+UPDATE catalogo SET nome_collezione = 'ghiaccio14', id_pagamenti='129' WHERE numero_catalogo='9';
+
+UPDATE catalogo SET nome_collezione = 'sole15', id_pagamenti='128' WHERE numero_catalogo='10';
+
+UPDATE catalogo SET nome_collezione = 'luna16', id_pagamenti='127' WHERE numero_catalogo='11';
+
+UPDATE catalogo SET nome_collezione = 'primavera17', id_pagamenti='123' WHERE numero_catalogo='12';
+
+UPDATE catalogo SET nome_collezione = 'autunno18', id_pagamenti='111' WHERE numero_catalogo='13';
+
+UPDATE catalogo SET nome_collezione = 'primavera19', id_pagamenti='118' WHERE numero_catalogo='14';
+
+UPDATE catalogo SET nome_collezione = 'primavera20', id_pagamenti='122' WHERE numero_catalogo='1';
+
+UPDATE catalogo SET nome_collezione = 'primavera20', id_pagamenti='119' WHERE numero_catalogo='15';
+
+UPDATE servizio_fotografico SET id_pagamenti= '122' WHERE anno_servizio_fotografico='2020';
+
+UPDATE servizio_fotografico SET id_pagamenti= '116' WHERE anno_servizio_fotografico='2019';
+
+UPDATE servizio_fotografico SET id_pagamenti= '114' WHERE anno_servizio_fotografico='2018';
+
+UPDATE servizio_fotografico SET id_pagamenti= '125' WHERE anno_servizio_fotografico='2017';
+
+UPDATE servizio_fotografico SET id_pagamenti= '127' WHERE anno_servizio_fotografico='2016';
+
+UPDATE servizio_fotografico SET id_pagamenti= '128' WHERE anno_servizio_fotografico='2015';
+
+UPDATE servizio_fotografico SET id_pagamenti= '129' WHERE anno_servizio_fotografico='2014';
+
+UPDATE servizio_fotografico SET id_pagamenti= '130' WHERE anno_servizio_fotografico='2013';
+
+UPDATE servizio_fotografico SET id_pagamenti= '131' WHERE anno_servizio_fotografico='2012';
+
+UPDATE servizio_fotografico SET id_pagamenti= '132' WHERE anno_servizio_fotografico='2011';
+
+UPDATE servizio_fotografico SET id_pagamenti= '133' WHERE anno_servizio_fotografico='2010';
+
+UPDATE servizio_fotografico SET id_pagamenti= '134' WHERE anno_servizio_fotografico='2009';
+
+UPDATE servizio_fotografico SET id_pagamenti= '135' WHERE anno_servizio_fotografico='2008';
+
+UPDATE servizio_fotografico SET id_pagamenti= '136' WHERE anno_servizio_fotografico='2007';
+
+UPDATE deposito SET id_pagamenti= '120' WHERE id_deposito='11';
+
+UPDATE deposito SET  id_pagamenti= '111' WHERE id_deposito='12';
+
+UPDATE deposito SET id_pagamenti= '115' WHERE id_deposito='13';
+
+UPDATE deposito SET  id_pagamenti= '124' WHERE id_deposito='14';
+
+UPDATE deposito SET id_pagamenti= '113' WHERE id_deposito='15';
+
+UPDATE deposito SET  id_pagamenti= '125' WHERE id_deposito='16';
+
+UPDATE deposito SET  id_pagamenti= '119' WHERE id_deposito='21';
+
+UPDATE deposito SET  id_pagamenti= '112' WHERE id_deposito='22';
+
+UPDATE deposito SET  id_pagamenti= '123' WHERE id_deposito='23';
+
+UPDATE deposito SET id_pagamenti= '117' WHERE id_deposito='24';
+
+UPDATE deposito SET  id_pagamenti= '121' WHERE id_deposito='31';
+
+UPDATE deposito SET id_pagamenti= '113' WHERE id_deposito='32';
+
+UPDATE deposito SET  id_pagamenti= '117' WHERE id_deposito='33';
+
+UPDATE deposito SET id_pagamenti= '124' WHERE id_deposito='34';
+
+UPDATE deposito SET id_pagamenti= '122' WHERE id_deposito='41';
+
+UPDATE deposito SET id_pagamenti= '114' WHERE id_deposito='42';
+
+UPDATE deposito SET id_pagamenti= '118' WHERE id_deposito='43';
+
+UPDATE deposito SET id_pagamenti= '125' WHERE id_deposito='44';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='10000000000' WHERE codice_spedizione='60678';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='11000000000' WHERE codice_spedizione='88565';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='12000000000' WHERE codice_spedizione='99999';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='13000000000' WHERE codice_spedizione='89965';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='14000000000' WHERE codice_spedizione='88992';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='15000000000' WHERE codice_spedizione='12342';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='55555555555' WHERE codice_spedizione='44221';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='66666666666' WHERE codice_spedizione='23144';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='77777777777' WHERE codice_spedizione='54212';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='88888888888' WHERE codice_spedizione='48874';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='99999999999' WHERE codice_spedizione='22152';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='13000000000' WHERE codice_spedizione='20611';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='15000000000' WHERE codice_spedizione='29912';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='88888888888' WHERE codice_spedizione='90210';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='14477784511' WHERE codice_spedizione='9999';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='11144477788' WHERE codice_spedizione='48877';
+
+UPDATE servizio_di_trasporto SET  piva_fabbrica='16000000000' WHERE codice_spedizione='99327';
+
+UPDATE ordine SET  piva_negozio='22416421234' WHERE numero_ordine='1';
+
+UPDATE ordine SET  piva_negozio='63029196725' WHERE numero_ordine='2';
+
+UPDATE ordine SET  piva_negozio='56889204577' WHERE numero_ordine='3';
+
+UPDATE ordine SET  piva_negozio='42361275975' WHERE numero_ordine='4';
+
+UPDATE ordine SET  piva_negozio='12562378789' WHERE numero_ordine='5';
+
+UPDATE ordine SET  piva_negozio='35678906431' WHERE numero_ordine='6';
+
+UPDATE ordine SET  piva_negozio='78920349950' WHERE numero_ordine='7';
+
+UPDATE ordine SET  piva_negozio='87432851681' WHERE numero_ordine='8';
+
+UPDATE ordine SET  piva_negozio='47891456174' WHERE numero_ordine='9';
+
+UPDATE ordine SET  piva_negozio='82912752923' WHERE numero_ordine='10';
+
+UPDATE ordine SET  piva_negozio='45374067437' WHERE numero_ordine='11';
+
+UPDATE ordine SET  piva_negozio='22080642248' WHERE numero_ordine='12';
+
+UPDATE ordine SET  piva_negozio='22966274490' WHERE numero_ordine='13';
+
+UPDATE ordine SET  piva_negozio='12345677966' WHERE numero_ordine='14';
+
+UPDATE ordine SET  piva_negozio='22478564102' WHERE numero_ordine='15';
+
+ALTER TABLE modello MODIFY id_pagamenti number(3,0) NOT NULL;
+
+ALTER TABLE abito MODIFY id_deposito number(2) NOT NULL;
+
+ALTER TABLE abito MODIFY numero_ordine number(4) NOT NULL;
+
+ALTER TABLE modello  
+MODIFY piva_fabbrica number(11,0) NOT NULL;
+
+ALTER TABLE campagna_promozionale  
+MODIFY nome_collezione varchar(15) NOT NULL;
+
+ALTER TABLE campagna_promozionale   
+MODIFY id_pagamenti number(3,0) NOT NULL;
+
+ALTER TABLE catalogo  
+MODIFY id_pagamenti number(3,0) NOT NULL;
+
+ALTER TABLE catalogo   
+MODIFY nome_collezione varchar(15) NOT NULL;
+
+ALTER TABLE modella 
+MODIFY id_pagamenti number(3,0) NOT NULL UNIQUE;
+
+ALTER TABLE ordine 
+MODIFY PIVA_negozio number(11) not null;
+
+ALTER TABLE servizio_di_trasporto 
+MODIFY PIVA_fabbrica number(11) not null;
+
+create table posa_per(   
+iban_modella                number(11,0),   
+anno_servizio_fotografico   number(4,0)   
+);
+
+alter table posa_per add constraint fk_posa foreign key(anno_servizio_fotografico) references servizio_fotografico(anno_servizio_fotografico);
+
+alter table posa_per add constraint fkposa foreign key(iban_modella) references modella(iban_modella);
+
+create table percepisce(id_pagamenti number(3), CF_RAPPRESENTANTE char(16));
+
+alter table percepisce add constraint fk_percepisce foreign key(id_pagamenti) references pagamenti(id_pagamenti);
+
+alter table percepisce add constraint percepisce_fk foreign key(CF_RAPPRESENTANTE ) references rappresentante(CF_RAPPRESENTANTE );
+
+create table riscuote(   
+id_pagamenti      number(3,0),   
+numero_ordine       number(4,0)   
+);
+
+alter table riscuote add constraint fk_riscuote foreign key(id_pagamenti) references pagamenti(id_pagamenti);
+
+alter table riscuote add constraint fk_numero_ordine foreign key(numero_ordine) references ordine(numero_ordine);
+
+create table venduta_da(cf_rappresentante char(16), nome_collezione varchar(15));
+
+alter table venduta_da add constraint fk_venduta foreign key(CF_RAPPRESENTANTE ) references rappresentante(CF_RAPPRESENTANTE );
+
+alter table venduta_da add constraint venduta_fk foreign key(nome_collezione) references collezione(nome_collezione);
+
+create table stipendia(cf_dipendente char(16),id_pagamenti number(3));
+
+alter table stipendia add constraint fk_stipendia foreign key(id_pagamenti) references pagamenti(id_pagamenti);
+
+alter table stipendia add constraint stipendia_fk foreign key(cf_dipendente) references dipendente(cf_dipendente);
+
+create table trattato(codice_vestito number(5), cf_dipendente char(16), tipo_lavoro varchar(15));
+
+alter table trattato add constraint fk_trattato foreign key(codice_vestito) references abito(codice_vestito );
+
+alter table trattato add constraint trattato_fk foreign key(cf_dipendente) references dipendente(cf_dipendente);
+
+create table accessori(accessori varchar(20) primary key, codice_vestito number(5));
+
+alter table accessori add constraint accessori_fk foreign key(codice_vestito ) references abito(codice_vestito );
+
+create table colore(colore varchar(20) primary key, codice_vestito number(5));
+
+alter table colore add constraint colore_fk foreign key(codice_vestito ) references abito(codice_vestito );
+
+create table tessuti(tessuto varchar(20) primary key, codice_vestito number(5));
+
+alter table tessuti add constraint tessuti_fk foreign key(codice_vestito ) references abito(codice_vestito );
+
+create table tel_fabbrica(tel_fabbrica number(10) primary key, piva_fabbrica number(11));
+
+alter table tel_fabbrica add constraint tel_fabbrica foreign key(piva_fabbrica ) references fabbrica(piva_fabbrica );
+
+create table tessuto_modello(  
+codice_modello          number(5,0),    
+tessuto_iniziale        varchar(20) primary key 
+ 
+);
+
+alter table tessuto_modello add constraint fk_codice_modello foreign key(codice_modello) references modello(codice_modello);
+
+create table email_fabbrica(email_fabbrica varchar(30) primary key, piva_fabbrica number(11));
+
+alter table email_fabbrica add constraint email_fabbrica foreign key(piva_fabbrica ) references fabbrica(piva_fabbrica );
+
+create table tel_rappresentante(tel_rappresentante number(10) primary key, cf_rappresentante char(16));
+
+alter table tel_rappresentante add constraint tel_rappresentante foreign key(cf_rappresentante ) references rappresentante(cf_rappresentante );
+
+create table colore_modello(   
+codice_modello          number(5,0),  
+colore_modello       varchar(20) primary key 
+ 
+);
+
+alter table colore_modello add constraint colore_modello foreign key(codice_modello) references modello(codice_modello);
+
+create table vende(cf_rappresentante char(16), piva_negozio number(11));
+
+alter table vende add constraint fk_vende foreign key(CF_RAPPRESENTANTE ) references rappresentante(CF_RAPPRESENTANTE );
+
+alter table vende add constraint vende_fk foreign key(piva_negozio) references negozio(piva_negozio);
+
+create table compra(piva_negozio number(11), nome_collezione varchar(15));
+
+alter table compra add constraint fk_compra foreign key(piva_negozio ) references negozio(piva_negozio);
+
+alter table compra add constraint compra_fk foreign key(nome_collezione) references collezione(nome_collezione);
+
+insert into compra  values(22416421234,'estate19');
+
+insert into compra values(63029196725,'inverno19');
+
+insert into compra values(56889204577,'autunno19');
+
+insert into compra values(42361275975,'primavera19');
+
+insert into compra values(12562378789,'estate18');
+
+insert into compra values(35678906431,'inverno18');
+
+insert into compra values(78920349950,'autunno18');
+
+insert into compra values(87432851681,'primavera18');
+
+insert into compra values(47891456174,'inverno18');
+
+insert into compra values(82912752923,'primavera20');
+
+insert into compra values(45374067437,'autunno20');
+
+insert into compra values(22080642248,'estate20');
+
+insert into compra values(22966274490,'inverno20');
+
+insert into compra values(12345677966,'inverno17');
+
+insert into compra values(22478564102,'primavera18');
+
+insert into  vende   values('ZYIGBC55T55A716B','22416421234');
+
+insert into  vende   values('PNOPLX98M17F852M','63029196725');
+
+insert into  vende   values('DTRBGL57E47F112S','56889204577');
+
+insert into  vende   values('SFNPNM50D15H684B','42361275975');
+
+insert into  vende   values('anlprt47D44H74lk','12562378789');
+
+insert into  vende   values('TLSVBI78C20G426B','35678906431');
+
+insert into  vende   values('WPLQSL42M06B842X','78920349950');
+
+insert into  vende   values('FVRKLV73R68M170U','87432851681');
+
+insert into  vende   values('PDLSGF62M08L655Q','47891456174');
+
+insert into  vende   values('FZCMHA88L25G226Q','82912752923');
+
+insert into  vende   values('PGPFPM37P21B202K','45374067437');
+
+insert into  vende   values('NDHLNM61P11I643H','22080642248');
+
+insert into  vende   values('SNWZVZ88R03L455F','22966274490');
+
+insert into  vende   values('RVAPWR41H12B953V','12345677966');
+
+insert into  vende   values('DPZVXZ36A09B923A','22478564102');
+
+insert into posa_per values('3044180466','2017');
+
+insert into posa_per values('2122996874','2018');
+
+insert into posa_per values('6002184572','2019');
+
+insert into posa_per values('3006389770','2020');
+
+insert into posa_per values('3044180466','2017');
+
+insert into posa_per values('2122996874','2018');
+
+insert into posa_per values('6002184572','2019');
+
+insert into posa_per values('3006389770','2019');
+
+insert into posa_per values('1236647789','2019');
+
+insert into posa_per values('4455776921','2019');
+
+insert into posa_per values('4411229999','2019');
+
+insert into posa_per values('7899874545','2019');
+
+insert into posa_per values('7774441111','2020');
+
+insert into posa_per values('7411478527','2020');
+
+insert into posa_per values('6998745621','2020');
+
+insert into posa_per values('2233444412','2020');
+
+insert into posa_per values('7996613121','2017');
+
+insert into posa_per values('6622213147','2017');
+
+insert into posa_per values('9922789441','2017');
+
+insert into percepisce values('111','TLSVBI78C20G426B');
+
+insert into percepisce values('112','WPLQSL42M06B842X');
+
+insert into percepisce values('113','FVRKLV73R68M170U');
+
+insert into percepisce values('114','ZVLPGQ75C62B423V');
+
+insert into percepisce values('115','PDLSGF62M08L655Q');
+
+insert into percepisce values('116','FZCMHA88L25G226Q');
+
+insert into percepisce values('117','PGPFPM37P21B202K');
+
+insert into percepisce values('118','NDHLNM61P11I643H');
+
+insert into percepisce values('119','SNWZVZ88R03L455F');
+
+insert into percepisce values('120','RVAPWR41H12B953V');
+
+insert into percepisce values('121','DPZVXZ36A09B923A');
+
+insert into percepisce values('122','ZYIGBC55T55A716B');
+
+insert into percepisce values('123','PNOPLX98M17F852M');
+
+insert into percepisce values('124','DTRBGL57E47F112S');
+
+insert into percepisce values('125','SFNPNM50D15H684B');
+
+insert into percepisce values('126','anlprt47D44H74lk');
+
+insert into riscuote  values('123','1');
+
+insert into riscuote  values('115','2');
+
+insert into riscuote  values('120','3');
+
+insert into riscuote  values('111','4');
+
+insert into riscuote  values('124','5');
+
+insert into riscuote  values('116','6');
+
+insert into riscuote  values('118','7');
+
+insert into riscuote  values('114','8');
+
+insert into riscuote  values('127','9');
+
+insert into riscuote  values('117','10');
+
+insert into riscuote  values('127','11');
+
+insert into riscuote  values('114','12');
+
+insert into riscuote  values('123','13');
+
+insert into riscuote  values('116','14');
+
+insert into riscuote  values('115','15');
+
+insert into venduta_da  values('TLSVBI78C20G426B','estate17');
+
+insert into venduta_da  values('WPLQSL42M06B842X','primavera17');
+
+insert into venduta_da  values('FVRKLV73R68M170U','autunno17');
+
+insert into venduta_da  values('ZVLPGQ75C62B423V','inverno17');
+
+insert into venduta_da  values('PDLSGF62M08L655Q','estate18');
+
+insert into venduta_da  values('FZCMHA88L25G226Q','primavera18');
+
+insert into venduta_da  values('PGPFPM37P21B202K','autunno18');
+
+insert into venduta_da  values('NDHLNM61P11I643H','inverno18');
+
+insert into venduta_da  values('SNWZVZ88R03L455F','estate20');
+
+insert into venduta_da  values('RVAPWR41H12B953V','primavera20');
+
+insert into venduta_da  values('DPZVXZ36A09B923A','inverno20');
+
+insert into venduta_da  values('ZYIGBC55T55A716B','autunno20');
+
+insert into venduta_da  values('PNOPLX98M17F852M','primavera19');
+
+insert into venduta_da  values('DTRBGL57E47F112S','inverno19');
+
+insert into venduta_da  values('SFNPNM50D15H684B','autunno19');
+
+insert into venduta_da  values('anlprt47D44H74lk','luna16');
+
+insert into stipendia  values('vlxn98kosd23pgzn',111);
+
+insert into stipendia  values('nvoahei33vma1054',112);
+
+insert into stipendia  values('hwisml76nagxgd43',113);
+
+insert into stipendia  values('kdkgnm33sdlgn76o',114);
+
+insert into stipendia  values('PLLLCU78A01F839Y',115);
+
+insert into stipendia  values('frcvtli99vma4444',116);
+
+insert into stipendia  values('CRSNTN78P01F839U',117);
+
+insert into stipendia  values('lnmrrk27sdlgn96q',118);
+
+insert into stipendia  values('gfrcfm99syygf99c',119);
+
+insert into stipendia  values('gncmrt99szzgf99u',120);
+
+insert into stipendia  values('rnstbt94cccxgd55',121);
+
+insert into stipendia  values('cldfrm95shjds88o',122);
+
+insert into stipendia  values('sndrcr95shoo77ww',123);
+
+insert into stipendia  values('sndrsc88uuoo65qw',124);
+
+insert into stipendia  values('crtlzz98zzxx62tt',125);
+
+insert into trattato  values('11111','vlxn98kosd23pgzn','lavaggio');
+
+insert into trattato  values('11111','nvoahei33vma1054','stiratura');
+
+insert into trattato  values('11111','hwisml76nagxgd43','ricamo');
+
+insert into trattato  values('11111','kdkgnm33sdlgn76o','imballaggio');
+
+insert into trattato  values('22222','vlxn98kosd23pgzn','lavaggio');
+
+insert into trattato  values('22222','nvoahei33vma1054','stiratura');
+
+insert into trattato  values('22222','hwisml76nagxgd43','ricamo');
+
+insert into trattato  values('22222','kdkgnm33sdlgn76o','imballaggio');
+
+insert into trattato  values('33333','vlxn98kosd23pgzn','lavaggio');
+
+insert into trattato  values('33333','nvoahei33vma1054','stiratura');
+
+insert into trattato  values('33333','hwisml76nagxgd43','ricamo');
+
+insert into trattato  values('33333','kdkgnm33sdlgn76o','imballaggio');
+
+insert into trattato  values('44444','vlxn98kosd23pgzn','lavaggio');
+
+insert into trattato  values('44444','nvoahei33vma1054','stiratura');
+
+insert into trattato  values('44444','hwisml76nagxgd43','ricamo');
+
+insert into trattato  values('44444','kdkgnm33sdlgn76o','imballaggio');
+
+insert into accessori  values('copricapo','55555');
+
+insert into accessori  values('poschette','66666');
+
+insert into accessori  values('poschette nera','77777');
+
+insert into accessori  values('copricapo nero','88888');
+
+insert into accessori  values('swarovski','99999');
+
+insert into accessori  values('guanti','10001');
+
+insert into accessori  values('bracciale','10002');
+
+insert into accessori  values('anello','10003');
+
+insert into accessori  values('giacca','10005');
+
+insert into accessori  values('giacca e collana','10006');
+
+insert into accessori  values('bracciale e giacca','12345');
+
+insert into accessori  values('collana','22222');
+
+insert into accessori  values('coprispalle','33333');
+
+insert into accessori  values('coprispalle bianco','11111');
+
+insert into accessori  values('coprispalle rosso','44444');
+
+insert into colore  values('nero e bianco','44444');
+
+insert into colore  values('blu e argento','11111');
+
+insert into colore  values('rosso','33333');
+
+insert into colore  values('bianco e rosso','22222');
+
+insert into colore  values('rosa','55555');
+
+insert into colore  values('blu e oro','66666');
+
+insert into colore  values('verde e blu','77777');
+
+insert into colore  values('bianco e nero','88888');
+
+insert into colore  values('nero e rosa','99999');
+
+insert into colore  values('viola e nero','10001');
+
+insert into colore  values('verde acqua','10002');
+
+insert into colore  values('grigio scuro','10003');
+
+insert into colore  values('grigio chiaro','10005');
+
+insert into colore  values('giallo e nero','10006');
+
+insert into colore  values('grigio e nero','12345');
+
+insert into tessuti  values('pizzo con ricamo','44444');
+
+insert into tessuti  values('organza','11111');
+
+insert into tessuti  values('raso','33333');
+
+insert into tessuti  values('chiffon','22222');
+
+insert into tessuti  values('lino','55555');
+
+insert into tessuti  values('cotone','66666');
+
+insert into tessuti  values('jersey','77777');
+
+insert into tessuti  values('seta','88888');
+
+insert into tessuti  values('canvas','99999');
+
+insert into tessuti  values('pizzo e seta','10001');
+
+insert into tessuti  values('cotone e pizzo','10002');
+
+insert into tessuti  values('seta e lino','10003');
+
+insert into tessuti  values('lino e organza','10005');
+
+insert into tessuti  values('organza e jersey','10006');
+
+insert into tessuti  values('canvas e lino','12345');
+
+insert into  email_fabbrica  values('Elegantemente@gmail.com','12312312312');
+
+insert into  email_fabbrica  values('Le spose@gmail.com','11144477788');
+
+insert into  email_fabbrica  values('angelicdress@gmail.com','16000000000');
+
+insert into  email_fabbrica  values('Sognieleganti@gmail.com','55555555555');
+
+insert into  email_fabbrica  values('Rever@gmail.com','66666666666');
+
+insert into  email_fabbrica  values('Amour@gmail.com','77777777777');
+
+insert into  email_fabbrica  values('Feliciamori@gmail.com','88888888888');
+
+insert into  email_fabbrica  values('Subitosposi@gmail.com','99999999999');
+
+insert into  email_fabbrica  values('fascino@gmail.com','10000000000');
+
+insert into  email_fabbrica  values('StileTOP@gmail.com','11000000000');
+
+insert into  email_fabbrica  values('Tessutid.o.c@gmail.com','12000000000');
+
+insert into  email_fabbrica  values('Vestitiunici@gmail.com','13000000000');
+
+insert into  email_fabbrica  values('Divina@gmail.com','14477784511');
+
+insert into  email_fabbrica  values('TessutiTOP@gmail.com','15000000000');
+
+insert into  email_fabbrica  values('vestitiunici@gmail.com','14000000000');
+
+insert into  tel_rappresentante   values('3345642477','ZYIGBC55T55A716B');
+
+insert into  tel_rappresentante   values('3295466701','PNOPLX98M17F852M');
+
+insert into  tel_rappresentante   values('3332146703','DTRBGL57E47F112S');
+
+insert into  tel_rappresentante   values('3312332654','SFNPNM50D15H684B');
+
+insert into  tel_rappresentante   values('3399957060','anlprt47D44H74lk');
+
+insert into  tel_rappresentante   values('3945557190','TLSVBI78C20G426B');
+
+insert into  tel_rappresentante   values('3648752414','WPLQSL42M06B842X');
+
+insert into  tel_rappresentante   values('3346876884','FVRKLV73R68M170U');
+
+insert into  tel_rappresentante   values('3324336578','PDLSGF62M08L655Q');
+
+insert into  tel_rappresentante   values('3312694357','FZCMHA88L25G226Q');
+
+insert into  tel_rappresentante   values('3474226854','PGPFPM37P21B202K');
+
+insert into  tel_rappresentante   values('3334688653','NDHLNM61P11I643H');
+
+insert into  tel_rappresentante   values('3323363285','SNWZVZ88R03L455F');
+
+insert into  tel_rappresentante   values('3315877534','RVAPWR41H12B953V');
+
+insert into  tel_rappresentante   values('3345475524','DPZVXZ36A09B923A');
+
+insert into tessuto_modello values('57579','organza');
+
+insert into tessuto_modello values('13331','raso');
+
+insert into tessuto_modello values('14444','pizzo');
+
+insert into tessuto_modello values('55555','seta');
+
+insert into tessuto_modello values('13357','seta e pizzo');
+
+insert into tessuto_modello values('77880','canvas');
+
+insert into tessuto_modello values('23245','seta e lino');
+
+insert into tessuto_modello values('23499','cotone');
+
+insert into tessuto_modello values('99844','jersey');
+
+insert into tessuto_modello values('10047','pizzo e jersey');
+
+insert into tessuto_modello values('36985','chiffon');
+
+insert into tessuto_modello values('14852','chiffon e pizzo');
+
+insert into tessuto_modello values('45456','organza e lino');
+
+insert into tessuto_modello values('11884','seta e canvas');
+
+insert into tessuto_modello values('15004','cotone e pizzo');
+
+insert into colore_modello values('57579','verde');
+
+insert into colore_modello values('13331','nero');
+
+insert into colore_modello values('14444','rosa');
+
+insert into colore_modello values('55555','giallo');
+
+insert into colore_modello values('13357','viola');
+
+insert into colore_modello values('77880','rosso');
+
+insert into colore_modello values('23245','celeste');
+
+insert into colore_modello values('23499','blu');
+
+insert into colore_modello values('99844','bianco');
+
+insert into colore_modello values('10047','fucsia');
+
+insert into colore_modello values('36985','grigio scuro');
+
+insert into colore_modello values('14852','bianco ghiaccio');
+
+insert into colore_modello values('45456','arancione');
+
+insert into colore_modello values('11884','viola e nero');
+
+insert into colore_modello values('15004','grigio chiaro');
+
+create or replace procedure conteggio is 
+taglia_42    abito.taglia%type; 
+taglia_44   abito.taglia%type; 
+taglia_46    abito.taglia%type; 
+taglia_48    abito.taglia%type; 
+minimo        number(2,0); 
+piva         negozio.piva_negozio%type; 
+ord_conf    ordine.confermato%type; 
+begin 
+taglia_42:='42'; 
+taglia_44:='44'; 
+taglia_46:='46'; 
+taglia_48:='48'; 
+minimo:='3'; 
+ 
+ SELECT  count(taglia) into taglia_42  
+  FROM abito 
+  WHERE taglia=taglia_42; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('abiti rimanenti con taglia 42:'||taglia_42); 
+if taglia_42<minimo then DBMS_OUTPUT.put_line ('taglia 42 in esaurimento:conviene riassortire così da averne il doppio:'||taglia_42*2); 
+end if; 
+SELECT  count(taglia) into taglia_44  
+  FROM abito 
+  WHERE taglia=taglia_44; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('abiti rimanenti con taglia 44:'||taglia_44); 
+if taglia_44<minimo then DBMS_OUTPUT.put_line ('taglia 44 in esaurimento:conviene riassortire così da averne il doppio:'||taglia_44*2); 
+end if;  
+SELECT  count(taglia) into taglia_46  
+  FROM abito 
+  WHERE taglia=taglia_46; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('abiti rimanenti con taglia 46:'||taglia_46); 
+if taglia_46<minimo then DBMS_OUTPUT.put_line ('taglia 46 in esaurimento:conviene riassortire così da averne il doppio:'||taglia_46*2); 
+end if; 
+SELECT  count(taglia) into taglia_48 
+from abito 
+WHERE taglia=taglia_48; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('abiti rimanenti con taglia 48:'||taglia_48); 
+if taglia_48<minimo then DBMS_OUTPUT.put_line ('taglia 48 in esaurimento:conviene riassortire così da averne il doppio:'||taglia_48*2); 
+end if; 
+ SELECT  count(confermato) into ord_conf  
+  FROM ordine 
+  WHERE confermato='si' or confermato='SI'; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Ordini confermati:'||ord_conf); 
+SELECT  count(piva_negozio) into piva  
+  FROM negozio 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Numero clienti:'||ord_conf); 
+end; 
+/
+
+create or replace procedure spese_alte is 
+servizio_piu_pagato    servizio_fotografico.prezzo_servizio%type; 
+anno_s                  servizio_fotografico.anno_servizio_fotografico%type; 
+prezzo_camp           campagna_promozionale.budget_campagna%type; 
+anno_camp             campagna_promozionale.anno_campagna%type; 
+num_cat              catalogo.numero_catalogo%type; 
+costo_cat           catalogo.costo_stampa%type; 
+ 
+begin 
+ SELECT  prezzo_servizio into servizio_piu_pagato  
+  FROM servizio_fotografico 
+  WHERE prezzo_servizio = (SELECT MAX (prezzo_servizio) FROM servizio_fotografico); 
+  COMMIT; 
+DBMS_OUTPUT.put_line ('servizio fotografico piu pagato:'||servizio_piu_pagato); 
+DBMS_OUTPUT.put_line ('Effettuando una riduzione del 5% avresti un risparmio di :'||servizio_piu_pagato*5/100); 
+  
+ SELECT  anno_servizio_fotografico into anno_s  
+  FROM servizio_fotografico 
+  WHERE prezzo_servizio = (SELECT MAX (prezzo_servizio) FROM servizio_fotografico); 
+  COMMIT; 
+DBMS_OUTPUT.put_line ('anno servizio fotografico:'||anno_s); 
+  
+ SELECT  anno_campagna into anno_camp  
+  FROM campagna_promozionale 
+  WHERE budget_campagna = (SELECT MAX (budget_campagna) FROM campagna_promozionale); 
+  COMMIT; 
+DBMS_OUTPUT.put_line ('anno della campagna promozionale piu pagata:'||anno_camp); 
+ 
+SELECT  budget_campagna into prezzo_camp  
+  FROM campagna_promozionale 
+  WHERE budget_campagna = (SELECT MAX (budget_campagna) FROM campagna_promozionale); 
+  COMMIT; 
+DBMS_OUTPUT.put_line ('costo:'||prezzo_camp); 
+DBMS_OUTPUT.put_line ('Con 10% di sconto avrai uno sconto di:'||prezzo_camp*10/100); 
+ 
+SELECT  numero_catalogo into num_cat  
+  FROM catalogo 
+  WHERE numero_catalogo = (SELECT MAX (numero_catalogo) FROM catalogo); 
+  COMMIT; 
+DBMS_OUTPUT.put_line ('Numero del catalogo piu pagato:'||num_cat); 
+ 
+SELECT  costo_stampa into costo_cat  
+  FROM catalogo 
+  WHERE numero_catalogo = (SELECT MAX (numero_catalogo) FROM catalogo); 
+  COMMIT; 
+DBMS_OUTPUT.put_line ('Prezzo:'||costo_cat); 
+DBMS_OUTPUT.put_line ('con sconto del 10% guadagni:'||costo_cat*10/100); 
+  
+ end; 
+/
+
+create or replace procedure bilancio_completo is 
+stip_d    number(10,0); 
+prezzo_mod  number(10,0); 
+prezzo_sf  number(10,0); 
+prezzo_st  number(10,0); 
+prezzomodello number(10,0); 
+costostampa   number(10,0); 
+totaleordini   number(10,0); 
+ 
+begin 
+ SELECT  sum(stipendio_dipendente) into stip_d  
+  FROM dipendente 
+ COMMIT; 
+DBMS_OUTPUT.put_line ('Somma stipendi dipendenti:'||stip_d); 
+DBMS_OUTPUT.put_line ('Levando un 5% potresti risparmiare:'||stip_d*5/100); 
+ SELECT  sum(prezzo_modella) into prezzo_mod  
+  FROM modella 
+ COMMIT; 
+DBMS_OUTPUT.put_line ('Somma pagamenti modelle:'||prezzo_mod); 
+DBMS_OUTPUT.put_line ('Levando un 5% potresti risparmiare:'||prezzo_mod*5/100); 
+ SELECT  sum(prezzo_servizio) into prezzo_sf 
+  FROM servizio_fotografico 
+ COMMIT; 
+DBMS_OUTPUT.put_line ('Somma servizi fotografico:'||prezzo_sf); 
+DBMS_OUTPUT.put_line ('Levando un 5% potresti risparmiare:'||prezzo_sf*5/100); 
+ SELECT  sum(prezzo_trasporto) into prezzo_st 
+  FROM servizio_di_trasporto 
+ COMMIT; 
+DBMS_OUTPUT.put_line ('Somma servizi di trasporto:'||prezzo_st); 
+DBMS_OUTPUT.put_line ('Levando un 5% potresti risparmiare:'||prezzo_st*5/100); 
+ SELECT  sum(prezzo_modello) into prezzomodello  
+  FROM modello 
+ COMMIT; 
+DBMS_OUTPUT.put_line ('Somma prezzo modella:'||prezzomodello); 
+DBMS_OUTPUT.put_line ('Levando un 5% potresti risparmiare:'||prezzomodello*5/100); 
+SELECT  sum(costo_stampa) into costostampa  
+  FROM catalogo 
+ COMMIT; 
+DBMS_OUTPUT.put_line ('Somma costo cataloghi:'||costostampa); 
+DBMS_OUTPUT.put_line ('Levando un 5% potresti risparmiare:'||costostampa*5/100); 
+SELECT  sum(prezzo_totale) into totaleordini  
+  FROM ordine 
+ COMMIT; 
+ DBMS_OUTPUT.put_line ('COSTI:'); 
+ DBMS_OUTPUT.put_line (''||costostampa+prezzomodello+prezzo_st+prezzo_sf+prezzo_mod+stip_d); 
+DBMS_OUTPUT.put_line ('Entrate totali:'||totaleordini); 
+ DBMS_OUTPUT.put_line ('GUADAGNI-COSTI:'); 
+   DBMS_OUTPUT.put_line (''||totaleordini-(costostampa+prezzomodello+prezzo_st+prezzo_sf+prezzo_mod+stip_d)); 
+   if (totaleordini-(costostampa+prezzomodello+prezzo_st+prezzo_sf+prezzo_mod+stip_d))<0 then  DBMS_OUTPUT.put_line ('SEI IN NEGATIVO!!'); 
+   end if; 
+      if (totaleordini-(costostampa+prezzomodello+prezzo_st+prezzo_sf+prezzo_mod+stip_d))>0 then  DBMS_OUTPUT.put_line ('SEI IN POSITIVO!!'); 
+   end if; 
+end; 
+/
+
+create or replace procedure descrizione_collezione is 
+nomecollez19  collezione.nome_collezione%type; 
+nomecollez18  collezione.nome_collezione%type; 
+collez2019  collezione.anno_collezione%type; 
+collez2018  collezione.anno_collezione%type; 
+location_sf19 servizio_fotografico.location_servizio%type; 
+social_cp19    campagna_promozionale.social%type; 
+location_sf18 servizio_fotografico.location_servizio%type; 
+social_cp18    campagna_promozionale.social%type; 
+nomecollez17  collezione.nome_collezione%type; 
+collez2017  collezione.anno_collezione%type; 
+location_sf17 servizio_fotografico.location_servizio%type; 
+social_cp17  campagna_promozionale.social%type; 
+nomecollez20  collezione.nome_collezione%type; 
+collez2020  collezione.anno_collezione%type; 
+social_cp20  campagna_promozionale.social%type; 
+totaleordini17  number(10,0); 
+totaleordini18  number(10,0); 
+totaleordini19  number(10,0); 
+totaleordini20  number(10,0); 
+begin 
+collez2020:=to_number(to_char(sysdate,'yyyy')); 
+collez2019:=to_number(to_char(sysdate,'yyyy'))-1; 
+collez2018:=to_number(to_char(sysdate,'yyyy'))-2; 
+collez2017:=to_number(to_char(sysdate,'yyyy'))-3; 
+ 
+SELECT  count(nome_collezione) into nomecollez17 
+  FROM collezione 
+  WHERE anno_collezione=collez2017; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Numero collezioni nel 2017:'||nomecollez17); 
+ 
+ SELECT  location_servizio into location_sf17 
+  FROM servizio_fotografico 
+  WHERE anno_servizio_fotografico=collez2017; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Location 2017:'||location_sf17); 
+ 
+ SELECT  social into social_cp17 
+  FROM campagna_promozionale 
+  WHERE anno_campagna=collez2017; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Social coinvolti nel 2017:'||social_cp17); 
+ 
+SELECT  sum(prezzo_totale) into totaleordini17 
+  FROM ordine 
+  where anno_ordine=collez2017; 
+ COMMIT; 
+DBMS_OUTPUT.put_line ('Entrate totali 2017:'||totaleordini17); 
+SELECT  count(nome_collezione) into nomecollez18 
+  FROM collezione 
+  WHERE anno_collezione=collez2018; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Numero collezioni nel 2018:'||nomecollez18); 
+SELECT  location_servizio into location_sf18 
+  FROM servizio_fotografico 
+  WHERE anno_servizio_fotografico=collez2018; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Location 2019:'||location_sf18); 
+ 
+ SELECT  social into social_cp18 
+  FROM campagna_promozionale 
+  WHERE anno_campagna=collez2018; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Social coinvolti nel 2018:'||social_cp18); 
+ 
+SELECT  sum(prezzo_totale) into totaleordini18 
+  FROM ordine 
+  where anno_ordine=collez2018; 
+ COMMIT; 
+DBMS_OUTPUT.put_line ('Entrate totali 2018:'||totaleordini18); 
+ SELECT  count(nome_collezione) into nomecollez19 
+  FROM collezione 
+  WHERE anno_collezione=collez2019; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Numero collezioni nel 2019:'||nomecollez19); 
+SELECT  location_servizio into location_sf19 
+  FROM servizio_fotografico 
+  WHERE anno_servizio_fotografico=collez2019; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Location 2019:'||location_sf19); 
+ 
+ SELECT  social into social_cp19 
+  FROM campagna_promozionale 
+  WHERE anno_campagna=collez2019; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Social coinvolti nel 2019:'||social_cp19); 
+ 
+SELECT  sum(prezzo_totale) into totaleordini19 
+  FROM ordine 
+  where anno_ordine=collez2019; 
+ COMMIT; 
+DBMS_OUTPUT.put_line ('Entrate totali 2019:'||totaleordini19); 
+ 
+SELECT  count(nome_collezione) into nomecollez20 
+  FROM collezione 
+  WHERE anno_collezione=collez2020; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Numero collezioni nel 2020:'||nomecollez20); 
+ 
+ 
+DBMS_OUTPUT.put_line ('Location 2020: ANNULLATO CAUSA COVID19'); 
+ 
+ SELECT  social into social_cp20 
+  FROM campagna_promozionale 
+  WHERE anno_campagna=collez2020; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Social coinvolti nel 2020:'||social_cp20); 
+ 
+SELECT  sum(prezzo_totale) into totaleordini20 
+  FROM ordine 
+  where anno_ordine=collez2020; 
+ COMMIT; 
+DBMS_OUTPUT.put_line ('Entrate totali 2020:'||totaleordini20); 
+if totaleordini20>totaleordini19 and totaleordini20>totaleordini18 and totaleordini20>totaleordini17 then DBMS_OUTPUT.put_line ('Anno migliore è stato il 2020'); 
+end if; 
+if totaleordini19>totaleordini20 and totaleordini19>totaleordini18 and totaleordini19>totaleordini17 then DBMS_OUTPUT.put_line ('Anno migliore è stato il 2019'); 
+end if; 
+if totaleordini18>totaleordini20 and totaleordini18>totaleordini19 and totaleordini18>totaleordini17 then DBMS_OUTPUT.put_line ('Anno migliore è stato il 2018'); 
+end if; 
+if totaleordini17>totaleordini20 and totaleordini17>totaleordini19 and totaleordini17>totaleordini18 then DBMS_OUTPUT.put_line ('Anno migliore è stato il 2017'); 
+end if; 
+end; 
+/
+
+create or replace procedure descrizione_abito is 
+abiti2017 number(4,0); 
+collezione2017 number(4,0); 
+ordini2017 number(5,0); 
+a2017 number(4,0); 
+abiti2018 number(4,0); 
+collezione2018 number(4,0); 
+ordini2018 number(5,0); 
+a2018 number(4,0); 
+abiti2019 number(4,0); 
+collezione2019 number(4,0); 
+ordini2019 number(5,0); 
+a2019 number(4,0); 
+abiti2020 number(4,0); 
+collezione2020 number(4,0); 
+ordini2020 number(5,0); 
+a2020 number(4,0); 
+cliente17 ordine.PIVA_negozio%type; 
+cliente18 ordine.PIVA_negozio%type; 
+cliente19 ordine.PIVA_negozio%type; 
+cliente20 ordine.PIVA_negozio%type; 
+ 
+premio17  number(4,0); 
+premio18  number(4,0); 
+premio19  number(4,0); 
+premio20  number(4,0); 
+begin 
+a2017:=to_number(to_char(sysdate,'yyyy'))-3; 
+a2018:=to_number(to_char(sysdate,'yyyy'))-2; 
+a2019:=to_number(to_char(sysdate,'yyyy'))-1; 
+a2020:=to_number(to_char(sysdate,'yyyy')); 
+ 
+SELECT  count(a1.codice_vestito) into abiti2017  
+  FROM abito a1 join collezione c1 on a1.nome_collezione=c1.nome_collezione 
+  WHERE c1.anno_collezione=a2017; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('abiti rimasti del '||a2017||':'||abiti2017); 
+ 
+ SELECT  count(nome_collezione) into collezione2017  
+  FROM collezione 
+  WHERE anno_collezione=a2017; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Collezioni create nel '||a2017||':'||collezione2017); 
+ 
+ SELECT  count(numero_ordine) into ordini2017 
+  FROM ordine 
+  WHERE anno_ordine=a2017; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Ordini nel '||a2017||':'||collezione2017); 
+ 
+  SELECT  PIVA_negozio into cliente17 
+  FROM ordine 
+  WHERE anno_ordine=a2017 and prezzo_totale=(SELECT  max(PREZZO_TOTALE) 
+  FROM ordine 
+  WHERE anno_ordine=a2017); 
+  COMMIT; 
+    DBMS_OUTPUT.put_line ('Il cliente che ha effettuato un ordine con importo piu alto nel '||a2017||':'||cliente17); 
+ 
+ SELECT  max(PREZZO_TOTALE) into premio17 
+  FROM ordine 
+  WHERE anno_ordine=a2017; 
+  COMMIT; 
+  DBMS_OUTPUT.put_line ('Esso riceverà un rimborso del 5% dell ordine più alto pari a:'||premio17*5/100); 
+   
+SELECT  count(codice_vestito) into abiti2018  
+  FROM abito a1 join collezione c1 on a1.nome_collezione=c1.nome_collezione 
+  WHERE c1.anno_collezione=a2018; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('abiti rimasti del '||a2018||': '||abiti2018); 
+ 
+ SELECT  count(nome_collezione) into collezione2018  
+  FROM collezione 
+  WHERE anno_collezione=a2018; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Collezioni create nel '||a2018||':'||collezione2018); 
+ 
+ SELECT  count(numero_ordine) into ordini2018 
+  FROM ordine 
+  WHERE anno_ordine=a2018; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Ordini nel '||a2018||':'||collezione2018); 
+ 
+ 
+ SELECT  PIVA_negozio into cliente18 
+  FROM ordine 
+  WHERE anno_ordine=a2018 and prezzo_totale=(SELECT  max(PREZZO_TOTALE) 
+  FROM ordine 
+  WHERE anno_ordine=a2018); 
+  COMMIT; 
+    DBMS_OUTPUT.put_line ('Il cliente che ha effettuato un ordine con importo piu alto nel '||a2018||' è:'||cliente18); 
+ 
+ SELECT  max(PREZZO_TOTALE) into premio18 
+  FROM ordine 
+  WHERE anno_ordine=a2018; 
+  COMMIT; 
+ 
+  DBMS_OUTPUT.put_line ('Esso riceverà un rimborso del 5% dell ordine più alto pari a:'||premio18*5/100); 
+SELECT  count(codice_vestito) into abiti2019 
+  FROM abito a1 join collezione c1 on a1.nome_collezione=c1.nome_collezione 
+  WHERE c1.anno_collezione=a2019; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('abiti rimasti del '||a2019||':'||abiti2019); 
+ 
+ SELECT  count(nome_collezione) into collezione2019 
+  FROM collezione 
+  WHERE anno_collezione=a2019; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Collezioni create nel '||a2019||':'||collezione2019); 
+ 
+ SELECT  count(numero_ordine) into ordini2019 
+  FROM ordine 
+  WHERE anno_ordine=a2019; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Ordini nel '||a2019||':'||collezione2019); 
+ 
+  SELECT  PIVA_negozio into cliente19 
+  FROM ordine 
+  WHERE anno_ordine=a2019 and prezzo_totale=(SELECT  max(PREZZO_TOTALE) from ordine 
+  WHERE anno_ordine=a2019); 
+  COMMIT; 
+    DBMS_OUTPUT.put_line ('Il cliente che ha effettuato un ordine con importo piu alto nel '||a2019||' è:'||cliente19); 
+ 
+SELECT  max(PREZZO_TOTALE) into premio19 
+  FROM ordine 
+  WHERE anno_ordine=a2019; 
+  COMMIT; 
+  DBMS_OUTPUT.put_line ('Esso riceverà un rimborso del 5% dell ordine più alto pari a:'||premio19*5/100); 
+   
+SELECT  count(codice_vestito) into abiti2020 
+  FROM abito a1 join collezione c1 on a1.nome_collezione=c1.nome_collezione 
+  WHERE c1.anno_collezione=a2020; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('abiti rimasti del '||a2020||':'||abiti2020); 
+ SELECT  count(nome_collezione) into collezione2020 
+  FROM collezione 
+  WHERE anno_collezione=a2020; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Collezioni create nel '||a2020||':'||collezione2020); 
+ SELECT  count(numero_ordine) into ordini2020 
+  FROM ordine 
+  WHERE anno_ordine=a2020; 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Ordini nel '||a2020||':'||collezione2020); 
+  SELECT  PIVA_negozio into cliente20 
+  FROM ordine 
+  WHERE anno_ordine=a2020 and prezzo_totale=(SELECT  max(PREZZO_TOTALE) 
+  FROM ordine 
+  WHERE anno_ordine=a2020); 
+  COMMIT; 
+    DBMS_OUTPUT.put_line ('Il cliente che ha effettuato un ordine con importo piu alto nel '||a2020||' è:'||cliente20); 
+ SELECT  max(PREZZO_TOTALE) into premio20 
+  FROM ordine 
+  WHERE anno_ordine=a2020; 
+  COMMIT; 
+DBMS_OUTPUT.put_line ('Esso riceverà un rimborso del 5% dell ordine più alto pari a:'||premio20*5/100); 
+end; 
+/
+
+create or replace procedure piu_pagato is 
+stip_d    number(6,0); 
+nome_dip    dipendente.nome_dipendente%type; 
+cognome_dip dipendente.cognome_dipendente%type; 
+modella_pagata   number(6,0); 
+nome_mod    modella.nome_modella%type; 
+cognome_mod modella.cognome_modella%type; 
+percentuale_max    number(6,0); 
+cognome_max        rappresentante.cognome_rappresentante%type; 
+begin 
+ SELECT  stipendio_dipendente into stip_d  
+  FROM dipendente 
+  WHERE STIPENDIO_DIPENDENTE = (SELECT MAX (STIPENDIO_DIPENDENTE) FROM dipendente); 
+  COMMIT; 
+DBMS_OUTPUT.put_line ('stipendio piu alto di un dipendente:'||stip_d); 
+DBMS_OUTPUT.put_line ('Per incrementare le prestazioni del dipendente è bene dare un aumento del 5% al dipendente che comporta una spesa mensile di ulteriori euro:'||stip_d*5/100); 
+SELECT  nome_dipendente into  nome_dip 
+  FROM dipendente 
+  WHERE STIPENDIO_DIPENDENTE = (SELECT MAX (STIPENDIO_DIPENDENTE) FROM dipendente); 
+    COMMIT; 
+DBMS_OUTPUT.put_line ('nome:'||nome_dip); 
+SELECT  cognome_dipendente into  cognome_dip 
+  FROM dipendente 
+  WHERE STIPENDIO_DIPENDENTE = (SELECT MAX (STIPENDIO_DIPENDENTE) FROM dipendente); 
+    COMMIT; 
+DBMS_OUTPUT.put_line ('cognome:'||cognome_dip); 
+ SELECT  prezzo_modella into modella_pagata  
+  FROM modella 
+  WHERE prezzo_modella = (SELECT MAX (prezzo_modella) FROM modella); 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('modella piu pagata:'||modella_pagata); 
+SELECT  nome_modella into  nome_mod 
+  FROM modella 
+ WHERE prezzo_modella = (SELECT MAX (prezzo_modella) FROM modella); 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('nome:'||nome_mod); 
+SELECT  cognome_modella into  cognome_mod 
+  FROM modella 
+ WHERE prezzo_modella = (SELECT MAX (prezzo_modella) FROM modella); 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('cognome:'||cognome_mod); 
+SELECT  percentuale_rappresentante into percentuale_max  
+  FROM rappresentante 
+  WHERE percentuale_rappresentante = (SELECT MAX (percentuale_rappresentante) FROM rappresentante); 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('La percentuale piu alta di un rappresentante è:'||percentuale_max); 
+DBMS_OUTPUT.put_line ('Il rappresentante merita un ulteriore aumento di percentuale per incentivarlo. Essa diventerebbe:'||percentuale_max*1.2); 
+SELECT  cognome_rappresentante into cognome_max  
+  FROM rappresentante 
+  WHERE percentuale_rappresentante = (SELECT MAX (percentuale_rappresentante) FROM rappresentante); 
+   COMMIT; 
+DBMS_OUTPUT.put_line ('Appartiene  al rappresentante:'||cognome_max); 
+ 
+end; 
+/
+
+create or replace procedure furgoncino is 
+deposito1  deposito.id_deposito%type; 
+deposito2  deposito.id_deposito%type; 
+deposito3  deposito.id_deposito%type; 
+deposito4  deposito.id_deposito%type; 
+pagamento1 pagamenti.anno_pagamenti%type; 
+pagamento2 pagamenti.anno_pagamenti%type; 
+pagamento3 pagamenti.anno_pagamenti%type; 
+pagamento4 pagamenti.anno_pagamenti%type; 
+begin 
+SELECT  count(a1.codice_vestito) into deposito1 
+  FROM abito a1 join deposito d1 on a1.id_deposito=d1.id_deposito where d1.CITTA_DEPOSITO='Frattamaggiore'; 
+  DBMS_OUTPUT.put_line ('Numero di abiti da trasportare nel deposito di Frattamaggiore:'||deposito1); 
+  if deposito1<=5 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con un solo viaggio'); 
+  end if; 
+  if deposito1<=10 and deposito1>5 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con due viaggi'); 
+  end if; 
+    if deposito1<=15 and deposito1>10 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con tre viaggi'); 
+    end if; 
+        if deposito1<=20 and deposito1>15 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con quattro viaggi'); 
+        end if; 
+         
+        select p1.anno_pagamenti into pagamento1 from(deposito d1 join pagamenti p1 on d1.id_pagamenti=p1.id_pagamenti) where d1.citta_deposito='Frattamaggiore' and p1.anno_pagamenti='2020'; 
+     if pagamento1 = to_number(to_char(sysdate,'yyyy')) then DBMS_OUTPUT.put_line ('Ultimo anno del fitto del deposito è stato pagato al proprietario'); 
+     end if; 
+COMMIT; 
+ 
+SELECT  count(a1.codice_vestito) into deposito2 
+  FROM abito a1 join deposito d1 on a1.id_deposito=d1.id_deposito where d1.CITTA_DEPOSITO='Nocera Inferiore'; 
+  DBMS_OUTPUT.put_line ('Numero di abiti da trasportare nel deposito di Nocera Inferiore:'||deposito2); 
+  if deposito2<=5 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con un solo viaggio'); 
+  end if; 
+  if deposito2<=10 and deposito2>5 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con due viaggi'); 
+  end if; 
+    if deposito1<=15 and deposito2>10 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con tre viaggi'); 
+    end if; 
+        if deposito2<=20 and deposito2>15 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con quattro viaggi'); 
+        end if; 
+          select p1.anno_pagamenti into pagamento2 from(deposito d1 join pagamenti p1 on d1.id_pagamenti=p1.id_pagamenti) where d1.citta_deposito='Nocera Inferiore' and p1.anno_pagamenti='2020'; 
+     if pagamento2 = to_number(to_char(sysdate,'yyyy')) then DBMS_OUTPUT.put_line ('Ultimo anno del fitto del deposito è stato pagato al proprietario'); 
+     end if; 
+COMMIT; 
+ 
+SELECT  count(a1.codice_vestito) into deposito3 
+  FROM abito a1 join deposito d1 on a1.id_deposito=d1.id_deposito where d1.CITTA_DEPOSITO='Barra'; 
+  DBMS_OUTPUT.put_line ('Numero di abiti da trasportare nel deposito di Barra:'||deposito2); 
+  if deposito3<=5 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con un solo viaggio'); 
+  end if; 
+  if deposito3<=10 and deposito3>5 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con due viaggi'); 
+  end if; 
+    if deposito3<=15 and deposito3>10 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con tre viaggi'); 
+    end if; 
+        if deposito3<=20 and deposito3>15 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con quattro viaggi'); 
+        end if; 
+         select p1.anno_pagamenti into pagamento3 from(deposito d1 join pagamenti p1 on d1.id_pagamenti=p1.id_pagamenti) where d1.citta_deposito='Barra' and p1.anno_pagamenti='2020'; 
+     if pagamento3 = to_number(to_char(sysdate,'yyyy')) then DBMS_OUTPUT.put_line ('Ultimo anno del fitto del deposito è stato pagato al proprietario'); 
+     end if; 
+        COMMIT; 
+         
+         
+SELECT  count(a1.codice_vestito) into deposito4 
+  FROM abito a1 join deposito d1 on a1.id_deposito=d1.id_deposito where d1.CITTA_DEPOSITO='Caserta'; 
+  DBMS_OUTPUT.put_line ('Numero di abiti da trasportare nel deposito di Caserta:'||deposito2); 
+  if deposito4<=4 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con un solo viaggio'); 
+  end if; 
+  if deposito4<=10 and deposito4>5 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con due viaggi'); 
+  end if; 
+    if deposito4<=15 and deposito4>10 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con tre viaggi'); 
+    end if; 
+        if deposito4<=20 and deposito4>15 then DBMS_OUTPUT.put_line ('Si possono trasportare tutti gli abiti con quattro viaggi'); 
+        end if; 
+         select p1.anno_pagamenti into pagamento4 from(deposito d1 join pagamenti p1 on d1.id_pagamenti=p1.id_pagamenti) where d1.citta_deposito='Caserta' and p1.anno_pagamenti='2020'; 
+     if pagamento4 = to_number(to_char(sysdate,'yyyy')) then DBMS_OUTPUT.put_line ('Ultimo anno del fitto del deposito è stato pagato al proprietario'); 
+     end if; 
+        COMMIT; 
+end; 
+/
+
+CREATE OR REPLACE TRIGGER costi_budget 
+BEFORE INSERT OR UPDATE ON campagna_promozionale 
+for each row 
+BEGIN 
+IF (:NEW.BUDGET_CAMPAGNA>=100 AND :NEW.BUDGET_CAMPAGNA<=300 and :NEW.MANIFESTI>30 OR :NEW.VOLANITINI>300) 
+OR (:NEW.BUDGET_CAMPAGNA>=1 AND :NEW.BUDGET_CAMPAGNA<=99 and :NEW.MANIFESTI>10 OR :NEW.VOLANITINI>100) 
+OR (:NEW.BUDGET_CAMPAGNA>=301 AND :NEW.BUDGET_CAMPAGNA<=600 and :NEW.MANIFESTI>60 OR :NEW.VOLANITINI>600) 
+OR (:NEW.BUDGET_CAMPAGNA>=601 AND :NEW.BUDGET_CAMPAGNA<=900 and :NEW.MANIFESTI>90 OR :NEW.VOLANITINI>900) 
+OR (:NEW.BUDGET_CAMPAGNA>=901 AND :NEW.BUDGET_CAMPAGNA<=1200 and :NEW.MANIFESTI>120 OR :NEW.VOLANITINI>1200) 
+THEN  RAISE_APPLICATION_ERROR(-20016, 'Il budget è troppo basso per questi numeri di manifesti e volantini'); 
+END IF; 
+END; 
+/
+
+create or replace trigger lunghezza  
+before insert or update on abito  
+for each row  
+BEGIN 
+if (:new.taglia = 42 and (:new.giro_fianchi >95 or :new.giro_fianchi<92)) 
+then raise_application_error(-20011,'I cm del giro fianchi della taglia 42 devono essere compresi tra 92 e 95');  
+end if; 
+if (:new.taglia = 44 and (:new.giro_fianchi>98 or :new.giro_fianchi<96))  
+then raise_application_error(-20012,'I cm del giro fianchi della taglia 44 devono essere compresi tra 96 e 98'); 
+end if; 
+if (:new.taglia = 46 and (:new.giro_fianchi>102 or :new.giro_fianchi<99)) 
+then raise_application_error(-20013,'I cm del giro fianchi della taglia 46 devono essere compresi tra 99 e 102');  
+end if; 
+if (:new.taglia = 48 and (:new.giro_fianchi>106 or :new.giro_fianchi<103)) 
+ then raise_application_error(-20014,'I cm del giro fianchi della taglia 48 devono essere compresi tra 103 e 106'); 
+end if; 
+end;  
+/
+
+CREATE OR REPLACE TRIGGER esperienza_dipendente 
+BEFORE INSERT OR UPDATE ON dipendente 
+FOR EACH ROW 
+DECLARE 
+anno number(4,0); 
+BEGIN 
+IF :NEW.anno_assunzione>to_number(to_char(sysdate,'yyyy')) - 2  and :NEW.STIPENDIO_DIPENDENTE>1800 
+THEN  RAISE_APPLICATION_ERROR(-20015, 'Il dipendente ha lavorato per un periodo breve per questo stipendio'); 
+END IF; 
+END; 
+/
+
+create or replace trigger taglie_abito  
+before insert or update on abito  
+for each row  
+ BEGIN 
+if :new.taglia ='42' and :new.giro_fianchi >'95' and :new.giro_fianchi<'92' 
+then raise_application_error(-20020,'la taglia non corrisponde alla lunghezza del giro fianchi: se si inserisce taglia 42 la lunghezza dei giro fianchi deve essere tra 92 e 95.'); 
+end if; 
+if :new.taglia = '44' and :new.giro_fianchi>'98' and :new.giro_fianchi<'96' 
+then raise_application_error(-20021,'la taglia non corrisponde alla lunghezza del giro fianchi: se si inserisce taglia 44 la lunghezza dei giro fianchi deve essere tra 96 e 98.'); 
+end if; 
+if :new.taglia = '46' and :new.giro_fianchi>'102' and :new.giro_fianchi<'99' 
+then raise_application_error(-20022,'la taglia non corrisponde alla lunghezza del giro fianchi:  se si inserisce taglia 46 la lunghezza dei giro fianchi deve essere tra  99 e 102.'); 
+end if; 
+if :new.taglia = '48' and :new.giro_fianchi>'106' and :new.giro_fianchi<'103'  
+ then raise_application_error(-20023,'la taglia non corrisponde alla lunghezza del giro fianchi: se si inserisce taglia 46 la lunghezza dei giro fianchi deve essere tra  103 e 106'); 
+ end if; 
+end;  
+/
+
+CREATE OR REPLACE TRIGGER eta_modella 
+BEFORE INSERT OR UPDATE ON modella 
+FOR EACH ROW 
+BEGIN 
+    IF :NEW.data_nascita_modella >  add_months(sysdate , -12*18)  then 
+       RAISE_APPLICATION_ERROR(-20009, 'Impossibile inserire la modella: è minorenne'); 
+    END IF; 
+END; 
+/
+
+CREATE OR REPLACE TRIGGER pagamento_ordine 
+BEFORE INSERT OR UPDATE ON ordine 
+ 
+FOR EACH ROW 
+ 
+declare 
+ 
+nuovo_pagamento1 varchar(2); 
+ 
+nuova_spedizione1 varchar(2); 
+ 
+nuovo_pagamento2 varchar(2); 
+nuova_spedizione2 varchar(2); 
+ 
+BEGIN 
+nuovo_pagamento1:='no'; 
+nuova_spedizione1:='si'; 
+nuovo_pagamento2:='NO'; 
+nuova_spedizione2:='SI'; 
+ 
+IF (:NEW.pagato=nuovo_pagamento1 and :NEW.spedito=nuova_spedizione1) or  
+    (:NEW.pagato=nuovo_pagamento2 and :NEW.spedito=nuova_spedizione2) or 
+    (:NEW.pagato=nuovo_pagamento2 and :NEW.spedito=nuova_spedizione1) or 
+    (:NEW.pagato=nuovo_pagamento1 and :NEW.spedito=nuova_spedizione2) 
+ 
+then  RAISE_APPLICATION_ERROR(-20017, 'Non puoi spedire se non è stato effettuato il pagamento!'); 
+ 
+END IF; 
+ 
+END; 
+ 
+/
+
+CREATE OR REPLACE TRIGGER trigger_rappresentante 
+BEFORE INSERT OR UPDATE ON rappresentante 
+FOR EACH ROW 
+BEGIN 
+IF :NEW.data_nascita_rapperesentante >  add_months(sysdate , -12*18) 
+then RAISE_APPLICATION_ERROR(-20009, 'Impossibile inserire il rappresentante: è minorenne'); 
+END IF; 
+ 
+IF :NEW.percentuale_rappresentante >  60 
+ 
+THEN  RAISE_APPLICATION_ERROR(-20012, 'Percentuale rappresentante troppo alta,deve essere minore di 60'); 
+ 
+END IF; 
+END; 
+/
+
+CREATE OR REPLACE TRIGGER catalogo_peso 
+BEFORE INSERT OR UPDATE ON catalogo 
+FOR EACH ROW 
+BEGIN 
+IF (:NEW.TIPO_CARTA='ecologica' or :NEW.TIPO_CARTA='riciclata' and :NEW.NUMERO_PAGINE>=1 and:NEW.NUMERO_PAGINE<=10 and :NEW.COSTO_STAMPA>=15) 
+  THEN RAISE_APPLICATION_ERROR(-20005,'Per il tipo di carta ecologica o riciclata e per un numero di pagine inferiore a 10 il prezzo non deve essere superiore a 15€'); 
+  END IF; 
+if  (:NEW.TIPO_CARTA='ecologica' or :NEW.TIPO_CARTA='riciclata' and :NEW.NUMERO_PAGINE>=11 and:NEW.NUMERO_PAGINE<=20 and :NEW.COSTO_STAMPA>=20) 
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta ecologica o riciclata e per un numero di pagine inferiore a 20 il prezzo non deve essere superiore a 20€'); 
+  END IF; 
+if  (:NEW.TIPO_CARTA='ecologica' or :NEW.TIPO_CARTA='riciclata' and :NEW.NUMERO_PAGINE>=21 and:NEW.NUMERO_PAGINE<=30 and :NEW.COSTO_STAMPA>=30) 
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta ecologica o riciclata e per un numero di pagine inferiore a 30 il prezzo non deve essere superiore a 30€'); 
+  END IF; 
+if  (:NEW.TIPO_CARTA='ecologica' or :NEW.TIPO_CARTA='riciclata' and :NEW.NUMERO_PAGINE>=31 and:NEW.NUMERO_PAGINE<=40 and :NEW.COSTO_STAMPA>=40) 
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta ecologica o riciclata e per un numero di pagine inferiore a 40 il prezzo non deve essere superiore a 40€'); 
+  END IF; 
+if  (:NEW.TIPO_CARTA='ecologica' or :NEW.TIPO_CARTA='riciclata' and :NEW.NUMERO_PAGINE>=41 and:NEW.NUMERO_PAGINE<=50 and :NEW.COSTO_STAMPA>=50) 
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta ecologica o riciclata e per un numero di pagine inferiore a 50 il prezzo non deve essere superiore a 50€'); 
+  END IF; 
+if  (:NEW.TIPO_CARTA='ecologica' or :NEW.TIPO_CARTA='riciclata' and :NEW.NUMERO_PAGINE>=51 and:NEW.NUMERO_PAGINE<=100 and :NEW.COSTO_STAMPA>=100) 
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta ecologica o riciclata e per un numero di pagine inferiore a 100 il prezzo non deve essere superiore a 100€'); 
+  END IF; 
+if  (:NEW.TIPO_CARTA='patinata' and :NEW.NUMERO_PAGINE>=1 and:NEW.NUMERO_PAGINE<=10 and :NEW.COSTO_STAMPA>=20) 
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta patinata e per un numero di pagine inferiore a 10 il prezzo non deve essere superiore a 20€'); 
+  END IF; 
+if  (:NEW.TIPO_CARTA='patinata' and :NEW.NUMERO_PAGINE>=11 and:NEW.NUMERO_PAGINE<=20 and :NEW.COSTO_STAMPA>=35) 
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta patinata e per un numero di pagine inferiore a 20 il prezzo non deve essere superiore a 35€'); 
+  END IF; 
+if  (:NEW.TIPO_CARTA='patinata' and :NEW.NUMERO_PAGINE>=21 and:NEW.NUMERO_PAGINE<=30 and :NEW.COSTO_STAMPA>=50) 
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta patinata e per un numero di pagine inferiore a 30 il prezzo non deve essere superiore a 50€'); 
+  END IF; 
+if  (:NEW.TIPO_CARTA='patinata' and :NEW.NUMERO_PAGINE>=31 and:NEW.NUMERO_PAGINE<=40 and :NEW.COSTO_STAMPA>=65) 
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta patinata e per un numero di pagine inferiore a 40 il prezzo non deve essere superiore a 65€'); 
+  END IF; 
+if  (:NEW.TIPO_CARTA='patinata' and :NEW.NUMERO_PAGINE>=41 and:NEW.NUMERO_PAGINE<=50 and :NEW.COSTO_STAMPA>=75) 
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta patinata e per un numero di pagine inferiore a 50 il prezzo non deve essere superiore a 75€'); 
+  END IF; 
+if  (:NEW.TIPO_CARTA='patinata' and :NEW.NUMERO_PAGINE>=51 and:NEW.NUMERO_PAGINE<=100 and :NEW.COSTO_STAMPA>=130) 
+THEN RAISE_APPLICATION_ERROR(-20004,'Per il tipo di carta patinata e per un numero di pagine inferiore a 100 il prezzo non deve essere superiore a 130€'); 
+  END IF; 
+   
+END; 
+/
+
+CREATE OR REPLACE TRIGGER servizio_trasporto 
+BEFORE INSERT OR UPDATE ON servizio_di_trasporto 
+FOR EACH ROW 
+DECLARE 
+paese fabbrica.paese_fabbrica%type; 
+BEGIN 
+    
+    if :NEW.paese_destinazione='Italia' and (:new.prezzo_trasporto<10 or :new.prezzo_trasporto>25) 
+    THEN RAISE_APPLICATION_ERROR(-20007,'Il prezzo è inadeguato per essere una spedizione da Italia e verso Italia: deve essere compreso tra 10 e 25 '); 
+    end if; 
+     if :NEW.paese_destinazione='Francia' and (:new.prezzo_trasporto>40 or :new.prezzo_trasporto<20) 
+    THEN RAISE_APPLICATION_ERROR(-20008,'Il prezzo è inadeguato  per essere una spedizione dalla Francia e verso Italia:deve essere compreso tra 20 e 40'); 
+        end if; 
+         if :NEW.paese_destinazione='Svizzera' and (:new.prezzo_trasporto>25 or :new.prezzo_trasporto<10) 
+    THEN RAISE_APPLICATION_ERROR(-20009,'Il prezzo è inadeguato  per essere una spedizione dalla Svizzera e verso Italia: deve essere compreso tra 10 e 25 '); 
+        end if; 
+             if :NEW.paese_destinazione='Germania' and (:new.prezzo_trasporto>50 or :new.prezzo_trasporto<35) 
+    THEN RAISE_APPLICATION_ERROR(-20010,'Il prezzo è inadeguato  per essere una spedizione dalla Germania e verso Italia: deve essere compreso tra 35 e 50'); 
+        end if; 
+    if :NEW.paese_destinazione='Turchia' and (:new.prezzo_trasporto>60 or :new.prezzo_trasporto<35) 
+    THEN RAISE_APPLICATION_ERROR(-20011,'Il prezzo è inadeguato  per essere una spedizione dalla Turchia e verso Italia: deve essere compreso tra 35 e 60'); 
+        end if; 
+        if :NEW.paese_destinazione='Cina' and (:new.prezzo_trasporto>100 or :new.prezzo_trasporto<60) 
+    THEN RAISE_APPLICATION_ERROR(-20012,'Il prezzo è inadeguato  per essere una spedizione dalla Cina e verso Italia: deve essere compreso tra 60 e 100'); 
+        end if; 
+            if :NEW.prezzo_trasporto>150 and (:NEW.paese_destinazione<>'Cina' or :NEW.paese_destinazione<>'Turchia'  or :NEW.paese_destinazione<>'Germania'  or :NEW.paese_destinazione<>'Svizzera'  or :NEW.paese_destinazione<>'Francia'  or :NEW.paese_destinazione<>'Italia')  
+    THEN RAISE_APPLICATION_ERROR(-20013,'Confronta il prezzo con altri servizi di trasporto:non è mai stata fatta una spedizione da questo paese!'); 
+END IF; 
+END; 
+/
+
+CREATE OR REPLACE TRIGGER eta_dipendente 
+BEFORE INSERT OR UPDATE ON dipendente 
+FOR EACH ROW 
+BEGIN 
+    IF :NEW.data_nascita_dip >  add_months(sysdate , -12*18)  then 
+       RAISE_APPLICATION_ERROR(-20001, 'Impossibile inserire il dipendente: è minorenne'); 
+    END IF; 
+END; 
+/
+
+create or replace view controllo_dipendenti as  
+select distinct nome_dipendente,cognome_dipendente,stipendio_dipendente from dipendente;
+
+create or replace view controllo_rappresentanti as  
+ select distinct nome_rappresentante,cognome_rappresentante,percentuale_rappresentante from rappresentante;
+
+create or replace view abito_completo as 
+select a1.codice_vestito,c1.colore,t1.tessuto,s1.accessori 
+from (((abito a1 join colore c1 on a1.codice_vestito = c1.codice_vestito) join tessuti t1 on a1.codice_vestito = t1.codice_vestito) join accessori s1 on a1.codice_vestito=s1.codice_vestito);
+
+create or replace view vista_cliente as  
+select c1.nome_collezione,c1.numero_vestiti,s1.codice_vestito as vestito_rimasto,a1.buono_sconto,a1.datafine_campagna  
+from ((collezione c1 join campagna_promozionale a1 on c1.anno_collezione = a1.anno_campagna) join abito s1 on c1.nome_collezione = s1.nome_collezione);
+
+create or replace view vista_catalogo as 
+select numero_catalogo,numero_pagine,nome_collezione from catalogo;
+
+create or replace view vista_st as 
+select m1.nome_modella,m1.cognome_modella,m1.prezzo_modella,s.anno_servizio_fotografico,s.location_servizio,s.prezzo_servizio 
+from ((modella m1 join posa_per p1 on m1.iban_modella=p1.iban_modella)join servizio_fotografico s on p1.anno_servizio_fotografico=s.anno_servizio_fotografico);
